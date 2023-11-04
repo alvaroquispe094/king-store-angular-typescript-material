@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './box-info.component.html',
-  styleUrls: ['./box-info.component.scss']
+  styleUrls: ['./box-info.component.scss'],
 })
-export class BoxInfoComponent {
-
-}
+export class BoxInfoComponent {}
