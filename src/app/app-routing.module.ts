@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'landing',
+    path: '',
     loadChildren: () => import('./presentation/landing/landing.module').then(m => m.LandingModule),
   },
   {
     path: 'pages',
     loadChildren: () => import('./presentation/pages/pages.module').then(m => m.PagesModule),
   },
-  { path: '', redirectTo: 'landing', pathMatch: 'full' },
-  { path: '**', redirectTo: 'landing' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

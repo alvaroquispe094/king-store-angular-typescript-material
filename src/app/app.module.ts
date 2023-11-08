@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardComponent } from './shared/components';
 import { PagesModule } from './presentation/pages/pages.module';
 import { LandingModule } from './presentation/landing/landing.module';
+import { DataModule } from './data/data.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { LandingModule } from './presentation/landing/landing.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    DataModule,
     LandingModule,
     PagesModule,
     CardComponent,
