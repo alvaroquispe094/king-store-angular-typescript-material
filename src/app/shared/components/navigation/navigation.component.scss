@@ -1,0 +1,19 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.bg-color{
+    background-color: rgb(40, 71, 129);
+}
+
+.h-toolbar{
+    height: 70px;
+}
+
+.mat-toolbar.mat-primary {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
