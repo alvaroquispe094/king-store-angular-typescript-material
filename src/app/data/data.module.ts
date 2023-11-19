@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IProductService } from '../domain/services/iproduct.service';
 import { GetProductsUseCase } from '../domain/usecases/get-products.usecase';
 import { GetProductByIdUseCase } from '../domain/usecases/get-product-by-id.usecase';
-import { ProductMockService } from './mocks/product-mock.service';
+import { ProductService } from './services/product.service';
 
 const getProductUseCaseFactory = (userRepo: IProductService) => new GetProductsUseCase(userRepo);
 export const getProductsUseCaseProvider = {
@@ -25,7 +25,7 @@ export const getProductByIdUseCaseProvider = {
   providers: [
     getProductsUseCaseProvider,
     getProductByIdUseCaseProvider,
-    { provide: IProductService, useClass: ProductMockService },
+    { provide: IProductService, useClass: ProductService },
   ],
   imports: [CommonModule, HttpClientModule],
 })

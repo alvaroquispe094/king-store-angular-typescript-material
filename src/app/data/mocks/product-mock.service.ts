@@ -19,7 +19,7 @@ export class ProductMockService implements IProductService {
       price: 1,
       stock: '55',
       createdAt: new Date(),
-      profilePicture: 'sdgsdg',
+      image: 'sdgsdg',
       activationStatus: true,
     },
     {
@@ -29,7 +29,7 @@ export class ProductMockService implements IProductService {
       price: 2,
       stock: '67',
       createdAt: new Date(),
-      profilePicture: 'sdgsdg',
+      image: 'sdgsdg',
       activationStatus: false,
     },
     {
@@ -39,7 +39,7 @@ export class ProductMockService implements IProductService {
       price: 3,
       stock: 'dgssd',
       createdAt: new Date(),
-      profilePicture: 'wehjeterery',
+      image: 'wehjeterery',
       activationStatus: false,
     },
     {
@@ -49,7 +49,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -59,7 +59,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -69,7 +69,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -79,7 +79,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -89,7 +89,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -99,7 +99,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -109,7 +109,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -119,7 +119,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -129,7 +129,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -139,7 +139,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
     {
@@ -149,7 +149,7 @@ export class ProductMockService implements IProductService {
       price: 4,
       stock: '463',
       createdAt: new Date(),
-      profilePicture: 'trurtrtrurtu',
+      image: 'trurtrtrurtu',
       activationStatus: true,
     },
   ];

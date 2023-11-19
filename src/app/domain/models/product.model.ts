@@ -5,6 +5,6 @@ export interface ProductModel {
   price: number;
   stock: string;
   createdAt?: Date;
-  profilePicture: string;
+  image: string;
   activationStatus: boolean;
 }

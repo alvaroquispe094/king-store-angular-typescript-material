@@ -10,7 +10,7 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       description: param.description,
       price: param.price,
       stock: param.stock,
-      profilePicture: param.profilePicture,
+      image: param.image,
       activationStatus: param.activationStatus,
     };
   }
@@ -21,7 +21,7 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       description: param.description,
       price: param.price,
       stock: param.stock,
-      profilePicture: param.profilePicture,
+      image: param.image,
       activationStatus: param.activationStatus,
     };
   }

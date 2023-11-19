@@ -17,7 +17,7 @@ export class ProductService implements IProductService {
 
   getAllProducts(): Observable<ProductModel[]> {
     return this.http
-      .get<ProductEntity[]>('https://example.com/books')
+      .get<ProductEntity[]>('http://localhost:8080/api/v1/catalog/products')
       .pipe(map(list => list.map(item => this.productMapper.mapFrom(item))));
   }
 

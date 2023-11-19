@@ -5,6 +5,6 @@ export interface ProductEntity {
   price: number;
   stock: string;
   createdAt?: Date;
-  profilePicture: string;
+  image: string;
   activationStatus: boolean;
 }
