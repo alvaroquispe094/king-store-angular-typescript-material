@@ -7,7 +7,7 @@
 }
 
 .h-toolbar{
-    height: 70px;
+    height: 75px;
 }
 
 .mat-toolbar.mat-primary {
@@ -16,4 +16,8 @@
   left: 0;
   right: 0;
   z-index: 1;
+}
+
+.text-align-end{
+  text-align: end;
 }

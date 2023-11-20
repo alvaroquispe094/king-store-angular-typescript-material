@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { files } from './example-data';
+
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 /** File node data with possible child nodes. */
 export interface FileNode {
@@ -23,6 +27,8 @@ export interface FlatTreeNode {
 
 @Component({
   selector: 'app-aside',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, MatTreeModule, MatButtonModule],
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
 })

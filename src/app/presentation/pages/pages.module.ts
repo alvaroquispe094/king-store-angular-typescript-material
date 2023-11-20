@@ -10,23 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
-import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AsideComponent } from './aside/aside.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { PanelComponent } from './panel/panel.component';
-import { NavigationComponent } from '../../shared/components';
+import { NavigationComponent, HeaderComponent } from '../../shared/components';
 
 @NgModule({
-  declarations: [
-    PagesComponent,
-    DashboardComponent,
-    PanelComponent,
-    HeaderComponent,
-    AsideComponent,
-  ],
+  declarations: [PagesComponent, DashboardComponent, PanelComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
@@ -41,6 +33,7 @@ import { NavigationComponent } from '../../shared/components';
     MatListModule,
     MatTreeModule,
     NavigationComponent,
+    HeaderComponent,
   ],
 })
 export class PagesModule {}
