@@ -1,20 +1,47 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" color="primary">
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="p-2">
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type === 'file' ? 'description' : 'folder' }}
-    </mat-icon>
-    {{ node.name }}
+    <a
+      [routerLink]="node.link"
+      style="display: inline !important"
+      class="w-full"
+      mat-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name">
+      <div class="flex overflow-hidden align-content-between flex-wrap w-full pt-2">
+        <div class="flex-none flex align-items-center justify-content-center">
+          <mat-icon class="type-icon" [attr.aria-label]="node.icon + 'icon'">
+            {{ node.icon }}
+          </mat-icon>
+        </div>
+        <div class="flex-none flex align-items-center justify-content-center">
+          {{ node.name }}
+        </div>
+      </div>
+    </a>
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-      </mat-icon>
-    </button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type === 'file' ? 'description' : 'folder' }}
-    </mat-icon>
-    {{ node.name }}
+    <a
+      style="display: inline !important"
+      class="w-full"
+      mat-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name">
+      <div class="flex overflow-hidden align-content-between flex-wrap w-full pt-2">
+        <div class="flex-none flex align-items-center justify-content-center">
+          <mat-icon class="type-icon" [attr.aria-label]="node.icon + 'icon'">
+            {{ node.icon }}
+          </mat-icon>
+        </div>
+        <div class="flex-none flex align-items-center justify-content-center">
+          {{ node.name }}
+        </div>
+        <div class="flex-grow-1 flex align-items-center justify-content-end" *ngIf="hasChild">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </div>
+      </div>
+    </a>
   </mat-tree-node>
 </mat-tree>

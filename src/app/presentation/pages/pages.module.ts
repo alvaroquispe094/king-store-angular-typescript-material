@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { PanelComponent } from './panel/panel.component';
-import { NavigationComponent, HeaderComponent } from '../../shared/components';
+import { HeaderComponent } from '../../shared/components';
 
 @NgModule({
   declarations: [PagesComponent, DashboardComponent, PanelComponent],
@@ -22,7 +22,6 @@ import { NavigationComponent, HeaderComponent } from '../../shared/components';
     MatCardModule,
     MatGridListModule,
     MatMenuModule,
-    NavigationComponent,
     HeaderComponent,
   ],
 })

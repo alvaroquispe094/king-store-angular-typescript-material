@@ -1,47 +1,26 @@
 /** Example file/folder data. */
 export const files = [
   {
-    name: 'components',
-    type: 'folder',
+    name: 'Dashboard',
+    icon: 'dashboard',
+    link: '/pages/dashboard',
+  },
+  {
+    name: 'Users',
+    icon: 'supervisor_account',
+    link: '/',
     children: [
-      {
-        name: 'src',
-        type: 'folder',
-        children: [
-          {
-            name: 'cdk',
-            type: 'folder',
-            children: [
-              { name: 'package.json', type: 'file' },
-              { name: 'BUILD.bazel', type: 'file' },
-            ],
-          },
-          { name: 'material', type: 'folder' },
-        ],
-      },
+      { name: 'new', icon: 'add', link: '/' },
+      { name: 'users', icon: 'list', link: '/' },
     ],
   },
   {
-    name: 'angular',
-    type: 'folder',
+    name: 'Catalog',
+    icon: 'shop_two',
+    link: '/',
     children: [
-      {
-        name: 'packages',
-        type: 'folder',
-        children: [
-          { name: '.travis.yml', type: 'file' },
-          { name: 'firebase.json', type: 'file' },
-        ],
-      },
-      { name: 'package.json', type: 'file' },
-    ],
-  },
-  {
-    name: 'angularjs',
-    type: 'folder',
-    children: [
-      { name: 'gulpfile.js', type: 'file' },
-      { name: 'README.md', type: 'file' },
+      { name: 'new', icon: 'add', link: '/' },
+      { name: 'products', icon: 'list', link: '/' },
     ],
   },
 ];

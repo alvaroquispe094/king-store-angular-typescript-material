@@ -6,11 +6,13 @@ import { files } from './example-data';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink, RouterModule } from '@angular/router';
 
 /** File node data with possible child nodes. */
 export interface FileNode {
   name: string;
-  type: string;
+  icon: string;
+  link: string;
   children?: FileNode[];
 }
 
@@ -20,7 +22,8 @@ export interface FileNode {
  */
 export interface FlatTreeNode {
   name: string;
-  type: string;
+  icon: string;
+  link: string;
   level: number;
   expandable: boolean;
 }
@@ -28,7 +31,7 @@ export interface FlatTreeNode {
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTreeModule, MatButtonModule],
+  imports: [CommonModule, MatIconModule, MatTreeModule, MatButtonModule, RouterModule, RouterLink],
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
 })
@@ -59,7 +62,8 @@ export class AsideComponent {
   transformer(node: FileNode, level: number): FlatTreeNode {
     return {
       name: node.name,
-      type: node.type,
+      icon: node.icon,
+      link: node.link,
       level,
       expandable: !!node.children,
     };
