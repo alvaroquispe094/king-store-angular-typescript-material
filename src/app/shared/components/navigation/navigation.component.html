@@ -1,16 +1,32 @@
-<p>
-  <mat-toolbar class="h-toolbar shadow-5" color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
-    <mat-list-item class="text-align-end">
-      <div class="example-button-row">
-        <a *ngFor="let item of items" class="pr-4" mat-button [routerLink]="item.link">
-          <mat-icon>{{ item.icon }}</mat-icon>
-          {{ item.text }}
-        </a>
+<div class="content">
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="logo">King Store</div>
+
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+      <!-- USING CHECKBOX HACK -->
+      <input
+        type="checkbox"
+        id="checkbox_toggle"
+        [checked]="visible"
+        (change)="setVisibleState(true)" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+
+      <!-- NAVIGATION MENUS -->
+      <div class="menu">
+        <li *ngFor="let item of items">
+          <a
+            (click)="this.setVisibleState(false)"
+            type="link"
+            class="pr-4"
+            mat-button
+            [routerLink]="item.link">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            {{ item.text }}
+          </a>
+        </li>
       </div>
-    </mat-list-item>
-  </mat-toolbar>
-</p>
+    </ul>
+  </nav>
+</div>
