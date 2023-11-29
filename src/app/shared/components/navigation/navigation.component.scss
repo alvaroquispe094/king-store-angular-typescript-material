@@ -28,7 +28,7 @@ li {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: royalblue;
+  background-color: #1B6392;
   color: #fff;
 }
 
@@ -65,7 +65,7 @@ li {
 }
 
 .dropdown {
-  background-color: royalblue;
+  background-color: #1B6392;
   padding: 1em 0;
   position: absolute; /*WITH RESPECT TO PARENT*/
   display: none;
@@ -111,7 +111,7 @@ input[type=checkbox] {
  .menu {
     display:none;
     position: absolute;
-    background-color:royalblue;
+    background-color:#1B6392;
     right: 0;
     left: 0;
     text-align: center;
