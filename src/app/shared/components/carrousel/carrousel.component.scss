@@ -1,206 +1,182 @@
-@use 'sass:math';
+$items: 4;
+$animation-time: 6s;
+$transition-time: 0.5s;
+$scale: 20%;
 
-// /!\ IMPORTANT: this variable precises the number of slides contained in the slider.
-// if you add/remove images, make sure that this variable is up to date so the buttons,
-// the disposition of elements and the animations work correctly.
-$nb-slides: 5;
+$total-time: ($animation-time * $items);
+$scale-base-1: (1 + $scale / 100%);
 
-// THE BASICS
-html,
-body {
-  color: white;
-  background-color: rgb(243, 243, 243);
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-
-  h1 {
-    margin-top: 50px;
-    margin-bottom: 0;
-    text-shadow: 5px 5px rgba($color: rgb(243, 243, 243), $alpha: 0.5);
-  }
-
-  h2 {
-    margin: 0;
-    opacity: 0.4;
-  }
-}
-
-.line {
-  width: 100%;
-}
-
-.flex {
-  display: flex;
-}
-
-.center {
-  @extend .flex;
-  align-items: center; // horizontal
-  justify-content: center; // vertical
-}
-
-.carousel-wrapper {
-  @extend .flex;
+.slideshow {
   position: relative;
-  max-width: 100%;
-
-  input {
-    display: none;
-  }
-}
-
-// CAROUSEL / SLIDER
-.carousel {
-  @extend .line;
+  width: 100%;
+  height: 40vw;
   overflow: hidden;
-
-  ul {
-    @extend .center;
-    position: relative;
-    list-style: none;
-    overflow: hidden;
-
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100% * $nb-slides;
-
-    transition: left 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-  }
-
-  li {
-    @extend .line;
-
-    img {
-      @extend .line;
-    }
-  }
 }
 
-// NAVIGATION DOTS
-.nav-dot {
-  $dot-size: 15px;
+.slideshow-image {
   position: absolute;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  animation-name: kenburns;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: $total-time;
+  opacity: 1;
+  transform: scale($scale-base-1);
 
-  margin-left: math.div(-$dot-size, 2);
-  bottom: $dot-size * 1.5;
-  width: $dot-size;
-  height: $dot-size;
-  z-index: 1;
-
-  opacity: 0.5;
-  background-color: rgb(243, 243, 243);
-  border-radius: 50%;
-  transition: 0.4s;
-
-  &:hover {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-
-  &:active {
-    transform: scale(0.9);
+  @for $i from 1 through $items {
+    &:nth-child(#{$i}) {
+      animation-name: kenburns-#{$i};
+      z-index: ($items - $i);
+    }
   }
 }
 
-// goes from 1 to 5.
-@for $n from 1 through $nb-slides {
-  // arranges the navigation dots horizontally
-  .nav-dot[for='slide#{$n}'] {
-    left: 50% + ((($n - 1) - math.div($nb-slides - 1, 2)) * 5%);
-  }
+@for $i from 1 through $items {
+  @keyframes kenburns-#{$i} {
+    $animation-time-percent: percentage($animation-time / $total-time);
+    $transition-time-percent: percentage($transition-time / $total-time);
 
-  #slide#{$n}:checked {
-    // moves the carousel to the right slide
-    & ~ .carousel ul {
-      left: -100% * ($n - 1);
+    $t1: ($animation-time-percent * ($i - 1) - $transition-time-percent / 2);
+    $t2: ($animation-time-percent * ($i - 1) + $transition-time-percent / 2);
+    @if ($t1 < 0%) {
+      $t1: 0%;
+    }
+    @if ($t2 < 0%) {
+      $t2: 0%;
     }
 
-    // highlights the selected navigation dot
-    & ~ .nav-dot[for='slide#{$n}'] {
+    $t3: ($animation-time-percent * ($i) - $transition-time-percent / 2);
+    $t4: ($animation-time-percent * ($i) + $transition-time-percent / 2);
+    @if ($t3 > 100%) {
+      $t3: 100%;
+    }
+    @if ($t4 > 100%) {
+      $t4: 100%;
+    }
+
+    $t5: (100% - $transition-time-percent / 2);
+    $t6: (($t4 - $t1) * 100% / $t5);
+
+    #{$t1} {
+      opacity: 1;
+      transform: scale($scale-base-1);
+    }
+    #{$t2} {
       opacity: 1;
     }
-  }
-}
+    #{$t3} {
+      opacity: 1;
+    }
+    #{$t4} {
+      opacity: 0;
+      transform: scale(1);
+    }
 
-// ARROWS
-%arrow {
-  $arrow-size: 50px;
-  display: none; // hidden by default
-  position: absolute;
+    @if ($i != $items) {
+      100% {
+        opacity: 0;
+        transform: scale($scale-base-1);
+      }
+    }
 
-  cursor: pointer;
-  font-weight: bolder;
-  text-shadow: 0 0 7.5px rgba($color: rgb(243, 243, 243), $alpha: 0.7);
+    @if ($i == 1) {
+      $scale-plus: ($scale * (100% - $t5) / $t4);
+      $scale-plus-base-1: (1 + ($scale + $scale-plus) / 100%);
 
-  top: 50%;
-  z-index: 1;
-  opacity: 0.7;
-  margin-top: math.div(-$arrow-size, 2);
-  height: $arrow-size;
-  font-size: $arrow-size;
-  transition: 0.2s;
-
-  &:hover {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-
-  &:active {
-    transform: scale(0.9);
-  }
-}
-
-.left-arrow {
-  @extend %arrow;
-  left: 15px;
-}
-
-.right-arrow {
-  @extend %arrow;
-  right: 15px;
-}
-
-@function custom-modulo($n) {
-  // this function returns '$n % $nb-slides', except that if the result is 0,
-  // '$nb-slides' is returned.
-  // for exemple, for $nb-slides = 4, possible values are {1, 2, 3, 4}
-  // (and not {0, 1, 2, 3}).
-  @return 1 + ($nb-slides + (($n - 1) % $nb-slides)) % $nb-slides;
-}
-
-@for $n from 1 through $nb-slides {
-  // when the nth slide is selected,
-  // displays the left-arrow that goes to the (n-1)th slide
-  // and the right arrow that goes to the (n+1)th slide.
-  // don't worry, it loops thanks to the 'custom-modulo' function !
-
-  #slide#{$n}:checked {
-    & ~ .left-arrow[for='slide#{custom-modulo($n - 1)}'],
-    & ~ .right-arrow[for='slide#{custom-modulo($n + 1)}'] {
-      display: block;
+      #{$t5} {
+        opacity: 0;
+        transform: scale($scale-plus-base-1);
+      }
+      100% {
+        opacity: 1;
+      }
     }
   }
 }
 
-.signature {
-  margin-top: 100px;
-  bottom: 0;
-  font-family: 'Quicksand';
-  color: rgba(150, 150, 170);
-  text-shadow: 0 2.5px rgb(243, 243, 243);
+// Presentational stuff
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 99;
+  text-align: center;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
+  padding: 1em 2em;
+  line-height: 1.5;
 
-  .name {
-    color: white;
+  small {
+    display: block;
+    text-transform: lowercase;
+    font-size: 0.7em;
+
+    &:first-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      padding-bottom: 0.5em;
+    }
+
+    &:last-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      padding-top: 0.5em;
+    }
   }
+}
 
-  .dot {
-    margin: 0 5px;
+@media (max-width: 1100px) {
+  h1 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 99;
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
+    padding: 1em 2em;
+    line-height: 1.5;
   }
+}
 
-  a {
-    color: white;
-    text-decoration: underline;
+@media (max-width: 700px) {
+  h1 {
+    position: absolute;
+    top: 21%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 99;
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
+    padding: 0.3em 0.3em;
+    line-height: 1.5;
+  }
+  small {
+    display: block;
+    text-transform: lowercase;
+    font-size: 0.3em;
+
+    &:first-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      padding-bottom: 0.5em;
+    }
+
+    &:last-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      padding-top: 0.2em;
+    }
   }
 }
