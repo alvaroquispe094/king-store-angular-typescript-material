@@ -1,10 +1,12 @@
+@use 'sass:math';
+
 $items: 4;
 $animation-time: 6s;
 $transition-time: 0.5s;
 $scale: 20%;
 
 $total-time: ($animation-time * $items);
-$scale-base-1: (1 + $scale / 100%);
+$scale-base-1: (1 + math.div($scale, 100%));
 
 .slideshow {
   position: relative;
@@ -36,11 +38,11 @@ $scale-base-1: (1 + $scale / 100%);
 
 @for $i from 1 through $items {
   @keyframes kenburns-#{$i} {
-    $animation-time-percent: percentage($animation-time / $total-time);
-    $transition-time-percent: percentage($transition-time / $total-time);
+    $animation-time-percent: percentage(math.div($animation-time, $total-time));
+    $transition-time-percent: percentage(math.div($transition-time, $total-time));
 
-    $t1: ($animation-time-percent * ($i - 1) - $transition-time-percent / 2);
-    $t2: ($animation-time-percent * ($i - 1) + $transition-time-percent / 2);
+    $t1: ($animation-time-percent * ($i - 1) - math.div($transition-time-percent, 2));
+    $t2: ($animation-time-percent * ($i - 1) + math.div($transition-time-percent, 2));
     @if ($t1 < 0%) {
       $t1: 0%;
     }
@@ -48,8 +50,8 @@ $scale-base-1: (1 + $scale / 100%);
       $t2: 0%;
     }
 
-    $t3: ($animation-time-percent * ($i) - $transition-time-percent / 2);
-    $t4: ($animation-time-percent * ($i) + $transition-time-percent / 2);
+    $t3: ($animation-time-percent * ($i) - math.div($transition-time-percent, 2));
+    $t4: ($animation-time-percent * ($i) + math.div($transition-time-percent, 2));
     @if ($t3 > 100%) {
       $t3: 100%;
     }
@@ -57,8 +59,8 @@ $scale-base-1: (1 + $scale / 100%);
       $t4: 100%;
     }
 
-    $t5: (100% - $transition-time-percent / 2);
-    $t6: (($t4 - $t1) * 100% / $t5);
+    $t5: (100% - math.div($transition-time-percent, 2));
+    $t6: (math.div(($t4 - $t1) * 100%, $t5));
 
     #{$t1} {
       opacity: 1;
@@ -83,8 +85,8 @@ $scale-base-1: (1 + $scale / 100%);
     }
 
     @if ($i == 1) {
-      $scale-plus: ($scale * (100% - $t5) / $t4);
-      $scale-plus-base-1: (1 + ($scale + $scale-plus) / 100%);
+      $scale-plus: (math.div($scale * (100% - $t5), $t4));
+      $scale-plus-base-1: (1 + math.div($scale + $scale-plus, 100%));
 
       #{$t5} {
         opacity: 0;
