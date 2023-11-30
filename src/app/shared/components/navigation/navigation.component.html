@@ -22,8 +22,10 @@
             class="pr-4"
             mat-button
             [routerLink]="item.link">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            {{ item.text }}
+            <mat-icon class="m-0 p-0">{{ item.icon }}</mat-icon>
+            <span *ngIf="item.text" class="ml-2">
+              {{ item.text }}
+            </span>
           </a>
         </li>
       </div>
