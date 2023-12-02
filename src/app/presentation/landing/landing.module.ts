@@ -7,11 +7,18 @@ import { LandingPageComponent } from '../../shared/layouts';
 import { HomeComponent } from './home/home.component';
 import { IProductService } from 'src/app/domain/services/iproduct.service';
 import { ProductService } from 'src/app/data/services/product.service';
-import { CarrouselComponent } from '../../shared/components';
+import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../shared/components';
 
 @NgModule({
   declarations: [LandingComponent, HomeComponent],
-  imports: [CommonModule, LandingRoutingModule, LandingPageComponent, CarrouselComponent],
+  imports: [
+    CommonModule,
+    LandingRoutingModule,
+    LandingPageComponent,
+    CarrouselComponent,
+    BoxInfoComponent,
+    CardComponent,
+  ],
   providers: [{ provide: IProductService, useClass: ProductService }],
 })
 export class LandingModule {}

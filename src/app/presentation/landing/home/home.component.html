@@ -1,6 +1,53 @@
 <div class="container-full">
   <app-carrousel></app-carrousel>
-  <p class="mb-6" *ngFor="let p of products">
+</div>
+<div class="container">
+  <!-- information boxes -->
+  <div class="grid grid-nogutter mt-6">
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
+      <app-box-info
+        [image]="'trophy.svg'"
+        [title]="'High Quality'"
+        [text]="'high durability materials'"></app-box-info>
+    </div>
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
+      <app-box-info
+        [image]="'guarantee.svg'"
+        [title]="'Warrany Protection'"
+        [text]="'Over 2 years'"></app-box-info>
+    </div>
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
+      <app-box-info
+        [image]="'shipping.svg'"
+        [title]="'Free Shipping'"
+        [text]="'Order over 150 $'"></app-box-info>
+    </div>
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
+      <app-box-info
+        [image]="'customer-support.svg'"
+        [title]="'Support 24/7'"
+        [text]="'Dedicated support'"></app-box-info>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- New products -->
+  <div class="grid grid-nogutter mt-2">
+    <div class="col-12">
+      <div class="mt-4 font-normal text-xl p-2">Novedades</div>
+    </div>
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2" *ngFor="let company of companies">
+      <app-card
+        [image]="company.image"
+        [companyName]="company.title"
+        [position]="company.position"
+        [date]="company.date"></app-card>
+    </div>
+  </div>
+
+  <!--<p class="mb-6" *ngFor="let p of products">
     {{ p.id }}, {{ p.name }}, {{ p.description }}, {{ p.price }}
-  </p>
+  </p>-->
+  <br />
 </div>
