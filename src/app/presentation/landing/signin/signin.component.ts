@@ -7,42 +7,53 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(5)]);
-  loginForm!: FormGroup;
+  public loginForm: FormGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   constructor(public fb: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log('login..');
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+    });
   }
 
   login() {
     console.log('login..');
   }
 
+  // Custom messages for inputs
   getErrorEmailMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+    if (this.loginForm.get('email')?.errors?.['required']) {
+      return '*You must enter a value';
+    }
+    if (this.loginForm.get('email')?.errors?.['email']) {
+      return '*Not a valid email';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return '';
   }
 
   getErrorPasswordMessage() {
-    if (this.password.hasError('required')) {
-      return 'You must enter a value';
+    if (this.loginForm.get('password')?.errors?.['required']) {
+      return '*You must enter a value';
+    }
+    if (this.loginForm.get('password')?.errors?.['minlength']) {
+      return '*password should not be less than 5 words';
     }
 
-    return this.password.hasError('minLength') ? 'password should not be less than 2 words' : '';
+    return '';
   }
 
   // Accessing form control using getters
-  /*get email() {
+  get email() {
     return this.loginForm.get('email');
   }
 
   get password() {
     return this.loginForm.get('password');
-  }*/
+  }
 }
