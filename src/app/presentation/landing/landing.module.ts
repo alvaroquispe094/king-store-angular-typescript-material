@@ -8,9 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { IProductService } from 'src/app/domain/services/iproduct.service';
 import { ProductService } from 'src/app/data/services/product.service';
 import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../shared/components';
+import { SigninComponent } from './signin/signin.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [LandingComponent, HomeComponent],
+  declarations: [LandingComponent, HomeComponent, SigninComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
@@ -18,6 +24,11 @@ import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../share
     CarrouselComponent,
     BoxInfoComponent,
     CardComponent,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: IProductService, useClass: ProductService }],
 })
