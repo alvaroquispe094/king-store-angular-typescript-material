@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
+import { paths } from '../paths';
+import { environment } from 'src/environments/environment';
 import { IProductService } from '../../domain/services/iproduct.service';
 import { ProductModel } from '../../domain/models/product.model';
 import { ProductEntity } from '../entities/product.entity';
@@ -11,19 +13,22 @@ import { ProductMapper } from '../mappers/product.mapper';
   providedIn: 'root',
 })
 export class ProductService implements IProductService {
+  API_BASE = environment.url;
   productMapper = new ProductMapper();
 
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<ProductModel[]> {
+    console.log('Url: ' + this.API_BASE + paths.calalog.products);
+
     return this.http
-      .get<ProductEntity[]>('http://localhost:8080/api/v1/catalog/products')
+      .get<ProductEntity[]>(this.API_BASE + paths.calalog.products)
       .pipe(map(list => list.map(item => this.productMapper.mapFrom(item))));
   }
 
   getProductById(id: number): Observable<ProductModel> {
     return this.http
-      .get<ProductEntity>(`https://example.com/books/${id}`)
+      .get<ProductEntity>(this.API_BASE + paths.calalog.products + `/${id}`)
       .pipe(map(this.productMapper.mapFrom));
   }
 }
