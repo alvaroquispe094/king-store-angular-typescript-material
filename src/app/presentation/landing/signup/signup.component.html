@@ -90,14 +90,12 @@
                 >
               </div>
               <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your Gender</mat-label>
-                  <input
-                    matInput
-                    placeholder="pat@example.com"
-                    formControlName="gender"
-                    class="form-control"
-                    required />
+                <mat-form-field class="w-full h-5rem">
+                  <mat-label>Select your gender</mat-label>
+                  <mat-select formControlName="gender" class="form-control" required>
+                    <mat-option value="one">Male</mat-option>
+                    <mat-option value="two">Female</mat-option>
+                  </mat-select>
                 </mat-form-field>
                 <mat-error
                   class="text-left"
@@ -105,15 +103,18 @@
                   {{ getErrorGenderMessage() }}</mat-error
                 >
               </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your birthDate</mat-label>
+              <div class="col-12 mt-3">
+                <mat-form-field class="w-full h-5rem">
+                  <mat-label>Choose your birth date</mat-label>
                   <input
                     matInput
-                    placeholder="pat@example.com"
+                    [matDatepicker]="picker"
                     formControlName="birthDate"
                     class="form-control"
                     required />
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-error
                   class="text-left"

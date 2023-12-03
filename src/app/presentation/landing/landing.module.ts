@@ -16,6 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SignupComponent } from './signup/signup.component';
 import { RouterModule } from '@angular/router';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [LandingComponent, HomeComponent, SigninComponent, SignupComponent],
@@ -32,6 +37,11 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     ReactiveFormsModule,
     RouterModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [{ provide: IProductService, useClass: ProductService }],
 })
