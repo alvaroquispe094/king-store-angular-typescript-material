@@ -5,10 +5,10 @@ import { Observable, map } from 'rxjs';
 import { paths } from '../paths';
 import { environment } from 'src/environments/environment';
 import { IAuthService } from 'src/app/domain/services/iauth.service';
-import { LoginResponseModel } from 'src/app/domain/models/login-response.model';
-import { LoginResponseEntity } from '../entities/login-response.entity';
+import { SignInModel } from 'src/app/domain/models/sign-in.model';
+import { SignInEntity } from '../entities/sign-in.entity';
 import { RegisterModel } from 'src/app/domain/models/register.model';
-import { RegisterEntity } from '../entities/register.entity';
+import { SignUpEntity } from '../entities/sign-up.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -18,17 +18,17 @@ export class AuthService implements IAuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<LoginResponseModel> {
+  signIn(email: string, password: string): Observable<SignInModel> {
     console.log('Url: ' + this.API_BASE + paths.auth.signin);
 
     return this.http
-      .post<LoginResponseEntity>(this.API_BASE + paths.auth.signin, { email, password })
-      .pipe(map(LoginResponseEntity.toDomain));
+      .post<SignInEntity>(this.API_BASE + paths.auth.signin, { email, password })
+      .pipe(map(SignInEntity.toDomain));
   }
 
-  register(register: RegisterModel): Observable<unknown> {
+  signUp(register: RegisterModel): Observable<unknown> {
     console.log('Url: ' + this.API_BASE + paths.auth.signup);
 
-    return this.http.post(this.API_BASE + paths.auth.signup, RegisterEntity.fromDomain(register));
+    return this.http.post(this.API_BASE + paths.auth.signup, SignUpEntity.fromDomain(register));
   }
 }

@@ -1,6 +1,6 @@
 import { RegisterModel } from '../../domain/models/register.model';
 
-export class RegisterEntity {
+export class SignUpEntity {
   readonly firstname: string;
   readonly lastname: string;
   readonly email: string;
@@ -8,6 +8,7 @@ export class RegisterEntity {
   readonly gender: string;
   readonly birthDate: string;
   readonly phone: string;
+  readonly role: string[];
 
   constructor(
     firstname: string,
@@ -16,7 +17,8 @@ export class RegisterEntity {
     password: string,
     gender: string,
     birthDate: string,
-    phone: string
+    phone: string,
+    role: string[]
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
@@ -25,9 +27,10 @@ export class RegisterEntity {
     this.gender = gender;
     this.birthDate = birthDate;
     this.phone = phone;
+    this.role = role;
   }
 
-  static toDomain(response: RegisterEntity): RegisterModel {
+  static toDomain(response: SignUpEntity): RegisterModel {
     return {
       firstname: response.firstname,
       lastname: response.lastname,
@@ -36,18 +39,20 @@ export class RegisterEntity {
       gender: response.gender,
       birthDate: response.birthDate,
       phone: response.phone,
+      role: response.role,
     };
   }
 
-  static fromDomain(loginModel: RegisterModel): RegisterEntity {
-    return new RegisterEntity(
+  static fromDomain(loginModel: RegisterModel): SignUpEntity {
+    return new SignUpEntity(
       loginModel.firstname,
       loginModel.lastname,
       loginModel.email,
       loginModel.password,
       loginModel.gender,
       loginModel.birthDate,
-      loginModel.phone
+      loginModel.phone,
+      loginModel.role
     );
   }
 }

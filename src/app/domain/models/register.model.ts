@@ -6,4 +6,5 @@ export interface RegisterModel {
   gender: string;
   birthDate: string;
   phone: string;
+  role: string[];
 }

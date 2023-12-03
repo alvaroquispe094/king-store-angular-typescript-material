@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { LoginResponseModel } from 'src/app/domain/models/login-response.model';
+import { SignInModel } from 'src/app/domain/models/sign-in.model';
 import { SignInUseCase } from 'src/app/domain/usecases/sign-in.usecase';
 
 @Component({
@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl(''),
   });
-  login?: LoginResponseModel;
+  login?: SignInModel;
 
   constructor(
     public fb: FormBuilder,

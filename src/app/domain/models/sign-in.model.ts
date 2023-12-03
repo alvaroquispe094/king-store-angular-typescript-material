@@ -1,4 +1,4 @@
-export interface LoginResponseModel {
+export interface SignInModel {
   id: number;
   accessToken: string;
   tokenType: string;

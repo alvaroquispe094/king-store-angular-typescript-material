@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { LoginResponseModel } from '../models/login-response.model';
+import { SignInModel } from '../models/sign-in.model';
 import { RegisterModel } from '../models/register.model';
 
 export abstract class IAuthService {
-  abstract login(email: string, password: string): Observable<LoginResponseModel>;
-  abstract register(register: RegisterModel): Observable<unknown>;
+  abstract signIn(email: string, password: string): Observable<SignInModel>;
+  abstract signUp(register: RegisterModel): Observable<unknown>;
 }

@@ -1,6 +1,6 @@
-import { LoginResponseModel } from 'src/app/domain/models/login-response.model';
+import { SignInModel } from 'src/app/domain/models/sign-in.model';
 
-export class LoginResponseEntity {
+export class SignInEntity {
   readonly id: number;
   readonly accessToken: string;
   readonly tokenType: string;
@@ -15,7 +15,7 @@ export class LoginResponseEntity {
     this.email = email;
   }
 
-  static toDomain(response: LoginResponseEntity): LoginResponseModel {
+  static toDomain(response: SignInEntity): SignInModel {
     return {
       id: response.id,
       accessToken: response.accessToken,
@@ -25,8 +25,8 @@ export class LoginResponseEntity {
     };
   }
 
-  static fromDomain(loginModel: LoginResponseModel): LoginResponseEntity {
-    return new LoginResponseEntity(
+  static fromDomain(loginModel: SignInModel): SignInEntity {
+    return new SignInEntity(
       loginModel.id,
       loginModel.accessToken,
       loginModel.tokenType,
