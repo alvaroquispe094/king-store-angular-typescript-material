@@ -35,7 +35,9 @@
                     class="form-control"
                     required />
                 </mat-form-field>
-                <mat-error class="text-left" *ngIf="email?.touched || email?.dirty">
+                <mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
                   {{ getErrorEmailMessage() }}</mat-error
                 >
               </div>
@@ -49,7 +51,9 @@
                     class="form-control"
                     required />
                 </mat-form-field>
-                <mat-error class="text-left" *ngIf="password?.touched || password?.dirty">
+                <mat-error
+                  class="text-left"
+                  *ngIf="(password?.touched || password?.dirty) && password?.invalid">
                   {{ getErrorPasswordMessage() }}</mat-error
                 >
               </div>
@@ -71,7 +75,7 @@
             <mat-divider></mat-divider>
             <div class="col-12 mt-3 text-center">
               <span class="font-light text-base">Don't have an account?</span
-              ><a class="blue-link" mat-button href="" target="_blank"> Sign up</a>
+              ><a class="blue-link" mat-button href="" routerLink="/sign_up"> Sign up</a>
             </div>
           </form>
         </mat-card-content>

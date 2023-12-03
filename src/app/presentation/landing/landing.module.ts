@@ -14,9 +14,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { SignupComponent } from './signup/signup.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LandingComponent, HomeComponent, SigninComponent],
+  declarations: [LandingComponent, HomeComponent, SigninComponent, SignupComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
@@ -29,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatInputModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   providers: [{ provide: IProductService, useClass: ProductService }],
 })
