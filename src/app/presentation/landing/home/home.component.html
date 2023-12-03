@@ -46,6 +46,16 @@
     </div>
   </div>
 
+  <div class="grid grid-nogutter mt-2">
+    <div class="col-12">
+      <div class="mt-4 font-normal text-xl p-2">Detalle de productos</div>
+    </div>
+    <div class="col-12">
+      <p class="mb-6 p-2" *ngFor="let p of products">
+        {{ p.id }}, {{ p.name }}, {{ p.description }}, {{ p.price }}
+      </p>
+    </div>
+  </div>
   <!--<p class="mb-6" *ngFor="let p of products">
     {{ p.id }}, {{ p.name }}, {{ p.description }}, {{ p.price }}
   </p>-->
