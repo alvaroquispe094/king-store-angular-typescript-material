@@ -21,6 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AuthService } from '../../data/services/auth.service';
+import { IAuthService } from '../../domain/services/iauth.service';
 
 @NgModule({
   declarations: [LandingComponent, HomeComponent, SigninComponent, SignupComponent],
@@ -43,6 +45,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [{ provide: IProductService, useClass: ProductService }],
+  providers: [
+    { provide: IProductService, useClass: ProductService },
+    { provide: IAuthService, useClass: AuthService },
+  ],
 })
 export class LandingModule {}
