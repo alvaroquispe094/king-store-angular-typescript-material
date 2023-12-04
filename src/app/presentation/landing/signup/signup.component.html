@@ -103,18 +103,19 @@
                   {{ getErrorGenderMessage() }}</mat-error
                 >
               </div>
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-5rem">
+              <div class="col-12 mt-2">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
                   <mat-label>Choose your birth date</mat-label>
+                  <!-- #docregion toggle -->
                   <input
                     matInput
                     [matDatepicker]="picker"
                     formControlName="birthDate"
                     class="form-control"
                     required />
-                  <mat-hint>DD/MM/YYYY</mat-hint>
-                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
+                  <!-- #enddocregion toggle -->
                 </mat-form-field>
                 <mat-error
                   class="text-left"
