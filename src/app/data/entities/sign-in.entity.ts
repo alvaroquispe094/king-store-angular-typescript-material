@@ -6,13 +6,22 @@ export class SignInEntity {
   readonly tokenType: string;
   readonly refreshToken: string;
   readonly email: string;
+  readonly roles: string[];
 
-  constructor(id: number, token: string, tokenType: string, refreshToken: string, email: string) {
+  constructor(
+    id: number,
+    token: string,
+    tokenType: string,
+    refreshToken: string,
+    email: string,
+    roles: string[]
+  ) {
     this.id = id;
     this.accessToken = token;
     this.tokenType = tokenType;
     this.refreshToken = refreshToken;
     this.email = email;
+    this.roles = roles;
   }
 
   static toDomain(response: SignInEntity): SignInModel {
@@ -22,6 +31,7 @@ export class SignInEntity {
       tokenType: response.tokenType,
       refreshToken: response.refreshToken,
       email: response.email,
+      roles: response.roles,
     };
   }
 
@@ -31,7 +41,8 @@ export class SignInEntity {
       loginModel.accessToken,
       loginModel.tokenType,
       loginModel.refreshToken,
-      loginModel.email
+      loginModel.email,
+      loginModel.roles
     );
   }
 }

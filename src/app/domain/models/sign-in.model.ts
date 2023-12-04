@@ -4,4 +4,5 @@ export interface SignInModel {
   tokenType: string;
   refreshToken: string;
   email: string;
+  roles: string[];
 }
