@@ -13,7 +13,7 @@ export class SnackBarService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   duration = 5;
-  action = 'undo';
+
   constructor(private _snackBar: MatSnackBar) {}
 
   // typw:['success','error','info','warning']
