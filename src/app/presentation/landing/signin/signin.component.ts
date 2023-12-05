@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
 
   signIn() {
     console.log('login..');
-    this.loaging(true);
+    this.setLoading(true);
     this.signInUseCase
       .execute(this.loginForm.value)
       .pipe(takeUntil(this.destroy$))
@@ -48,11 +48,12 @@ export class SigninComponent implements OnInit {
         },
         error: err => {
           console.error(err);
+          this.setLoading(false);
           this.openSnackBar('Bad credentials', 'error');
         },
         complete: () => {
+          this.setLoading(false);
           console.info('complete login');
-          this.loaging(false);
         },
       });
   }
@@ -61,7 +62,7 @@ export class SigninComponent implements OnInit {
     this.snackBarService.open(message, type);
   }
 
-  loaging(value: boolean) {
+  setLoading(value: boolean) {
     this.isLoading = value;
   }
 

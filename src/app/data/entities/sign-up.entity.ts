@@ -1,4 +1,5 @@
-import { RegisterModel } from '../../domain/models/register.model';
+import * as moment from 'moment';
+import { SignUpModel } from '../../domain/models/sign-up.model';
 
 export class SignUpEntity {
   readonly firstname: string;
@@ -30,7 +31,7 @@ export class SignUpEntity {
     this.role = role;
   }
 
-  static toDomain(response: SignUpEntity): RegisterModel {
+  static toDomain(response: SignUpEntity): SignUpModel {
     return {
       firstname: response.firstname,
       lastname: response.lastname,
@@ -43,14 +44,14 @@ export class SignUpEntity {
     };
   }
 
-  static fromDomain(loginModel: RegisterModel): SignUpEntity {
+  static fromDomain(loginModel: SignUpModel): SignUpEntity {
     return new SignUpEntity(
       loginModel.firstname,
       loginModel.lastname,
       loginModel.email,
       loginModel.password,
       loginModel.gender,
-      loginModel.birthDate,
+      moment(loginModel.birthDate).format('DD/MM/YYYY').toString(), // To do: create util class to format dates
       loginModel.phone,
       loginModel.role
     );

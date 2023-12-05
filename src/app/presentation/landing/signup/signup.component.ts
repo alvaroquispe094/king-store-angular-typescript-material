@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SignUpUseCase } from '../../../domain/usecases/sign-up.usecase';
+import { SnackBarService } from '../../../shared/common';
+import { Subject, takeUntil } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +11,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  private destroy$: Subject<void> = new Subject<void>();
+  isLoading = false;
+
   public signupForm: FormGroup = new FormGroup({
     firstname: new FormControl(''),
     lastname: new FormControl(''),
@@ -17,7 +24,13 @@ export class SignupComponent implements OnInit {
     phone: new FormControl(''),
   });
 
-  constructor(public fb: FormBuilder) {}
+  constructor(
+    public fb: FormBuilder,
+    protected router: Router,
+    private activatedRoute: ActivatedRoute,
+    private signUpUseCase: SignUpUseCase,
+    private snackBarService: SnackBarService
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -33,6 +46,32 @@ export class SignupComponent implements OnInit {
 
   signup() {
     console.log('Signup..');
+    this.setLoading(true);
+    this.signUpUseCase
+      .execute(this.signupForm.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.openSnackBar('Congratulations, account created', 'success');
+          this.router.navigate(['/sign_in'], { relativeTo: this.activatedRoute });
+        },
+        error: err => {
+          console.error(err);
+          this.setLoading(false);
+          this.openSnackBar('Error sign up', 'error');
+        },
+        complete: () => {
+          this.setLoading(false);
+          console.info('complete register');
+        },
+      });
+  }
+  openSnackBar(message: string, type: string) {
+    this.snackBarService.open(message, type);
+  }
+
+  setLoading(value: boolean) {
+    this.isLoading = value;
   }
 
   // Custom messages for inputs
