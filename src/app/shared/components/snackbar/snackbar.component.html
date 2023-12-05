@@ -1,0 +1,12 @@
+<span class="text-color" matSnackBarLabel
+  ><i [class]="icon" aria-hidden="true"></i>&nbsp;&nbsp; {{ message }}
+</span>
+<span class="text-color" matSnackBarActions>
+  <button
+    mat-button
+    matSnackBarAction
+    class="text-color"
+    (click)="snackBarRef1.dismissWithAction()">
+    Dissmis
+  </button>
+</span>

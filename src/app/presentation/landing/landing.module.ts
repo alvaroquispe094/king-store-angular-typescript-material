@@ -29,6 +29,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AuthService } from '../../data/services/auth.service';
 import { IAuthService } from '../../domain/services/iauth.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { SnackBarService } from '../../shared/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -62,8 +65,11 @@ const MY_DATE_FORMAT = {
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
+    SnackbarComponent,
   ],
   providers: [
+    { provide: SnackBarService, useClass: SnackBarService },
     { provide: IProductService, useClass: ProductService },
     { provide: IAuthService, useClass: AuthService },
     {

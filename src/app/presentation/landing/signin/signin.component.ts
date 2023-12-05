@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { SignInModel } from 'src/app/domain/models/sign-in.model';
 import { SignInUseCase } from 'src/app/domain/usecases/sign-in.usecase';
+import { SnackBarService } from 'src/app/shared/common';
 
 @Component({
   selector: 'app-signin',
@@ -17,12 +18,14 @@ export class SigninComponent implements OnInit {
     password: new FormControl(''),
   });
   login?: SignInModel;
+  message = 'Sign in Done!';
 
   constructor(
     public fb: FormBuilder,
     private signInUseCase: SignInUseCase,
     protected router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBarService: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -39,12 +42,16 @@ export class SigninComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: res => {
-          (this.login = res),
-            this.router.navigate(['/pages/dashboard'], { relativeTo: this.activatedRoute });
+          (this.login = res), this.openSnackBar('info');
+          this.router.navigate(['/pages/dashboard'], { relativeTo: this.activatedRoute });
         },
         error: error => console.error(error),
         complete: () => console.info('complete login'),
       });
+  }
+
+  openSnackBar(type: string) {
+    this.snackBarService.open(this.message, type);
   }
 
   // Custom messages for inputs
