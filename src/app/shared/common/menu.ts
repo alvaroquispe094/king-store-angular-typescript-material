@@ -12,7 +12,7 @@ export const MENU_GUEST: MenuModel[] = [
   {
     title: 'Shop',
     icon: '',
-    link: '/shop',
+    link: '/catalog',
     text: 'Shop',
     function: '',
     user_image: false,

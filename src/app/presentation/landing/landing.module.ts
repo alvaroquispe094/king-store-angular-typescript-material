@@ -33,6 +33,8 @@ import { SnackBarService } from '../../shared/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CatalogComponent } from './catalog/catalog.component';
+import { CartComponent } from './cart/cart.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -47,7 +49,14 @@ const MY_DATE_FORMAT = {
 };
 
 @NgModule({
-  declarations: [LandingComponent, HomeComponent, SigninComponent, SignupComponent],
+  declarations: [
+    LandingComponent,
+    HomeComponent,
+    SigninComponent,
+    SignupComponent,
+    CatalogComponent,
+    CartComponent,
+  ],
   imports: [
     CommonModule,
     LandingRoutingModule,
