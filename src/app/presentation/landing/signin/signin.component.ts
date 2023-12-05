@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
     password: new FormControl(''),
   });
   login?: SignInModel;
+  isLoading = false;
 
   constructor(
     public fb: FormBuilder,
@@ -36,6 +37,7 @@ export class SigninComponent implements OnInit {
 
   signIn() {
     console.log('login..');
+    this.loaging(true);
     this.signInUseCase
       .execute(this.loginForm.value)
       .pipe(takeUntil(this.destroy$))
@@ -48,12 +50,19 @@ export class SigninComponent implements OnInit {
           console.error(err);
           this.openSnackBar('Bad credentials', 'error');
         },
-        complete: () => console.info('complete login'),
+        complete: () => {
+          console.info('complete login');
+          this.loaging(false);
+        },
       });
   }
 
   openSnackBar(message: string, type: string) {
     this.snackBarService.open(message, type);
+  }
+
+  loaging(value: boolean) {
+    this.isLoading = value;
   }
 
   // Custom messages for inputs

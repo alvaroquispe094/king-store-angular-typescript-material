@@ -32,6 +32,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SnackBarService } from '../../shared/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -67,6 +68,7 @@ const MY_DATE_FORMAT = {
     MatNativeDateModule,
     MatSnackBarModule,
     SnackbarComponent,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { provide: SnackBarService, useClass: SnackBarService },

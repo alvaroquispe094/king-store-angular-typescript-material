@@ -67,8 +67,9 @@
                   class="w-full h-3rem"
                   mat-raised-button
                   color="primary"
-                  [disabled]="loginForm.invalid">
-                  Login
+                  [disabled]="loginForm.invalid || isLoading">
+                  <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+                  <span *ngIf="!isLoading">Login</span>
                 </button>
               </div>
             </div>
