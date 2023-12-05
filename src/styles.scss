@@ -19,3 +19,40 @@ body {
   box-sizing: border-box;
   width: 100%;
 }
+
+.custom-css-class-snack-bar {
+  background-color: aqua;
+}
+
+.mat-mdc-snack-bar-container {
+  &.blue-snackbar {
+    --mdc-snackbar-container-color: #2196f3;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #baffc9;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #ffb3ba;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.info-snackbar {
+    --mdc-snackbar-container-color: #bae1ff;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.warning-snackbar {
+    --mdc-snackbar-container-color: #ffffba;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.default-snackbar {
+    --mdc-snackbar-container-color: #ffffff;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
