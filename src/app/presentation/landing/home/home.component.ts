@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
   products?: ProductModel[];
 
-  companies: any[] = [
+  companies = [
     {
       companyName: 'Redbee Studios',
       position: 'Web/mobile Developer Ssr.',
