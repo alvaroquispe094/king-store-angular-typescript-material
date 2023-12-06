@@ -9,8 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { AsideComponent } from '../aside/aside.component';
-import { ADMIN_OPTIONS } from './../../common';
+import { SidenavComponent } from '../../components/sidenav/sidenav.component';
+import { ADMIN_OPTIONS } from '../../common';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +25,7 @@ import { ADMIN_OPTIONS } from './../../common';
     MatListModule,
     MatSidenavModule,
     RouterModule,
-    AsideComponent,
+    SidenavComponent,
   ],
 })
 export class HeaderComponent {

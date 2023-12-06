@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { IProductService } from 'src/app/domain/services/iproduct.service';
 import { ProductService } from 'src/app/data/services/product.service';
 import {
-  AsideComponent,
+  SidenavComponent,
   BoxInfoComponent,
   CardComponent,
   CarrouselComponent,
@@ -69,7 +69,7 @@ const MY_DATE_FORMAT = {
     LandingPageComponent,
     CarrouselComponent,
     BoxInfoComponent,
-    AsideComponent,
+    SidenavComponent,
     CardComponent,
     ProductCardComponent,
     MatButtonModule,

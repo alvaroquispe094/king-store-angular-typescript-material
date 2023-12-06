@@ -30,7 +30,7 @@ export interface FlatTreeNode {
 }
 
 @Component({
-  selector: 'app-aside',
+  selector: 'app-sidenav',
   standalone: true,
   imports: [
     CommonModule,
@@ -42,10 +42,10 @@ export interface FlatTreeNode {
     RouterModule,
     RouterLink,
   ],
-  templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.scss'],
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.scss'],
 })
-export class AsideComponent implements OnChanges {
+export class SidenavComponent implements OnChanges {
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<FlatTreeNode>;
 
