@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="grid grid-nogutter mt-5 mb-5">
+  <div class="grid grid-nogutter mt-5 mb-5" *ngIf="size_items > 0">
     <div class="col-12">
       <span class="mt-3 pl-2 border-round-sm font-medium text-xl">My Cart</span>
     </div>
@@ -10,6 +10,21 @@
         [name]="product.name"
         [description]="product.description"
         [price]="product.price"></app-item-cart>
+    </div>
+  </div>
+
+  <!-- No items in cart -->
+  <div class="grid grid-nogutter mt-5 mb-5" *ngIf="size_items <= 0">
+    <div class="col-12 p-5 mb-5">
+      <div class="grid mt-5 mb-5 bg-white">
+        <div class="col-12 p-5 mb-5">
+          <h1 class="font-medium text-lg text-center">Your Cart</h1>
+          <p class="font-light text-base text-center"><small>Your cart is empty.</small></p>
+        </div>
+        <div class="col-12 p-5 mb-5 text-center">
+          <a mat-raised-button routerLink="/catalog" color="primary">Continue shopping </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

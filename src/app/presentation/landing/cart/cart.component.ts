@@ -10,7 +10,8 @@ import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecas
 })
 export class CartComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
-  products?: ProductModel[];
+  products?: Array<ProductModel>;
+  size_items = 0;
 
   constructor(private getProductsUseCase: GetProductsUseCase) {}
 
@@ -23,7 +24,10 @@ export class CartComponent implements OnInit {
       .execute()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: res => (this.products = res),
+        next: res => {
+          this.products = res;
+          this.size_items = res.length;
+        },
         error: error => console.error(error),
         complete: () => console.info('complete'),
       });
