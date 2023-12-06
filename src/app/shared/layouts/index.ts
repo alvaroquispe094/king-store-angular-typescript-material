@@ -1,2 +1,2 @@
-export * from './admin-page/admin-page.component';
-export * from './landing-page/landing-page.component';
+export * from './admin-page/admin-layout.component';
+export * from './landing-page/landing-layout.component';

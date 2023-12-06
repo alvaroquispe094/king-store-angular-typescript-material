@@ -8,10 +8,10 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
   selector: 'app-landing-page',
   standalone: true,
   imports: [CommonModule, NavigationComponent, FooterComponent],
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss'],
+  templateUrl: './landing-layout.component.html',
+  styleUrls: ['./landing-layout.component.scss'],
 })
-export class LandingPageComponent implements OnInit, OnDestroy {
+export class LandingLayoutComponent implements OnInit, OnDestroy {
   items?: MenuModel[];
 
   ngOnInit(): void {

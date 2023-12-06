@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
-import { AdminPageComponent } from '../../shared/layouts';
+import { AdminLayoutComponent } from '../../shared/layouts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +16,7 @@ import { PanelComponent } from './panel/panel.component';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    AdminPageComponent,
+    AdminLayoutComponent,
     MatIconModule,
     MatCardModule,
     MatGridListModule,

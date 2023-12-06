@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
-import { LandingPageComponent } from '../../shared/layouts';
+import { LandingLayoutComponent } from '../../shared/layouts';
 import { HomeComponent } from './home/home.component';
 import { IProductService } from 'src/app/domain/services/iproduct.service';
 import { ProductService } from 'src/app/data/services/product.service';
@@ -66,7 +66,7 @@ const MY_DATE_FORMAT = {
   imports: [
     CommonModule,
     LandingRoutingModule,
-    LandingPageComponent,
+    LandingLayoutComponent,
     CarrouselComponent,
     BoxInfoComponent,
     SidenavComponent,

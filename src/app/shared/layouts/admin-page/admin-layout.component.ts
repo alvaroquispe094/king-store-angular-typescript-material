@@ -9,11 +9,11 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
 @Component({
   selector: 'app-admin-page',
   standalone: true,
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.scss'],
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.scss'],
   imports: [CommonModule, NavigationComponent, FooterComponent, HeaderComponent, RouterModule],
 })
-export class AdminPageComponent implements OnInit, OnDestroy {
+export class AdminLayoutComponent implements OnInit, OnDestroy {
   items?: MenuModel[];
 
   ngOnInit(): void {
