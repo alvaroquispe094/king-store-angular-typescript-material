@@ -9,14 +9,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { ADMIN_OPTIONS } from '../../common';
+import { SidenavComponent } from '../../components';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  templateUrl: './side-container-layout.component.html',
+  styleUrls: ['./side-container-layout.component.scss'],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -28,7 +28,7 @@ import { ADMIN_OPTIONS } from '../../common';
     SidenavComponent,
   ],
 })
-export class HeaderComponent {
+export class SideContainerLayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
   _options = ADMIN_OPTIONS;
 

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent, FooterComponent } from '../../components';
-import { HeaderComponent } from '../header/header.component';
+import { SideContainerLayoutComponent } from '../side-container-layout/side-container-layout.component';
 import { RouterModule } from '@angular/router';
 import { MENU_ADMIN } from '../../common';
 import { MenuModel } from 'src/app/domain/models/menu.model';
@@ -11,7 +11,13 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
   standalone: true,
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss'],
-  imports: [CommonModule, NavigationComponent, FooterComponent, HeaderComponent, RouterModule],
+  imports: [
+    CommonModule,
+    NavigationComponent,
+    FooterComponent,
+    SideContainerLayoutComponent,
+    RouterModule,
+  ],
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
   items?: MenuModel[];

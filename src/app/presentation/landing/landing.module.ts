@@ -40,7 +40,7 @@ import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.c
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductCardComponent } from 'src/app/shared/components/product-card/product-card.component';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 
 const MY_DATE_FORMAT = {
   parse: {
