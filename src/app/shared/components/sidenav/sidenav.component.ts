@@ -72,10 +72,6 @@ export class SidenavComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.menu) {
-      console.log('A aside value is: ', this.menu);
-    }
-
     this.dataSource.data = this.menu;
   }
 
