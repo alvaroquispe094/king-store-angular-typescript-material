@@ -1,27 +1,15 @@
 <div class="container">
-  <div class="grid grid-nogutter mt-5">
+  <div class="grid grid-nogutter mt-5 mb-5">
     <div class="col-12">
-      <mat-toolbar color="primary">
-        <mat-toolbar-row>
-          <span>My Cart</span>
-        </mat-toolbar-row>
-      </mat-toolbar>
+      <span class="mt-3 pl-2 border-round-sm font-medium text-xl">My Cart</span>
     </div>
-    <div class="col-12">
-      <p>item 1</p>
-      <p>item 2</p>
-      <p>item 3</p>
-      <p>item 4</p>
-      <p>item 5</p>
-      <p>item 6</p>
-      <p>item 7</p>
-      <p>item 8</p>
-      <p>item 9</p>
-      <p>item 10</p>
-      <p>item 11</p>
-      <p>item 12</p>
-      <p>item 13</p>
-      <p>item 14</p>
+    <div class="col-12 mt-2 pl-2 pr-2 border-round-md bg-shadow">
+      <app-item-cart
+        *ngFor="let product of products"
+        [image]="product.image"
+        [name]="product.name"
+        [description]="product.description"
+        [price]="product.price"></app-item-cart>
     </div>
   </div>
 </div>

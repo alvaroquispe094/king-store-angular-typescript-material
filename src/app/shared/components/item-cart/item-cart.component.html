@@ -1,0 +1,72 @@
+<div class="container-full">
+  <!-- information boxes -->
+  <div class="grid grid-nogutter bg-white bg-shadow">
+    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
+      <div class="flex flex-wrap align-items-center justify-content-center h-full">
+        <div class="surface-overlay border-round p-2 m-1">
+          <span class="vertical-align-middle"><img [src]="image" alt="Smartphone" /></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 ms:col-3 md:col-3 lg:col-3 xl:col-3 p-2 text-center">
+      <div class="flex flex-wrap align-items-center justify-content-center h-full">
+        <div class="surface-overlay border-round p-3 m-3">
+          <span class="vertical-align-middle">
+            <div class="grid grid-nogutter">
+              <div class="col-12">
+                <div class="mt-3 border-round-sm font-medium text-lg">{{ name }}</div>
+              </div>
+              <div class="col-12">
+                <div class="mt-2 border-round-sm font-light text-base">
+                  {{ description?.substring(0, 80) }}..
+                </div>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
+      <div class="flex flex-wrap align-items-center justify-content-center h-full">
+        <div class="surface-overlay border-round p-3 py-0 m-3">
+          <span class="vertical-align-middle font-normal text-lg">$ {{ price }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 ms:col-3 md:col-3 lg:col-3 xl:col-3 p-2 text-center">
+      <div class="flex flex-wrap align-items-center justify-content-center h-full">
+        <div class="surface-overlay border-round p-3 py-0 m-3">
+          <span class="vertical-align-middle">
+            <div class="grid grid-nogutter">
+              <div class="col-4">
+                <a mat-mini-fab matTooltip="Link" color="primary" routerLink=".">
+                  <mat-icon>remove</mat-icon>
+                </a>
+              </div>
+              <div class="col-4">
+                <div class="m-2 border-round-sm font-medium text-lg">&nbsp;{{ 1 }}</div>
+              </div>
+              <div class="col-4">
+                <a mat-mini-fab matTooltip="Link" color="primary" routerLink=".">
+                  <mat-icon>add</mat-icon>
+                </a>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
+      <div class="flex flex-wrap align-items-center justify-content-center h-full">
+        <div class="surface-overlay border-round p-3 py-0 m-3">
+          <span class="vertical-align-middle"
+            ><button mat-fab color="warn" aria-label="Example icon button with a home icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

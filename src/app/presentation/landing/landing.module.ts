@@ -42,6 +42,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ItemCartComponent } from 'src/app/shared/components/item-cart/item-cart.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -73,6 +74,7 @@ const MY_DATE_FORMAT = {
     SidenavComponent,
     CardComponent,
     ProductCardComponent,
+    ItemCartComponent,
     MatButtonModule,
     MatCardModule,
     MatListModule,
