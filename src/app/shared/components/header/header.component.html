@@ -10,9 +10,7 @@
     <br />
     <br />
     <br />
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-divider></mat-divider>
-    <app-aside></app-aside>
+    <app-aside [menu]="_options" [title]="'Menu'"></app-aside>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="grid grid-nogutter" *ngIf="isHandset$ | async">

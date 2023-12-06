@@ -1,0 +1,22 @@
+<mat-card class="justify-content-center w-full example-card">
+  <img [src]="image" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span class="title-color" matListItemTitle
+          ><h1 class="mb-1">{{ name }}</h1></span
+        >
+      </mat-list-item>
+
+      <mat-list-item style="height: auto" class="color-white align-start">
+        <div matListItemTitle>{{ description }}</div>
+      </mat-list-item>
+      <mat-list-item style="height: auto" class="color-white mb-3 align-start">
+        <div matListItemTitle>
+          <span>${{ price }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <br />
+</mat-card>

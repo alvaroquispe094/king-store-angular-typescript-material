@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { AsideComponent } from '../aside/aside.component';
+import { ADMIN_OPTIONS } from './../../common';
 
 @Component({
   selector: 'app-header',
@@ -29,6 +30,7 @@ import { AsideComponent } from '../aside/aside.component';
 })
 export class HeaderComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  _options = ADMIN_OPTIONS;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),

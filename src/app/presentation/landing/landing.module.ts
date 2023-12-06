@@ -7,7 +7,12 @@ import { LandingPageComponent } from '../../shared/layouts';
 import { HomeComponent } from './home/home.component';
 import { IProductService } from 'src/app/domain/services/iproduct.service';
 import { ProductService } from 'src/app/data/services/product.service';
-import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../shared/components';
+import {
+  AsideComponent,
+  BoxInfoComponent,
+  CardComponent,
+  CarrouselComponent,
+} from '../../shared/components';
 import { SigninComponent } from './signin/signin.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -35,6 +40,7 @@ import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.c
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductCardComponent } from 'src/app/shared/components/product-card/product-card.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -63,7 +69,9 @@ const MY_DATE_FORMAT = {
     LandingPageComponent,
     CarrouselComponent,
     BoxInfoComponent,
+    AsideComponent,
     CardComponent,
+    ProductCardComponent,
     MatButtonModule,
     MatCardModule,
     MatListModule,

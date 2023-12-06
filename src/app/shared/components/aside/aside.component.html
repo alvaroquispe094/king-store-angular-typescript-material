@@ -1,3 +1,7 @@
+<mat-toolbar class="bg-white">
+  <span class="mt-3 border-round-sm font-medium text-lg">{{ title }}</span>
+</mat-toolbar>
+<mat-divider></mat-divider>
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="p-2">
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
     <a

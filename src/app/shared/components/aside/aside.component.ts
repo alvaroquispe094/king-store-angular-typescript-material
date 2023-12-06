@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { files } from './example-data';
 
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
 
 /** File node data with possible child nodes. */
 export interface FileNode {
@@ -31,11 +32,20 @@ export interface FlatTreeNode {
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTreeModule, MatButtonModule, RouterModule, RouterLink],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTreeModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatDividerModule,
+    RouterModule,
+    RouterLink,
+  ],
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
 })
-export class AsideComponent {
+export class AsideComponent implements OnChanges {
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<FlatTreeNode>;
 
@@ -44,6 +54,9 @@ export class AsideComponent {
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, FlatTreeNode>;
+
+  @Input() menu!: FileNode[];
+  @Input() title!: string;
 
   constructor() {
     this.treeFlattener = new MatTreeFlattener(
@@ -55,7 +68,15 @@ export class AsideComponent {
 
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-    this.dataSource.data = files;
+    //this.dataSource.data = this.aside === 'cart' ? ASIDE_DATA.cart : ASIDE_DATA.admin;
+  }
+
+  ngOnChanges(): void {
+    if (this.menu) {
+      console.log('A aside value is: ', this.menu);
+    }
+
+    this.dataSource.data = this.menu;
   }
 
   /** Transform the data to something the tree can read. */
