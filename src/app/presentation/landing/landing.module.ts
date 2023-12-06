@@ -41,6 +41,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -86,6 +87,7 @@ const MY_DATE_FORMAT = {
     MatSnackBarModule,
     SnackbarComponent,
     MatProgressSpinnerModule,
+    MatToolbarModule,
   ],
   providers: [
     { provide: SnackBarService, useClass: SnackBarService },
