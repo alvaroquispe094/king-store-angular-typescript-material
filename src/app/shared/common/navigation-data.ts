@@ -1,6 +1,6 @@
-import { MenuModel } from 'src/app/domain/models/menu.model';
+import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
-export const MENU_GUEST: MenuModel[] = [
+export const MENU_GUEST: NavigationModel[] = [
   {
     title: 'Home',
     icon: '',

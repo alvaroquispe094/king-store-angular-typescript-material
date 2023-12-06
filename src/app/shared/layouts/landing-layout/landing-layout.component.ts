@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent, NavigationComponent } from '../../components';
 import { MENU_GUEST } from '../../common';
-import { MenuModel } from 'src/app/domain/models/menu.model';
+import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +12,7 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
   styleUrls: ['./landing-layout.component.scss'],
 })
 export class LandingLayoutComponent implements OnInit, OnDestroy {
-  items?: MenuModel[];
+  items?: NavigationModel[];
 
   ngOnInit(): void {
     this.items = MENU_GUEST;

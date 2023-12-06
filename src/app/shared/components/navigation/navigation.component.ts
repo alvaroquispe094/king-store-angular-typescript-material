@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { MenuModel } from 'src/app/domain/models/menu.model';
+import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +13,7 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnDestroy {
-  @Input() items?: MenuModel[];
+  @Input() items?: NavigationModel[];
   visible?: boolean = false;
 
   ngOnDestroy(): void {

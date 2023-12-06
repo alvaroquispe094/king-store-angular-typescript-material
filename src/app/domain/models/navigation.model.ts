@@ -1,4 +1,4 @@
-export interface MenuModel {
+export interface NavigationModel {
   title: string;
   icon: string;
   link: string;

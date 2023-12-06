@@ -4,7 +4,7 @@ import { NavigationComponent, FooterComponent } from '../../components';
 import { SideContainerLayoutComponent } from '../side-container-layout/side-container-layout.component';
 import { RouterModule } from '@angular/router';
 import { MENU_ADMIN } from '../../common';
-import { MenuModel } from 'src/app/domain/models/menu.model';
+import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
 @Component({
   selector: 'app-admin-page',
@@ -20,7 +20,7 @@ import { MenuModel } from 'src/app/domain/models/menu.model';
   ],
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
-  items?: MenuModel[];
+  items?: NavigationModel[];
 
   ngOnInit(): void {
     this.items = MENU_ADMIN;
