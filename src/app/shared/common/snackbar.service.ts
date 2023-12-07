@@ -31,24 +31,19 @@ export class SnackBarService {
     switch (type) {
       case 'success': {
         return 'success-snackbar';
-        break;
       }
       case 'error': {
         return 'error-snackbar';
-        break;
       }
       case 'info': {
         return 'info-snackbar';
-        break;
       }
       case 'warning': {
         return 'warning-snackbar';
-        break;
       }
       default: {
         //statements;
         return 'default-snackbar';
-        break;
       }
     }
   }
