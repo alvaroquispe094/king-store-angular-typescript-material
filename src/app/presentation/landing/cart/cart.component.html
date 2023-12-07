@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="grid grid-nogutter mt-5 mb-5" *ngIf="size_items > 0">
+  <div class="grid grid-nogutter mt-7 mb-5" *ngIf="size_items > 0">
     <div class="col-12">
       <span class="mt-3 pl-2 border-round-sm font-medium text-xl">My Cart</span>
     </div>
@@ -8,6 +8,25 @@
         (size_items)="ngOnInit()"
         *ngFor="let item of items"
         [item]="item"></app-item-cart>
+    </div>
+    <div class="col-12 mt-2 pl-2 pr-2 border-round-md bg-shadow">
+      <div class="grid grid-nogutter bg-white mt-4">
+        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
+          <app-box-info [image]="" [title]="'Discount'" [text]="'$0'"></app-box-info>
+        </div>
+        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
+          <app-box-info [image]="" [title]="'Shipping'" [text]="'$0'"></app-box-info>
+        </div>
+        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
+          <app-box-info [image]="" [title]="'Subtotal'" [text]="'$0'"></app-box-info>
+        </div>
+        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
+          <app-box-info [image]="" [title]="'Total'" [text]="'$' + total"></app-box-info>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-6 pl-2 pr-2 text-center border-round-md bg-shadow">
+      <a mat-raised-button [routerLink]="" color="primary">Checkout</a>
     </div>
   </div>
 

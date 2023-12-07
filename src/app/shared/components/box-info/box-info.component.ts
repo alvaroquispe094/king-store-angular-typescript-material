@@ -12,5 +12,5 @@ import { MatButtonModule } from '@angular/material/button';
 export class BoxInfoComponent {
   @Input() image?: string;
   @Input() title?: string;
-  @Input() text?: string;
+  @Input() text?: string | number;
 }

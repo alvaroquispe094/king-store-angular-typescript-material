@@ -3,7 +3,9 @@
     <div class="col-4 text-center">
       <div class="flex flex-wrap align-items-center justify-content-center">
         <div class="surface-overlay border-round p-5 py-0 m-3">
-          <span class="vertical-align-middle"><img src="/assets/{{ image }}" alt="Icon" /></span>
+          <span class="vertical-align-middle"
+            ><img *ngIf="image" src="/assets/{{ image }}" alt="Icon"
+          /></span>
         </div>
       </div>
     </div>
