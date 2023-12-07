@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductModel } from '../../../domain/models/product.model';
 import { Subject } from 'rxjs';
 import { CartService } from '../../../shared/common/cart.service';
@@ -9,7 +9,6 @@ import { ItemCartComponent } from '../../../shared/components/item-cart/item-car
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
