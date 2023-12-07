@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductModel } from '../../../domain/models/product.model';
-import { Subject } from 'rxjs';
 import { CartService } from '../../../shared/common/cart.service';
 import { CartModel } from 'src/app/domain/models/cart.model';
 import { ItemCartComponent } from '../../../shared/components/item-cart/item-cart.component';
@@ -11,7 +10,6 @@ import { ItemCartComponent } from '../../../shared/components/item-cart/item-car
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
   @ViewChild(ItemCartComponent) child: unknown;
   products?: Array<ProductModel>;
 
