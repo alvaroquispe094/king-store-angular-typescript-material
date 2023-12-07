@@ -5,11 +5,9 @@
     </div>
     <div class="col-12 mt-2 pl-2 pr-2 border-round-md bg-shadow">
       <app-item-cart
-        *ngFor="let product of products"
-        [image]="product.image"
-        [name]="product.name"
-        [description]="product.description"
-        [price]="product.price"></app-item-cart>
+        (size_items)="ngOnInit()"
+        *ngFor="let item of items"
+        [item]="item"></app-item-cart>
     </div>
   </div>
 
@@ -17,7 +15,7 @@
   <div class="grid grid-nogutter mt-5 mb-5" *ngIf="size_items <= 0">
     <div class="col-12 p-5 mb-5">
       <div class="grid mt-5 mb-5 bg-white">
-        <div class="col-12 p-5 mb-5">
+        <div class="col-12 p-3 mt-8 mb-5">
           <h1 class="font-medium text-lg text-center">Your Cart</h1>
           <p class="font-light text-base text-center"><small>Your cart is empty.</small></p>
         </div>

@@ -1,19 +1,21 @@
 <mat-card class="justify-content-center w-full example-card">
-  <img [src]="image" alt="Photo of a Shiba Inu" />
+  <img [src]="product.image" alt="Photo of a Shiba Inu" />
   <mat-card-content class="p-0 pt-2">
     <mat-list>
       <mat-list-item style="height: auto">
-        <div class="mb-1 border-round-sm font-medium text-base" matListItemTitle>{{ name }}</div>
+        <div class="mb-1 border-round-sm font-medium text-base" matListItemTitle>
+          {{ product.name }}
+        </div>
       </mat-list-item>
 
       <mat-list-item style="height: auto" class="color-white mb-3 align-start">
         <div class="mb-1 border-round-sm font-light text-xl" matListItemTitle>
-          <span>$&nbsp;{{ price }}</span>
+          <span>$&nbsp;{{ product.price }}</span>
         </div>
       </mat-list-item>
 
       <mat-list-item class="color-white mb-3 text-center">
-        <a mat-raised-button routerLink="./" color="primary">Add to cart</a>
+        <button mat-raised-button (click)="addCart()" color="primary">Add to cart</button>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

@@ -4,7 +4,9 @@
     <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
       <div class="flex flex-wrap align-items-center justify-content-center h-full">
         <div class="surface-overlay border-round p-2 m-1">
-          <span class="vertical-align-middle"><img [src]="image" alt="Smartphone" /></span>
+          <span class="vertical-align-middle"
+            ><img [src]="item.product.image" alt="Smartphone"
+          /></span>
         </div>
       </div>
     </div>
@@ -14,11 +16,11 @@
           <span class="vertical-align-middle">
             <div class="grid grid-nogutter">
               <div class="col-12">
-                <div class="mt-3 border-round-sm font-medium text-lg">{{ name }}</div>
+                <div class="mt-3 border-round-sm font-medium text-lg">{{ item.product.name }}</div>
               </div>
               <div class="col-12">
                 <div class="mt-2 border-round-sm font-light text-base">
-                  {{ description?.substring(0, 80) }}..
+                  {{ item.product.description.substring(0, 80) }}..
                 </div>
               </div>
             </div>
@@ -29,7 +31,7 @@
     <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
       <div class="flex flex-wrap align-items-center justify-content-center h-full">
         <div class="surface-overlay border-round p-3 py-0 m-3">
-          <span class="vertical-align-middle font-normal text-lg">$ {{ price }}</span>
+          <span class="vertical-align-middle font-normal text-lg">$ {{ item.product.price }}</span>
         </div>
       </div>
     </div>
@@ -39,15 +41,20 @@
           <span class="vertical-align-middle">
             <div class="grid grid-nogutter">
               <div class="col-4">
-                <a mat-mini-fab matTooltip="Link" color="primary" routerLink=".">
+                <a
+                  mat-mini-fab
+                  matTooltip="Link"
+                  (click)="substract()"
+                  color="primary"
+                  routerLink=".">
                   <mat-icon>remove</mat-icon>
                 </a>
               </div>
               <div class="col-4">
-                <div class="m-2 border-round-sm font-medium text-lg">&nbsp;{{ 1 }}</div>
+                <div class="m-2 border-round-sm font-medium text-lg">&nbsp;{{ item.amount }}</div>
               </div>
               <div class="col-4">
-                <a mat-mini-fab matTooltip="Link" color="primary" routerLink=".">
+                <a mat-mini-fab matTooltip="Link" (click)="add()" color="primary" routerLink=".">
                   <mat-icon>add</mat-icon>
                 </a>
               </div>
@@ -59,10 +66,10 @@
     <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
       <div class="flex flex-wrap align-items-center justify-content-center h-full">
         <div class="surface-overlay border-round p-3 py-0 m-3">
-          <span class="vertical-align-middle"
-            ><button mat-fab color="warn" aria-label="Example icon button with a home icon">
+          <span class="vertical-align-middle">
+            <a mat-fab matTooltip="Link" (click)="removeItem()" color="warn" routerLink=".">
               <mat-icon>delete</mat-icon>
-            </button>
+            </a>
           </span>
         </div>
       </div>
