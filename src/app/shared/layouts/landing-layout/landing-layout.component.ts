@@ -5,7 +5,7 @@ import { MENU_GUEST } from '../../common';
 import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
 @Component({
-  selector: 'app-landing-page',
+  selector: 'app-landing-layout',
   standalone: true,
   imports: [CommonModule, NavigationComponent, FooterComponent],
   templateUrl: './landing-layout.component.html',

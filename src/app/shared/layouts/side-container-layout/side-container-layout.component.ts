@@ -13,7 +13,7 @@ import { ADMIN_OPTIONS } from '../../common';
 import { SidenavComponent } from '../../components';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-side-container-layout',
   standalone: true,
   templateUrl: './side-container-layout.component.html',
   styleUrls: ['./side-container-layout.component.scss'],

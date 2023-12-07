@@ -7,7 +7,7 @@ import { MENU_ADMIN } from '../../common';
 import { NavigationModel } from 'src/app/domain/models/navigation.model';
 
 @Component({
-  selector: 'app-admin-page',
+  selector: 'app-admin-layout',
   standalone: true,
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss'],
