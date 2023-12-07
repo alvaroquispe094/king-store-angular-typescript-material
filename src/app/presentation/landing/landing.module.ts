@@ -5,8 +5,8 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { LandingLayoutComponent } from '../../shared/layouts';
 import { HomeComponent } from './home/home.component';
-import { IProductService } from 'src/app/domain/services/iproduct.service';
-import { ProductService } from 'src/app/data/services/product.service';
+import { IProductService } from '../../domain/services/iproduct.service';
+import { ProductService } from '../../data/services/product.service';
 import {
   SidenavComponent,
   BoxInfoComponent,
@@ -36,13 +36,13 @@ import { IAuthService } from '../../domain/services/iauth.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SnackBarService } from '../../shared/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarComponent } from 'src/app/shared/components/snackbar/snackbar.component';
+import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ItemCartComponent } from 'src/app/shared/components/item-cart/item-cart.component';
+import { ItemCartComponent } from '../../shared/components/item-cart/item-cart.component';
 
 const MY_DATE_FORMAT = {
   parse: {

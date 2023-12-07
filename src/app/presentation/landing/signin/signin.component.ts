@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { SignInModel } from 'src/app/domain/models/sign-in.model';
-import { SignInUseCase } from 'src/app/domain/usecases/sign-in.usecase';
-import { SnackBarService } from 'src/app/shared/common';
+import { SignInModel } from '../../../domain/models/sign-in.model';
+import { SignInUseCase } from '../../../domain/usecases/sign-in.usecase';
+import { SnackBarService } from '../../../shared/common';
 
 @Component({
   selector: 'app-signin',

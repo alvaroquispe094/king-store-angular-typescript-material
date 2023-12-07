@@ -1,4 +1,4 @@
-import { SignInModel } from 'src/app/domain/models/sign-in.model';
+import { SignInModel } from '../../domain/models/sign-in.model';
 
 export class SignInEntity {
   readonly id: number;

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent, NavigationComponent } from '../../components';
 import { MENU_GUEST } from '../../common';
-import { NavigationModel } from 'src/app/domain/models/navigation.model';
+import { NavigationModel } from '../../../domain/models/navigation.model';
 
 @Component({
   selector: 'app-landing-layout',

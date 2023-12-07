@@ -1,4 +1,4 @@
-import { NavigationModel } from 'src/app/domain/models/navigation.model';
+import { NavigationModel } from '../../domain/models/navigation.model';
 
 export const MENU_GUEST: NavigationModel[] = [
   {

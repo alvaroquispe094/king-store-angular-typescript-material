@@ -5,9 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { ProductModel } from '../../../domain/models/product.model';
-import { CartService } from '../../common/cart.service';
 import { CartModel } from '../../../domain/models/cart.model';
-import { SnackBarService } from '../../common';
+import { CartService, SnackBarService } from '../../common';
 
 @Component({
   selector: 'app-product-card',

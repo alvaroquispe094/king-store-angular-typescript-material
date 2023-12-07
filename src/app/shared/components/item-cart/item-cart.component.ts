@@ -5,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CartModel } from '../../../domain/models/cart.model';
-import { CartService } from '../../common/cart.service';
+import { CartService } from '../../common';
 
 @Component({
   selector: 'app-item-cart',

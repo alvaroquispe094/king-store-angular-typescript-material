@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ProductModel } from 'src/app/domain/models/product.model';
-import { GetProductsUseCase } from 'src/app/domain/usecases/get-products.usecase';
+import { ProductModel } from '../../../domain/models/product.model';
+import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecase';
 
 @Component({
   selector: 'app-home',

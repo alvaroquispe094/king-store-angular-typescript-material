@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { NavigationModel } from 'src/app/domain/models/navigation.model';
+import { NavigationModel } from '../../../domain/models/navigation.model';
 
 @Component({
   selector: 'app-navigation',

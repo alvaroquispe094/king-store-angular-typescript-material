@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 import { PATH } from '../paths';
-import { environment } from 'src/environments/environment';
-import { IAuthService } from 'src/app/domain/services/iauth.service';
-import { SignInModel } from 'src/app/domain/models/sign-in.model';
+import { environment } from '../../../environments/environment';
+import { IAuthService } from '../../domain/services/iauth.service';
+import { SignInModel } from '../../domain/models/sign-in.model';
 import { SignInEntity } from '../entities/sign-in.entity';
-import { SignUpModel } from 'src/app/domain/models/sign-up.model';
+import { SignUpModel } from '../../domain/models/sign-up.model';
 import { SignUpEntity } from '../entities/sign-up.entity';
 
 @Injectable({

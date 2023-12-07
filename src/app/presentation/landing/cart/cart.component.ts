@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductModel } from '../../../domain/models/product.model';
-import { CartService } from '../../../shared/common/cart.service';
-import { CartModel } from 'src/app/domain/models/cart.model';
+import { CartModel } from '../../../domain/models/cart.model';
 import { ItemCartComponent } from '../../../shared/components/item-cart/item-cart.component';
+import { CartService } from '../../../shared/common';
 
 @Component({
   selector: 'app-cart',
