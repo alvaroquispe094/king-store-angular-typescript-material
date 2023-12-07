@@ -42,7 +42,6 @@ export class SnackBarService {
         return 'warning-snackbar';
       }
       default: {
-        //statements;
         return 'default-snackbar';
       }
     }
