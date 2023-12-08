@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { IProductService } from '../domain/services/iproduct.service';
 import { GetProductsUseCase } from '../domain/usecases/get-products.usecase';
 import { GetProductByIdUseCase } from '../domain/usecases/get-product-by-id.usecase';
@@ -9,6 +9,7 @@ import { IAuthService } from '../domain/services/iauth.service';
 import { SignInUseCase } from '../domain/usecases/sign-in.usecase';
 import { AuthService } from './services/auth.service';
 import { SignUpUseCase } from '../domain/usecases/sign-up.usecase';
+import { JwtInterceptor } from '../shared/common/JwtInterceptor';
 
 // get all products
 const getProductUseCaseFactory = (userRepo: IProductService) => new GetProductsUseCase(userRepo);
@@ -44,6 +45,7 @@ export const signUpUseCaseProvider = {
 
 @NgModule({
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     getProductsUseCaseProvider,
     getProductByIdUseCaseProvider,
     signInUseCaseProvider,
