@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { SignInModel } from '../../../domain/models/sign-in.model';
 import { SignInUseCase } from '../../../domain/usecases/sign-in.usecase';
-import { SnackBarService } from '../../../shared/common';
+import { SnackBarService, StorageService } from '../../../shared/common';
 
 @Component({
   selector: 'app-signin',
@@ -25,7 +25,8 @@ export class SigninComponent implements OnInit {
     private signInUseCase: SignInUseCase,
     protected router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class SigninComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: res => {
+          this.storageService.saveUser(res);
           (this.login = res), this.openSnackBar('Sign in Done!', 'info');
           this.router.navigate(['/pages/dashboard'], { relativeTo: this.activatedRoute });
         },

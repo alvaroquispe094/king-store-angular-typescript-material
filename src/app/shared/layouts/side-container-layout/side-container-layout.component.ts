@@ -9,8 +9,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { ADMIN_OPTIONS } from '../../common';
-import { SidenavComponent } from '../../components';
+import { ADMIN_OPTIONS, CUSTOMER_OPTIONS } from '../../common';
+import { FileNode, SidenavComponent } from '../../components';
+import { StorageService } from '../../common/storage.service';
 
 @Component({
   selector: 'app-side-container-layout',
@@ -30,7 +31,15 @@ import { SidenavComponent } from '../../components';
 })
 export class SideContainerLayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  _options = ADMIN_OPTIONS;
+  _options: FileNode[];
+
+  constructor(private storageService: StorageService) {
+    if (storageService.getUser().roles[0] == 'ROLE_ADMIN') {
+      this._options = ADMIN_OPTIONS;
+    } else {
+      this._options = CUSTOMER_OPTIONS;
+    }
+  }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),

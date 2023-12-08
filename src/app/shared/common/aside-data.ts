@@ -8,20 +8,70 @@ export const ADMIN_OPTIONS = [
   {
     name: 'Users',
     icon: 'supervisor_account',
-    link: '/',
+    link: '/pages/dashboard',
     children: [
-      { name: 'new', icon: 'add', link: '/' },
-      { name: 'users', icon: 'list', link: '/' },
+      { name: 'new', icon: 'add', link: '/pages/dashboard' },
+      { name: 'users', icon: 'list', link: '/pages/dashboard' },
     ],
   },
   {
     name: 'Catalog',
     icon: 'shop_two',
-    link: '/',
+    link: '/pages/dashboard',
     children: [
-      { name: 'new', icon: 'add', link: '/' },
-      { name: 'products', icon: 'list', link: '/' },
+      { name: 'new', icon: 'add', link: '/pages/dashboard' },
+      { name: 'products', icon: 'list', link: '/pages/dashboard' },
     ],
+  },
+  {
+    name: 'Sign out',
+    icon: 'subdirectory_arrow_left',
+    link: '/sign_in',
+  },
+];
+
+export const CUSTOMER_OPTIONS = [
+  {
+    name: 'Dashboard',
+    icon: 'dashboard',
+    link: '/pages/dashboard',
+  },
+  {
+    name: 'My Shopping',
+    icon: 'shop',
+    link: '/pages/dashboard',
+    children: [
+      { name: 'new', icon: 'add', link: '/pages/dashboard' },
+      { name: 'users', icon: 'list', link: '/pages/dashboard' },
+    ],
+  },
+  {
+    name: 'Shipping',
+    icon: 'local_shipping',
+    link: '/pages/dashboard',
+    children: [
+      { name: 'new', icon: 'add', link: '/pages/dashboard' },
+      { name: 'products', icon: 'list', link: '/pages/dashboard' },
+    ],
+  },
+  {
+    name: 'Billing',
+    icon: 'credit_card',
+    link: '/pages/dashboard',
+    children: [
+      { name: 'new', icon: 'add', link: '/pages/dashboard' },
+      { name: 'products', icon: 'list', link: '/pages/dashboard' },
+    ],
+  },
+  {
+    name: 'Profile',
+    icon: 'person',
+    link: '/pages/dashboard',
+  },
+  {
+    name: 'Sign out',
+    icon: 'subdirectory_arrow_left',
+    link: '/sign_in',
   },
 ];
 

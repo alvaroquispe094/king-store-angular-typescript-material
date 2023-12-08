@@ -21,6 +21,7 @@
         <li *ngFor="let item of items">
           <a
             (click)="this.setVisibleState(false)"
+            (click)="(item.function)"
             type="link"
             class="pr-4"
             mat-button
@@ -29,6 +30,17 @@
             <span *ngIf="item.text" class="ml-2">
               {{ item.text }}
             </span>
+          </a>
+        </li>
+        <li *ngIf="role">
+          <a
+            (click)="this.setVisibleState(false)"
+            (click)="signOut()"
+            type="link"
+            class="pr-4"
+            mat-button
+            routerLink="">
+            <mat-icon class="m-0 p-0">subdirectory_arrow_left</mat-icon>
           </a>
         </li>
       </div>
