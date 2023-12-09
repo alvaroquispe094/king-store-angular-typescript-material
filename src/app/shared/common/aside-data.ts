@@ -19,14 +19,9 @@ export const ADMIN_OPTIONS = [
     icon: 'shop_two',
     link: '/pages/dashboard',
     children: [
-      { name: 'new', icon: 'add', link: '/pages/dashboard' },
-      { name: 'products', icon: 'list', link: '/pages/dashboard' },
+      { name: 'new', icon: 'add', link: '/pages/catalog/new_product' },
+      { name: 'products', icon: 'list', link: '/pages/catalog/products' },
     ],
-  },
-  {
-    name: 'Sign out',
-    icon: 'subdirectory_arrow_left',
-    link: '/sign_in',
   },
 ];
 
@@ -67,11 +62,6 @@ export const CUSTOMER_OPTIONS = [
     name: 'Profile',
     icon: 'person',
     link: '/pages/dashboard',
-  },
-  {
-    name: 'Sign out',
-    icon: 'subdirectory_arrow_left',
-    link: '/sign_in',
   },
 ];
 

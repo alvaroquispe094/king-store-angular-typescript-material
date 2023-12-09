@@ -13,6 +13,14 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
+        path: 'catalog',
+        loadChildren: () => import('../catalog/catalog.module').then(m => m.CatalogModule),
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('../users/user.module').then(m => m.UserModule),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
