@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecase';
 import { ProductModel } from '../../../domain/models/product.model';
 import { Subject, takeUntil } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -22,7 +23,11 @@ export class ProductListComponent implements OnInit {
     //'activationStatus',
   ];
 
-  constructor(private getProductsUseCase: GetProductsUseCase) {}
+  constructor(
+    private getProductsUseCase: GetProductsUseCase,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.getProductos();
@@ -38,4 +43,11 @@ export class ProductListComponent implements OnInit {
         complete: () => console.info('complete'),
       });
   }
+
+  myCallbackFunction = (id: number): void => {
+    //callback code here
+    this.router.navigate;
+    console.log('Id product: ' + id);
+    this.router.navigate(['/pages/catalog/edit_product', id], { relativeTo: this.activatedRoute });
+  };
 }

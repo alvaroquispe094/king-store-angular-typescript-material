@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductModel } from '../../../domain/models/product.model';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-smart-table',
@@ -17,6 +18,7 @@ import { ProductModel } from '../../../domain/models/product.model';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    RouterModule,
   ],
   templateUrl: './smart-table.component.html',
   styleUrls: ['./smart-table.component.scss'],
@@ -30,6 +32,12 @@ export class SmartTableComponent implements OnChanges {
 
   @Input() columns!: string[];
   @Input() data!: ProductModel[];
+  @Input() callbackFunction!: (id: number) => void;
+
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnChanges(): void {
     this.displayedColumns = this.columns;
@@ -48,5 +56,9 @@ export class SmartTableComponent implements OnChanges {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  updateProduct(id: number) {
+    this.callbackFunction(id);
   }
 }

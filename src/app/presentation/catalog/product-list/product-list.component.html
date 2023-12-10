@@ -4,7 +4,10 @@
       <span class="border-round-sm font-medium text-xl">Product list</span>
     </div>
     <div class="col-12 mt-3">
-      <app-smart-table [columns]="displayedColumns" [data]="products"></app-smart-table>
+      <app-smart-table
+        [columns]="displayedColumns"
+        [data]="products"
+        [callbackFunction]="myCallbackFunction"></app-smart-table>
     </div>
   </div>
 </div>
