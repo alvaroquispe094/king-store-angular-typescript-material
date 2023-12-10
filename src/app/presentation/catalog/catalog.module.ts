@@ -6,9 +6,10 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { RouterModule } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
+import { SmartTableComponent } from '../../shared/components/smart-table/smart-table.component';
 
 @NgModule({
   declarations: [CatalogComponent, NewProductComponent, ProductListComponent],
-  imports: [CommonModule, CatalogRoutingModule, RouterModule],
+  imports: [CommonModule, CatalogRoutingModule, RouterModule, SmartTableComponent],
 })
 export class CatalogModule {}
