@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -61,9 +61,9 @@ const NAMES: string[] = [
   templateUrl: './smart-table.component.html',
   styleUrls: ['./smart-table.component.scss'],
 })
-export class SmartTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+export class SmartTableComponent implements AfterViewInit, OnChanges {
+  displayedColumns!: string[];
+  dataSource!: MatTableDataSource<ProductModel>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -72,11 +72,21 @@ export class SmartTableComponent implements AfterViewInit {
   @Input() data!: ProductModel[];
 
   constructor() {
+    //this.displayedColumns = this.columns;
     // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    //const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    //const products = this.data;
+    //console.log('products sdggg: ' + this.data[0]);
+    // Assign the data to the data source for the table to render
+    //this.dataSource = new MatTableDataSource(products);
+  }
+  ngOnChanges(): void {
+    this.displayedColumns = this.columns;
+    const products = this.data;
+    console.log('products sdggg: ' + this.data[0]['name']);
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource(products);
   }
 
   ngAfterViewInit() {
@@ -95,7 +105,7 @@ export class SmartTableComponent implements AfterViewInit {
 }
 
 /** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
+/*function createNewUser(id: number): UserData {
   const name =
     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
     ' ' +
@@ -108,4 +118,4 @@ function createNewUser(id: number): UserData {
     progress: Math.round(Math.random() * 100).toString(),
     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
   };
-}
+}*/
