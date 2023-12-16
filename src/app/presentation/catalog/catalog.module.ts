@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [CatalogComponent, NewProductComponent, ProductListComponent],
@@ -35,6 +36,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
 })
 export class CatalogModule {}

@@ -13,8 +13,15 @@ import { ProductModel } from '../../../domain/models/product.model';
 export class NewProductComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
   public productForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    id: new FormControl(''),
+    name: new FormControl(''),
+    description: new FormControl(''),
+    price: new FormControl(''),
+    stock: new FormControl(''),
+    image: new FormControl(''),
+    category: new FormControl(''),
+    categoryName: new FormControl(''),
+    active: new FormControl(''),
   });
   isLoading = false;
 
@@ -29,6 +36,10 @@ export class NewProductComponent implements OnInit {
     categoryName: '',
     active: true,
   };
+  selected = 'op2';
+
+  op1 = 'op1';
+  op2 = 'op2';
 
   constructor(
     public fb: FormBuilder,
@@ -38,7 +49,7 @@ export class NewProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.validateForm();
+    //this.validateForm();
 
     const params = this.activatedRoute.snapshot.params;
     console.log('id from param:' + params['id']);
@@ -50,6 +61,7 @@ export class NewProductComponent implements OnInit {
         .subscribe({
           next: res => {
             this.product = res;
+            //console.log('catogory id:' + this.product['category']['id']);
             this.validateForm();
           },
           error: error => console.error(error),
@@ -66,10 +78,11 @@ export class NewProductComponent implements OnInit {
       price: [this.product.price, [Validators.required, Validators.min(1)]],
       stock: [this.product.stock, [Validators.min(1)]],
       image: [this.product.image, [Validators.required]],
+      category: [this.product.category.id, [Validators.required, Validators.min(1)]],
       active: true,
     });
 
-    this.productForm.patchValue(this.product);
+    //this.productForm.patchValue(this.product);
   }
 
   saveProduct() {
