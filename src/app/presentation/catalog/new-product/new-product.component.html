@@ -1,3 +1,113 @@
+<!-- New product -->
+<br />
+<br />
 <div class="container-full">
-  <p>new-product works!</p>
+  <div class="grid grid-nogutter mt-2">
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2 md:col-offset-4 xl:col-offset-4">
+      <mat-card class="justify-content-center w-full example-card">
+        <div class="grid grid-nogutter mt-2 text-center">
+          <div class="flex flex-column align-items-center justify-content-center w-full">
+            <div class="surface-overlay border-round p-5 py-0 m-3">
+              <span class="vertical-align-middle"
+                ><img src="/assets/customer-support.svg" alt="Photo of a Shiba Inu"
+              /></span>
+            </div>
+            <div class="surface-overlay border-round p-5 py-0 m-3">
+              <span class="vertical-align-middle font-medium text-lg">Sign In</span>
+            </div>
+            <div class="surface-overlay border-round p-5 py-0 m-3">
+              <span class="vertical-align-base font-light text-base"
+                >Please sign in to continue dashboard panel</span
+              >
+            </div>
+          </div>
+        </div>
+        <mat-card-content>
+          <form (ngSubmit)="saveProduct()" [formGroup]="productForm" aria-labelledby="title">
+            <div class="grid grid-nogutter mt-2 text-center pl-2 pr-2">
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter name</mat-label>
+                  <input matInput formControlName="name" class="form-control" required />
+                </mat-form-field>
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter description</mat-label>
+                  <input matInput formControlName="description" class="form-control" required />
+                </mat-form-field>
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter price</mat-label>
+                  <input matInput formControlName="price" class="form-control" required />
+                </mat-form-field>
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter stock</mat-label>
+                  <input matInput formControlName="stock" class="form-control" required />
+                </mat-form-field>
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter url image</mat-label>
+                  <input matInput formControlName="image" class="form-control" required />
+                </mat-form-field>
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+
+              <div class="col-12 mt-3">
+                <p><mat-checkbox formControlName="active">Active?</mat-checkbox></p>
+                <!--<input matInput formControlName="image" class="form-control" required />-->
+
+                <!--<mat-error
+                  class="text-left"
+                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
+                  {{ getErrorEmailMessage() }}</mat-error
+                >-->
+              </div>
+
+              <div class="col-12 mt-3 mb-3">
+                <button
+                  class="w-full h-3rem"
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="productForm.invalid || isLoading">
+                  <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+                  <span *ngIf="!isLoading">Login</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
+<br />
+<br />

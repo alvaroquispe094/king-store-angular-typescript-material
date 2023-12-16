@@ -34,7 +34,7 @@ export class SideContainerLayoutComponent {
   _options: FileNode[];
 
   constructor(private storageService: StorageService) {
-    if (storageService.getUser().roles[0] == 'ROLE_ADMIN') {
+    if (storageService.isAdminUser()) {
       this._options = ADMIN_OPTIONS;
     } else {
       this._options = CUSTOMER_OPTIONS;

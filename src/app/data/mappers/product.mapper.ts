@@ -11,7 +11,9 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       price: param.price,
       stock: param.stock,
       image: param.image,
-      activationStatus: param.activationStatus,
+      category: param.category,
+      categoryName: param.category.name,
+      active: param.active,
     };
   }
   mapTo(param: ProductModel): ProductEntity {
@@ -22,7 +24,8 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       price: param.price,
       stock: param.stock,
       image: param.image,
-      activationStatus: param.activationStatus,
+      category: param.category,
+      active: param.active,
     };
   }
 }

@@ -17,10 +17,11 @@ export class ProductListComponent implements OnInit {
     'name',
     'description',
     'price',
-    //'stock',
+    'stock',
     //'createdAt',
     //'image',
-    //'activationStatus',
+    'categoryName',
+    'active',
   ];
 
   constructor(

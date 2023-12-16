@@ -1,7 +1,9 @@
 <div class="container-full p-4">
   <div class="grid grid-nogutter bg-white p-5">
     <div class="col-12 mt-2">
-      <span class="border-round-sm font-medium text-xl">Product list</span>
+      <a mat-raised-button color="primary" [routerLink]="['/pages/catalog/new_product']">
+        Add new
+      </a>
     </div>
     <div class="col-12 mt-3">
       <app-smart-table

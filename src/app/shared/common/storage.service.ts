@@ -41,4 +41,14 @@ export class StorageService {
 
     return false;
   }
+
+  public isAdminUser(): boolean {
+    const isAdmin = this.getUser().roles.every(r => {
+      if (r !== 'ROLE_ADMIN') {
+        return false;
+      }
+      return true;
+    });
+    return isAdmin;
+  }
 }
