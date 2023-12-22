@@ -12,7 +12,7 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       stock: param.stock,
       image: param.image,
       category: param.category,
-      categoryName: param.category.name,
+      categoryId: param.categoryId,
       active: param.active,
     };
   }
@@ -24,6 +24,7 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel> {
       price: param.price,
       stock: param.stock,
       image: param.image,
+      categoryId: param.categoryId,
       category: param.category,
       active: param.active,
     };

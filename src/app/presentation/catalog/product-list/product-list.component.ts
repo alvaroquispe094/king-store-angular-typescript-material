@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
     'stock',
     //'createdAt',
     //'image',
-    'categoryName',
+    'category',
     'active',
   ];
 

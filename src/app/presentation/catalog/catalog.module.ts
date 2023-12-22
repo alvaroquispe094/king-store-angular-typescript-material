@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { SnackbarComponent } from '../../shared/components';
+import { SnackBarService } from '../../shared/common';
 
 @NgModule({
   declarations: [CatalogComponent, NewProductComponent, ProductListComponent],
@@ -38,6 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatOptionModule,
     MatSelectModule,
+    SnackbarComponent,
   ],
+  providers: [{ provide: SnackBarService, useClass: SnackBarService }],
 })
 export class CatalogModule {}

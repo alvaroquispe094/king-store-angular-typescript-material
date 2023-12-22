@@ -35,7 +35,6 @@ import { AuthService } from '../../data/services/auth.service';
 import { IAuthService } from '../../domain/services/iauth.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SnackBarService } from '../../shared/common';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CatalogComponent } from './catalog/catalog.component';
@@ -86,7 +85,7 @@ const MY_DATE_FORMAT = {
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule,
+    //MatSnackBarModule,
     SnackbarComponent,
     MatProgressSpinnerModule,
     MatToolbarModule,

@@ -1,5 +1,3 @@
-import { CategoryEntity } from './category.entity';
-
 export interface ProductEntity {
   id: number | string;
   name: string;
@@ -7,6 +5,7 @@ export interface ProductEntity {
   price: number;
   stock: string;
   image: string;
-  category: CategoryEntity;
+  categoryId: number;
+  category: string;
   active: boolean;
 }

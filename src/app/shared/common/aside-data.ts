@@ -18,10 +18,7 @@ export const ADMIN_OPTIONS = [
     name: 'Catalog',
     icon: 'shop_two',
     link: '/pages/dashboard',
-    children: [
-      { name: 'new', icon: 'add', link: '/pages/catalog/new_product' },
-      { name: 'products', icon: 'list', link: '/pages/catalog/products' },
-    ],
+    children: [{ name: 'products', icon: 'list', link: '/pages/catalog/products' }],
   },
 ];
 

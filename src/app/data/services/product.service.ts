@@ -31,4 +31,20 @@ export class ProductService implements IProductService {
       .get<ProductEntity>(this.API_BASE + PATH.calalog.products + `/${id}`)
       .pipe(map(this.productMapper.mapFrom));
   }
+
+  createProduct(product: ProductModel): Observable<ProductModel> {
+    return this.http
+      .post<ProductEntity>(this.API_BASE + PATH.calalog.products, this.productMapper.mapTo(product))
+      .pipe(map(this.productMapper.mapFrom));
+  }
+
+  updateProduct(product: ProductModel, id: number): Observable<ProductModel> {
+    console.log('product model update aws:' + product['category']);
+    return this.http
+      .put<ProductEntity>(
+        this.API_BASE + PATH.calalog.products + `/${id}`,
+        this.productMapper.mapTo(product)
+      )
+      .pipe(map(this.productMapper.mapFrom));
+  }
 }

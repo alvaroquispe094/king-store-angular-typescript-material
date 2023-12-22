@@ -13,17 +13,17 @@
               /></span>
             </div>
             <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-middle font-medium text-lg">Sign In</span>
-            </div>
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-base font-light text-base"
-                >Please sign in to continue dashboard panel</span
-              >
+              <span class="vertical-align-middle font-medium text-lg">{{
+                edit ? 'Update product' : 'Create product'
+              }}</span>
             </div>
           </div>
         </div>
         <mat-card-content>
-          <form (ngSubmit)="saveProduct()" [formGroup]="productForm" aria-labelledby="title">
+          <form
+            (ngSubmit)="edit ? updateProduct() : saveProduct()"
+            [formGroup]="productForm"
+            aria-labelledby="title">
             <div class="grid grid-nogutter mt-2 text-center pl-2 pr-2">
               <div class="col-12 mt-3">
                 <mat-form-field appearance="outline" class="w-full h-4rem">
@@ -50,7 +50,12 @@
               <div class="col-12 mt-3">
                 <mat-form-field appearance="outline" class="w-full h-4rem">
                   <mat-label>Enter price</mat-label>
-                  <input matInput formControlName="price" class="form-control" required />
+                  <input
+                    type="number"
+                    matInput
+                    formControlName="price"
+                    class="form-control"
+                    required />
                 </mat-form-field>
                 <!--<mat-error
                   class="text-left"
@@ -61,7 +66,12 @@
               <div class="col-12 mt-3">
                 <mat-form-field appearance="outline" class="w-full h-4rem">
                   <mat-label>Enter stock</mat-label>
-                  <input matInput formControlName="stock" class="form-control" required />
+                  <input
+                    type="number"
+                    matInput
+                    formControlName="stock"
+                    class="form-control"
+                    required />
                 </mat-form-field>
                 <!--<mat-error
                   class="text-left"
@@ -84,13 +94,10 @@
               <div class="col-12 mt-3">
                 <mat-form-field appearance="outline" class="w-full h-5rem">
                   <mat-label>Select a category</mat-label>
-                  <mat-select
-                    [(value)]="product.category.id"
-                    formControlName="category"
-                    class="form-control"
-                    required>
-                    <mat-option [value]="1">Electrodomésticos </mat-option>
-                    <mat-option [value]="2">Tecnología y Electrónica</mat-option>
+                  <mat-select formControlName="categoryId" class="form-control" required>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                      {{ category.name }}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
                 <!--<mat-error
@@ -118,7 +125,7 @@
                   color="primary"
                   [disabled]="productForm.invalid || isLoading">
                   <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
-                  <span *ngIf="!isLoading">Login</span>
+                  <span *ngIf="!isLoading">Save</span>
                 </button>
               </div>
             </div>
