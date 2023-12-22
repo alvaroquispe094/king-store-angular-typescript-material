@@ -34,6 +34,6 @@ export class ProductCardComponent implements OnChanges {
 
   addCart() {
     this._cartService.changeCart(this.cart);
-    this._snackBarService.open('Added to cart!', 'success');
+    this._snackBarService.success('Added to cart!');
   }
 }

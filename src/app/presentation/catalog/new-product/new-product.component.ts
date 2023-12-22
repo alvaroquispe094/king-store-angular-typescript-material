@@ -38,7 +38,7 @@ export class NewProductComponent implements OnInit {
     image: '',
     categoryId: 0,
     category: '',
-    active: true,
+    active: false,
   };
 
   categories?: CategoryModel[];
@@ -61,6 +61,7 @@ export class NewProductComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     console.log('id from param:' + params['id']);
 
+    this.validateForm();
     this.getCategories();
 
     if (params['id']) {
@@ -79,23 +80,6 @@ export class NewProductComponent implements OnInit {
     }
   }
 
-  getCategories() {
-    this.getCategoriesUseCase
-      .execute()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: res => {
-          this.categories = res;
-        },
-        error: err => {
-          console.error(err);
-        },
-        complete: () => {
-          console.info('complete get categories');
-        },
-      });
-  }
-
   updateProduct() {
     console.log('update..');
     this.setLoading(true);
@@ -105,7 +89,7 @@ export class NewProductComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.openSnackBar('Updated product!', 'info');
+          this.snackBarService.info('Updated product!');
         },
         error: err => {
           console.error(err);
@@ -128,7 +112,7 @@ export class NewProductComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.openSnackBar('Created product!', 'info');
+          this.snackBarService.success('Created product!');
         },
         error: err => {
           console.error(err);
@@ -142,12 +126,25 @@ export class NewProductComponent implements OnInit {
       });
   }
 
-  openSnackBar(message: string, type: string) {
-    this.snackBarService.open(message, type);
-  }
-
   setLoading(value: boolean) {
     this.isLoading = value;
+  }
+
+  getCategories() {
+    this.getCategoriesUseCase
+      .execute()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: res => {
+          this.categories = res;
+        },
+        error: err => {
+          console.error(err);
+        },
+        complete: () => {
+          console.info('complete get categories');
+        },
+      });
   }
 
   validateForm() {

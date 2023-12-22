@@ -45,23 +45,19 @@ export class SigninComponent implements OnInit {
       .subscribe({
         next: res => {
           this.storageService.saveUser(res);
-          (this.login = res), this.openSnackBar('Sign in Done!', 'info');
+          (this.login = res), this.snackBarService.info('Sign in Done!');
           this.router.navigate(['/pages/dashboard'], { relativeTo: this.activatedRoute });
         },
         error: err => {
           console.error(err);
           this.setLoading(false);
-          this.openSnackBar('Bad credentials', 'error');
+          this.snackBarService.error('Bad credentials!');
         },
         complete: () => {
           this.setLoading(false);
           console.info('complete login');
         },
       });
-  }
-
-  openSnackBar(message: string, type: string) {
-    this.snackBarService.open(message, type);
   }
 
   setLoading(value: boolean) {

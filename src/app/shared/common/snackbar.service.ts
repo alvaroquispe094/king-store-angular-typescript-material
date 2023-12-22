@@ -16,34 +16,53 @@ export class SnackBarService {
 
   constructor(private _snackBar: MatSnackBar) {}
 
-  // typw:['success','error','info','warning']
-  open(message: string, type: string) {
+  success(message: string) {
     this._snackBar.openFromComponent(SnackbarComponent, {
-      data: { message, type },
+      data: { message, type: 'success' },
       duration: this.duration * 1000,
-      panelClass: [this.findTypeError(type)],
+      panelClass: ['success-snackbar'],
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
   }
 
-  findTypeError(type: string) {
-    switch (type) {
-      case 'success': {
-        return 'success-snackbar';
-      }
-      case 'error': {
-        return 'error-snackbar';
-      }
-      case 'info': {
-        return 'info-snackbar';
-      }
-      case 'warning': {
-        return 'warning-snackbar';
-      }
-      default: {
-        return 'default-snackbar';
-      }
-    }
+  error(message: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      data: { message, type: 'error' },
+      duration: this.duration * 1000,
+      panelClass: ['error-snackbar'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  info(message: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      data: { message, type: 'info' },
+      duration: this.duration * 1000,
+      panelClass: ['info-snackbar'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  warning(message: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      data: { message, type: 'warning' },
+      duration: this.duration * 1000,
+      panelClass: ['warning-snackbar'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  default(message: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      data: { message, type: 'default' },
+      duration: this.duration * 1000,
+      panelClass: ['default-snackbar'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }

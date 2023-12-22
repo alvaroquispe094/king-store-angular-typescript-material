@@ -52,22 +52,19 @@ export class SignupComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.openSnackBar('Congratulations, account created', 'success');
+          this.snackBarService.success('Sign up Done!');
           this.router.navigate(['/sign_in'], { relativeTo: this.activatedRoute });
         },
         error: err => {
           console.error(err);
           this.setLoading(false);
-          this.openSnackBar('Error sign up', 'error');
+          this.snackBarService.error('Error sign up');
         },
         complete: () => {
           this.setLoading(false);
           console.info('complete register');
         },
       });
-  }
-  openSnackBar(message: string, type: string) {
-    this.snackBarService.open(message, type);
   }
 
   setLoading(value: boolean) {
