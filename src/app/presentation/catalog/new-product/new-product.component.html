@@ -1,6 +1,5 @@
 <!-- New product -->
 <br />
-<br />
 <div class="container-full">
   <div class="grid grid-nogutter mt-2">
     <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2 md:col-offset-4 xl:col-offset-4">
@@ -21,7 +20,7 @@
         </div>
         <mat-card-content>
           <form
-            (ngSubmit)="edit ? updateProduct() : saveProduct()"
+            (ngSubmit)="edit ? updateProduct() : createProduct()"
             [formGroup]="productForm"
             aria-labelledby="title">
             <div class="grid grid-nogutter mt-2 text-center pl-2 pr-2">
