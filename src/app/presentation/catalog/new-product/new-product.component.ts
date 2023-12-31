@@ -41,10 +41,10 @@ export class NewProductComponent implements OnInit {
     this.getCategories();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
 
-    this.getCategories();
+    await this.getCategories();
 
     if (params['id']) {
       this.edit = true;
@@ -54,11 +54,9 @@ export class NewProductComponent implements OnInit {
         .subscribe({
           next: res => {
             this.product = res;
-            //this.getCategories();
-            this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0].id;
-            console.info(
-              'category id searched:' + this.categories?.filter(x => x.name === res.category)[0].id
-            );
+            this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
+              'id'
+            ];
             this.productForm.patchValue(this.product); // update form using domain data fetch
           },
           error: error => console.error(error),
@@ -67,7 +65,7 @@ export class NewProductComponent implements OnInit {
     }
   }
 
-  getCategories() {
+  async getCategories() {
     this.getCategoriesUseCase
       .execute()
       .pipe(takeUntil(this.destroy$))
