@@ -32,8 +32,10 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(firstname?.touched || firstname?.dirty) && firstname?.invalid">
-                  {{ getErrorFirstnameMessage() }}</mat-error
+                  *ngIf="
+                    (fg['firstname']?.touched || fg['firstname']?.dirty) && fg['firstname']?.invalid
+                  ">
+                  {{ getErrorMessage('firstname') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-4">
@@ -43,8 +45,10 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(lastname?.touched || lastname?.dirty) && lastname?.invalid">
-                  {{ getErrorLastnameMessage() }}</mat-error
+                  *ngIf="
+                    (fg['lastname']?.touched || fg['lastname']?.dirty) && fg['lastname']?.invalid
+                  ">
+                  {{ getErrorMessage('lastname') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-4">
@@ -59,8 +63,8 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(email?.touched || email?.dirty) && email?.invalid">
-                  {{ getErrorEmailMessage() }}</mat-error
+                  *ngIf="(fg['email']?.touched || fg['email']?.dirty) && fg['email']?.invalid">
+                  {{ getErrorMessage('email') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-4">
@@ -75,8 +79,10 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(password?.touched || password?.dirty) && password?.invalid">
-                  {{ getErrorPasswordMessage() }}</mat-error
+                  *ngIf="
+                    (fg['password']?.touched || fg['password']?.dirty) && fg['password']?.invalid
+                  ">
+                  {{ getErrorMessage('password') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-4">
@@ -89,8 +95,8 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(gender?.touched || gender?.dirty) && gender?.invalid">
-                  {{ getErrorGenderMessage() }}</mat-error
+                  *ngIf="(fg['gender']?.touched || fg['gender']?.dirty) && fg['gender']?.invalid">
+                  {{ getErrorMessage('gender') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-2">
@@ -109,8 +115,10 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(birthDate?.touched || birthDate?.dirty) && birthDate?.invalid">
-                  {{ getErrorBirthDateMessage() }}</mat-error
+                  *ngIf="
+                    (fg['birthDate']?.touched || fg['birthDate']?.dirty) && fg['birthDate']?.invalid
+                  ">
+                  {{ getErrorMessage('birthDate') }}</mat-error
                 >
               </div>
               <div class="col-12 mt-4">
@@ -120,8 +128,8 @@
                 </mat-form-field>
                 <mat-error
                   class="text-left"
-                  *ngIf="(phone?.touched || phone?.dirty) && phone?.invalid">
-                  {{ getErrorPhoneMessage() }}</mat-error
+                  *ngIf="(fg['phone']?.touched || fg['phone']?.dirty) && fg['phone']?.invalid">
+                  {{ getErrorMessage('phone') }}</mat-error
                 >
               </div>
 

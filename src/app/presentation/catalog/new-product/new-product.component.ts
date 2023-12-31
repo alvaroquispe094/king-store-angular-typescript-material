@@ -7,7 +7,7 @@ import { FORM_PRODUCT, ProductModel } from '../../../domain/models/product.model
 import { GetCategoriesUseCase } from '../../../domain/usecases/get-categories.usecase';
 import { CategoryModel } from '../../../domain/models/category.model';
 import { UpdateProductUseCase } from '../../../domain/usecases/update-product.usecase';
-import { SnackBarService } from '../../../shared/common';
+import { VALIDATIONS, SnackBarService } from '../../../shared/common';
 import { CreateProductUseCase } from '../../../domain/usecases/create-product.usecase';
 
 @Component({
@@ -21,8 +21,9 @@ export class NewProductComponent implements OnInit {
 
   isLoading;
   product?: ProductModel;
-  categories!: CategoryModel[];
+  categoryIdSelected = 0;
   edit: boolean;
+  categories!: CategoryModel[];
 
   constructor(
     public fb: FormBuilder,
@@ -37,6 +38,7 @@ export class NewProductComponent implements OnInit {
     this.edit = false;
     this.isLoading = false;
     this.productForm = this.fb.group(FORM_PRODUCT);
+    this.getCategories();
   }
 
   ngOnInit(): void {
@@ -52,13 +54,34 @@ export class NewProductComponent implements OnInit {
         .subscribe({
           next: res => {
             this.product = res;
+            //this.getCategories();
             this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0].id;
+            console.info(
+              'category id searched:' + this.categories?.filter(x => x.name === res.category)[0].id
+            );
             this.productForm.patchValue(this.product); // update form using domain data fetch
           },
           error: error => console.error(error),
           complete: () => console.info('get product complete'),
         });
     }
+  }
+
+  getCategories() {
+    this.getCategoriesUseCase
+      .execute()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: res => {
+          this.categories = res;
+        },
+        error: err => {
+          console.error(err);
+        },
+        complete: () => {
+          console.info('complete get categories');
+        },
+      });
   }
 
   updateProduct() {
@@ -109,20 +132,23 @@ export class NewProductComponent implements OnInit {
     this.isLoading = value;
   }
 
-  getCategories() {
-    this.getCategoriesUseCase
-      .execute()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: res => {
-          this.categories = res;
-        },
-        error: err => {
-          console.error(err);
-        },
-        complete: () => {
-          console.info('complete get categories');
-        },
-      });
+  // Custom messages for inputs
+  getErrorMessage(controlName: string) {
+    if (this.fg[controlName]?.errors?.['required']) {
+      return VALIDATIONS.required.text;
+    }
+    if (this.fg[controlName]?.errors?.['email']) {
+      return VALIDATIONS.form_product.email;
+    }
+    if (this.fg[controlName]?.errors?.['minlength']) {
+      return VALIDATIONS.form_product.min_length;
+    }
+
+    return '';
+  }
+
+  // Accessing form control
+  get fg() {
+    return this.productForm.controls;
   }
 }

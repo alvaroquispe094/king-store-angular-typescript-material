@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { SignInModel } from '../../../domain/models/sign-in.model';
 import { SignInUseCase } from '../../../domain/usecases/sign-in.usecase';
-import { SnackBarService, StorageService } from '../../../shared/common';
+import { SnackBarService, StorageService, VALIDATIONS } from '../../../shared/common';
 
 @Component({
   selector: 'app-signin',
@@ -64,35 +64,22 @@ export class SigninComponent implements OnInit {
     this.isLoading = value;
   }
 
-  // Custom messages for inputs
-  getErrorEmailMessage() {
-    if (this.loginForm.get('email')?.errors?.['required']) {
-      return '*You must enter a value';
+  getErrorMessage(controlName: string) {
+    if (this.fg[controlName]?.errors?.['required']) {
+      return VALIDATIONS.required.text;
     }
-    if (this.loginForm.get('email')?.errors?.['email']) {
-      return '*Not a valid email';
+    if (this.fg[controlName]?.errors?.['email']) {
+      return VALIDATIONS.sign_in.email;
     }
-
-    return '';
-  }
-
-  getErrorPasswordMessage() {
-    if (this.loginForm.get('password')?.errors?.['required']) {
-      return '*You must enter a value';
-    }
-    if (this.loginForm.get('password')?.errors?.['minlength']) {
-      return '*password should not be less than 5 words';
+    if (this.fg[controlName]?.errors?.['minlength']) {
+      return VALIDATIONS.sign_in.min_length;
     }
 
     return '';
   }
 
-  // Accessing form control using getters
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
+  // Accessing form control
+  get fg() {
+    return this.loginForm.controls;
   }
 }
