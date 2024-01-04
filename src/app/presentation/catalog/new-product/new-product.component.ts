@@ -41,10 +41,10 @@ export class NewProductComponent implements OnInit {
     this.getCategories();
   }
 
-  async ngOnInit() {
+  ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
 
-    await this.getCategories();
+    this.getCategories();
 
     if (params['id']) {
       this.edit = true;
@@ -65,7 +65,7 @@ export class NewProductComponent implements OnInit {
     }
   }
 
-  async getCategories() {
+  getCategories() {
     this.getCategoriesUseCase
       .execute()
       .pipe(takeUntil(this.destroy$))
