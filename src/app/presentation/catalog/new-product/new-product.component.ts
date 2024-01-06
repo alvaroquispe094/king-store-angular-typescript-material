@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetProductByIdUseCase } from '../../../domain/usecases/get-product-by-id.usecase';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, forkJoin, takeUntil } from 'rxjs';
 import { FORM_PRODUCT, ProductModel } from '../../../domain/models/product.model';
 import { GetCategoriesUseCase } from '../../../domain/usecases/get-categories.usecase';
 import { CategoryModel } from '../../../domain/models/category.model';
@@ -37,43 +37,22 @@ export class NewProductComponent implements OnInit {
   ) {
     this.edit = false;
     this.isLoading = false;
-    this.productForm = this.fb.group(FORM_PRODUCT);
   }
 
   ngOnInit() {
-    this.getCategories();
+    this.productForm = this.fb.group(FORM_PRODUCT);
 
-    /*forkJoin([$countries, $cities]).subscribe(([countries, cities]) => {
-      // All data available
-      console.log(countries);
-      console.log(cities);
-      this.resultMessage = `Fetched ${countries.length} and ${cities.length} cities`;
-    });*/
-
-    //this.getCategories();
-  }
-
-  getCategories() {
-    this.getCategoriesUseCase
-      .execute()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: res => {
-          this.categories = res;
-
-          // Obtenidas las categorias, obtengo la data del producto si es edit
-          this.findDataEdit();
-        },
-        error: err => {
-          console.error(err);
-        },
-        complete: () => {
-          console.info('complete get categories');
-        },
-      });
+    // Define multiple services that fetch data
+    forkJoin({
+      result1: this.getCategoriesUseCase.execute(),
+    }).subscribe(({ result1 }) => {
+      this.categories = result1;
+      this.findDataEdit();
+    });
   }
 
   findDataEdit() {
+    console.info('inside method fin data edit');
     const params = this.activatedRoute.snapshot['params'];
     if (params['id']) {
       this.edit = true;
@@ -83,21 +62,11 @@ export class NewProductComponent implements OnInit {
         .subscribe({
           next: res => {
             this.product = res;
-            //concat(this.getCategories()).subscribe();
-            //this.getCategories();
-            this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
-              'id'
-            ];
+            this.product.categoryId = this.categories.filter(x => x.name === res.category)[0]['id'];
             this.productForm.patchValue(this.product); // update form using domain data fetch
           },
           error: error => console.error(error),
-          complete: () => {
-            /*this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
-              'id'
-            ];
-            this.productForm.patchValue(this.product);*/ // update form using domain data fetch
-            console.info('get product complete');
-          },
+          complete: () => console.info('get product complete'),
         });
     }
   }
@@ -160,6 +129,9 @@ export class NewProductComponent implements OnInit {
     }
     if (this.fg[controlName]?.errors?.['minlength']) {
       return VALIDATIONS.form_product.min_length;
+    }
+    if (this.fg[controlName]?.errors?.['min']) {
+      return VALIDATIONS.form_product.min;
     }
 
     return '';
