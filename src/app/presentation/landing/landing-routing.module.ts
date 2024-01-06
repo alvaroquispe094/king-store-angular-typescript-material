@@ -6,6 +6,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
+import { ROUTES } from '../../shared/common';
 
 const routes: Routes = [
   {
@@ -13,28 +14,28 @@ const routes: Routes = [
     component: LandingComponent,
     children: [
       {
-        path: 'home',
+        path: ROUTES.landing.home,
         component: HomeComponent,
       },
       {
-        path: 'cart',
+        path: ROUTES.landing.cart,
         component: CartComponent,
       },
       {
-        path: 'catalog',
+        path: ROUTES.landing.catalog,
         component: CatalogComponent,
       },
       {
-        path: 'sign_in',
+        path: ROUTES.landing.sign_in,
         component: SigninComponent,
       },
       {
-        path: 'sign_up',
+        path: ROUTES.landing.sign_up,
         component: SignupComponent,
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: ROUTES.landing.home,
         pathMatch: 'full',
       },
     ],

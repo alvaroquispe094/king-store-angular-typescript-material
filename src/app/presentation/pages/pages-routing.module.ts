@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
+import { ROUTES } from '../../shared/common';
 
 const routes: Routes = [
   {
@@ -9,15 +10,15 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: 'dashboard',
+        path: ROUTES.pages.dashboard,
         component: DashboardComponent,
       },
       {
-        path: 'catalog',
+        path: ROUTES.pages.catalog.root,
         loadChildren: () => import('../catalog/catalog.module').then(m => m.CatalogModule),
       },
       {
-        path: 'users',
+        path: ROUTES.pages.users.root,
         loadChildren: () => import('../users/user.module').then(m => m.UserModule),
       },
       {

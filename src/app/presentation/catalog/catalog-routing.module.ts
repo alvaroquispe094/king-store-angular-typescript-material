@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { ROUTES } from '../../shared/common';
 
 const routes: Routes = [
   {
@@ -10,20 +11,20 @@ const routes: Routes = [
     component: CatalogComponent,
     children: [
       {
-        path: 'products',
+        path: ROUTES.pages.catalog.products,
         component: ProductListComponent,
       },
       {
-        path: 'new_product',
+        path: ROUTES.pages.catalog.new_product,
         component: NewProductComponent,
       },
       {
-        path: 'edit_product/:id',
+        path: ROUTES.pages.catalog.edit_product + `/:id`,
         component: NewProductComponent,
       },
       {
         path: '',
-        redirectTo: 'products',
+        redirectTo: ROUTES.pages.catalog.products,
         pathMatch: 'full',
       },
     ],
