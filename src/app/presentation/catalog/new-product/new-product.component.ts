@@ -62,32 +62,7 @@ export class NewProductComponent implements OnInit {
           this.categories = res;
 
           // Obtenidas las categorias, obtengo la data del producto si es edit
-          const params = this.activatedRoute.snapshot['params'];
-          if (params['id']) {
-            this.edit = true;
-            this.getProductByIdUseCase
-              .execute(params['id'])
-              .pipe(takeUntil(this.destroy$))
-              .subscribe({
-                next: res => {
-                  this.product = res;
-                  //concat(this.getCategories()).subscribe();
-                  //this.getCategories();
-                  this.product.categoryId = this.categories?.filter(
-                    x => x.name === res.category
-                  )[0]['id'];
-                  this.productForm.patchValue(this.product); // update form using domain data fetch
-                },
-                error: error => console.error(error),
-                complete: () => {
-                  /*this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
-              'id'
-            ];
-            this.productForm.patchValue(this.product);*/ // update form using domain data fetch
-                  console.info('get product complete');
-                },
-              });
-          }
+          this.findDataEdit();
         },
         error: err => {
           console.error(err);
@@ -96,6 +71,35 @@ export class NewProductComponent implements OnInit {
           console.info('complete get categories');
         },
       });
+  }
+
+  findDataEdit() {
+    const params = this.activatedRoute.snapshot['params'];
+    if (params['id']) {
+      this.edit = true;
+      this.getProductByIdUseCase
+        .execute(params['id'])
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: res => {
+            this.product = res;
+            //concat(this.getCategories()).subscribe();
+            //this.getCategories();
+            this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
+              'id'
+            ];
+            this.productForm.patchValue(this.product); // update form using domain data fetch
+          },
+          error: error => console.error(error),
+          complete: () => {
+            /*this.product.categoryId = this.categories?.filter(x => x.name === res.category)[0][
+              'id'
+            ];
+            this.productForm.patchValue(this.product);*/ // update form using domain data fetch
+            console.info('get product complete');
+          },
+        });
+    }
   }
 
   updateProduct() {
