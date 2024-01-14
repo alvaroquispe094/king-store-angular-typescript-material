@@ -4,6 +4,8 @@ import { CatalogComponent } from './catalog.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import { ROUTES } from '../../shared/common';
+import { NewCategoryComponent } from './new-category/new-category.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,18 @@ const routes: Routes = [
       {
         path: ROUTES.pages.catalog.edit_product + `/:id`,
         component: NewProductComponent,
+      },
+      {
+        path: ROUTES.pages.catalog.categories,
+        component: CategoryListComponent,
+      },
+      {
+        path: ROUTES.pages.catalog.new_category,
+        component: NewCategoryComponent,
+      },
+      {
+        path: ROUTES.pages.catalog.edit_category + `/:id`,
+        component: NewCategoryComponent,
       },
       {
         path: '',

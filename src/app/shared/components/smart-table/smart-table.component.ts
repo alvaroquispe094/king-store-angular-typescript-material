@@ -5,7 +5,6 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ProductModel } from '../../../domain/models/product.model';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -25,13 +24,13 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class SmartTableComponent implements OnChanges {
   displayedColumns!: string[];
-  dataSource!: MatTableDataSource<ProductModel>;
+  dataSource!: MatTableDataSource<unknown>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   @Input() columns!: string[];
-  @Input() data!: ProductModel[];
+  @Input() data!: unknown[];
   @Input() callbackFunction!: (id: number) => void;
 
   constructor(
@@ -58,7 +57,7 @@ export class SmartTableComponent implements OnChanges {
     }
   }
 
-  updateProduct(id: number) {
+  updateItem(id: number) {
     this.callbackFunction(id);
   }
 }

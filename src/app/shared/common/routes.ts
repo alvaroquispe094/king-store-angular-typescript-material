@@ -15,6 +15,9 @@ export const ROUTES = {
       products: 'products',
       new_product: 'new_product',
       edit_product: 'edit_product',
+      categories: 'categories',
+      new_category: 'new_category',
+      edit_category: 'edit_category',
     },
     users: {
       root: 'user',

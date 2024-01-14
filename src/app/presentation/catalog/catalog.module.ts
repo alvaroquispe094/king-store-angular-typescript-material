@@ -20,9 +20,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { SnackbarComponent } from '../../shared/components';
 import { SnackBarService } from '../../shared/common';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
 
 @NgModule({
-  declarations: [CatalogComponent, NewProductComponent, ProductListComponent],
+  declarations: [
+    CatalogComponent,
+    NewProductComponent,
+    ProductListComponent,
+    NewCategoryComponent,
+    CategoryListComponent,
+  ],
   imports: [
     CommonModule,
     CatalogRoutingModule,

@@ -1,0 +1,15 @@
+<div class="container-full p-4">
+  <div class="grid grid-nogutter bg-white p-5">
+    <div class="col-12 mt-2">
+      <a mat-raised-button color="primary" [routerLink]="['/pages/catalog/new_category']">
+        Add new
+      </a>
+    </div>
+    <div class="col-12 mt-3">
+      <app-smart-table
+        [columns]="displayedColumns"
+        [data]="categories"
+        [callbackFunction]="myCallbackFunction"></app-smart-table>
+    </div>
+  </div>
+</div>

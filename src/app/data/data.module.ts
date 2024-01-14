@@ -15,6 +15,9 @@ import { GetCategoriesUseCase } from '../domain/usecases/get-categories.usecase'
 import { CategoryService } from './services/category.service';
 import { CreateProductUseCase } from '../domain/usecases/create-product.usecase';
 import { UpdateProductUseCase } from '../domain/usecases/update-product.usecase';
+import { GetCategoryByIdUseCase } from '../domain/usecases/get-category-by-id.usecase';
+import { CreateCategoryUseCase } from '../domain/usecases/create-category.usecase';
+import { UpdateCategoryUseCase } from '../domain/usecases/update-category.usecase';
 
 // get all products
 const getProductUseCaseFactory = (userRepo: IProductService) => new GetProductsUseCase(userRepo);
@@ -76,6 +79,33 @@ export const getCategoriesUseCaseProvider = {
   deps: [ICategoryService],
 };
 
+// get category by id
+const getCategoryByIdUseCaseFactory = (userRepo: ICategoryService) =>
+  new GetCategoryByIdUseCase(userRepo);
+export const getCategoryByIdUseCaseProvider = {
+  provide: GetCategoryByIdUseCase,
+  useFactory: getCategoryByIdUseCaseFactory,
+  deps: [ICategoryService],
+};
+
+// create category
+const createCategoryUseCaseFactory = (userRepo: ICategoryService) =>
+  new CreateCategoryUseCase(userRepo);
+export const createCategoryUseCaseProvider = {
+  provide: CreateCategoryUseCase,
+  useFactory: createCategoryUseCaseFactory,
+  deps: [ICategoryService],
+};
+
+// update category
+const updateCategoryUseCaseFactory = (userRepo: ICategoryService) =>
+  new UpdateCategoryUseCase(userRepo);
+export const updateCategoryUseCaseProvider = {
+  provide: UpdateCategoryUseCase,
+  useFactory: updateCategoryUseCaseFactory,
+  deps: [ICategoryService],
+};
+
 @NgModule({
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -86,6 +116,9 @@ export const getCategoriesUseCaseProvider = {
     signInUseCaseProvider,
     signUpUseCaseProvider,
     getCategoriesUseCaseProvider,
+    getCategoryByIdUseCaseProvider,
+    createCategoryUseCaseProvider,
+    updateCategoryUseCaseProvider,
     { provide: IProductService, useClass: ProductService },
     { provide: IAuthService, useClass: AuthService },
     { provide: ICategoryService, useClass: CategoryService },

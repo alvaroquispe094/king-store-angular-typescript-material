@@ -1,0 +1,61 @@
+<!-- New category -->
+<br />
+<div class="container-full">
+  <div class="grid grid-nogutter mt-2">
+    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2 md:col-offset-4 xl:col-offset-4">
+      <mat-card class="justify-content-center w-full example-card">
+        <div class="grid grid-nogutter mt-2 text-center">
+          <div class="flex flex-column align-items-center justify-content-center w-full">
+            <div class="surface-overlay border-round p-5 py-0 m-3">
+              <span class="vertical-align-middle"
+                ><img src="/assets/customer-support.svg" alt="Photo of a Shiba Inu"
+              /></span>
+            </div>
+            <div class="surface-overlay border-round p-5 py-0 m-3">
+              <span class="vertical-align-middle font-medium text-lg">{{
+                edit ? 'Update category' : 'Create category'
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <mat-card-content>
+          <form
+            (ngSubmit)="edit ? updateCategory() : createCategory()"
+            [formGroup]="categoryForm"
+            aria-labelledby="title">
+            <div class="grid grid-nogutter mt-2 text-center pl-2 pr-2">
+              <div class="col-12 mt-3">
+                <mat-form-field appearance="outline" class="w-full h-4rem">
+                  <mat-label>Enter name</mat-label>
+                  <input matInput formControlName="name" class="form-control" required />
+                </mat-form-field>
+                <mat-error
+                  class="text-left"
+                  *ngIf="(fg['name']?.touched || fg['name']?.dirty) && fg['name']?.invalid">
+                  {{ getErrorMessage('name') }}</mat-error
+                >
+              </div>
+
+              <div class="col-12 mt-3">
+                <p><mat-checkbox formControlName="active">Active?</mat-checkbox></p>
+              </div>
+
+              <div class="col-12 mt-3 mb-3">
+                <button
+                  class="w-full h-3rem"
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="categoryForm.invalid || isLoading">
+                  <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+                  <span *ngIf="!isLoading">Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<br />
+<br />

@@ -62,6 +62,7 @@ export class NewProductComponent implements OnInit {
         .subscribe({
           next: res => {
             this.product = res;
+            console.info('data: ' + res.name);
             this.product.categoryId = this.categories.filter(x => x.name === res.category)[0]['id'];
             this.productForm.patchValue(this.product); // update form using domain data fetch
           },
