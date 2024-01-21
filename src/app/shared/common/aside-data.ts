@@ -10,8 +10,8 @@ export const ADMIN_OPTIONS = [
     icon: 'supervisor_account',
     link: '/pages/dashboard',
     children: [
-      { name: 'new', icon: 'add', link: '/pages/dashboard' },
-      { name: 'users', icon: 'list', link: '/pages/dashboard' },
+      { name: 'customers', icon: 'person', link: '/pages/customers' },
+      { name: 'administrators', icon: 'supervised_user_circle', link: '/pages/administrators' },
     ],
   },
   {
@@ -20,7 +20,45 @@ export const ADMIN_OPTIONS = [
     link: '/pages/dashboard',
     children: [
       { name: 'products', icon: 'list', link: '/pages/catalog/products' },
-      { name: 'categories', icon: 'list', link: '/pages/catalog/categories' },
+      { name: 'categories', icon: 'category', link: '/pages/catalog/categories' },
+    ],
+  },
+  {
+    name: 'Orders',
+    icon: 'add_shopping_cart',
+    link: '/pages/orders',
+  },
+  {
+    name: 'Shipments',
+    icon: 'local_shipping',
+    link: '/pages/shipments',
+    children: [
+      { name: 'orders', icon: 'list', link: '/pages/shipments/orders' },
+      { name: 'prices', icon: 'attach_money', link: '/pages/shipments/prices' },
+    ],
+  },
+  {
+    name: 'Payments',
+    icon: 'payment',
+    link: '/pages/payments',
+    children: [
+      { name: 'methods', icon: 'credit_card', link: '/pages/payments/methods' },
+      { name: 'installments', icon: 'add', link: '/pages/payments/installments' },
+    ],
+  },
+  {
+    name: 'Subscriptions',
+    icon: 'subscriptions',
+    link: '/pages/subscriptions',
+  },
+  {
+    name: 'Settings',
+    icon: 'settings_input_component',
+    link: '/pages/settings',
+    children: [
+      { name: 'theme', icon: 'invert_colors', link: '/pages/settings/theme' },
+      { name: 'featured images', icon: 'crop_original', link: '/pages/settings/featured_images' },
+      { name: 'Ofers', icon: 'bookmark', link: '/pages/settings/ofers' },
     ],
   },
 ];
