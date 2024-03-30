@@ -84,13 +84,8 @@
               <div class="col-12 mt-3">
                 <mat-form-field appearance="outline" class="w-full h-4rem">
                   <mat-label>Enter url image</mat-label>
-                  <input matInput formControlName="image" class="form-control" required />
+                  <input matInput formControlName="image" />
                 </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['image']?.touched || fg['image']?.dirty) && fg['image']?.invalid">
-                  {{ getErrorMessage('image') }}</mat-error
-                >
               </div>
 
               <div class="col-12 mt-3">

@@ -19,7 +19,7 @@ export const FORM_PRODUCT = {
   description: ['', [Validators.required, Validators.min(1)]],
   price: ['', [Validators.required, Validators.min(1)]],
   stock: ['', [Validators.min(1)]],
-  image: ['', [Validators.required]],
+  //image: ['', [Validators.required]],
   categoryId: ['', [Validators.required, Validators.min(1)]],
   active: [false],
 };
