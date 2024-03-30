@@ -4,14 +4,23 @@ export const ADMIN_OPTIONS = [
     name: 'Dashboard',
     icon: 'dashboard',
     link: '/pages/dashboard',
+    link_param: '',
   },
   {
     name: 'Users',
     icon: 'supervisor_account',
     link: '/pages/dashboard',
     children: [
-      { name: 'customers', icon: 'person', link: '/pages/customers' },
-      { name: 'administrators', icon: 'supervised_user_circle', link: '/pages/administrators' },
+      {
+        name: 'customers',
+        icon: 'person',
+        link: '/pages/user/users/ROLE_CUSTOMER',
+      },
+      {
+        name: 'administrators',
+        icon: 'supervised_user_circle',
+        link: '/pages/user/users/ROLE_ADMIN',
+      },
     ],
   },
   {
@@ -57,7 +66,11 @@ export const ADMIN_OPTIONS = [
     link: '/pages/settings',
     children: [
       { name: 'theme', icon: 'invert_colors', link: '/pages/settings/theme' },
-      { name: 'featured images', icon: 'crop_original', link: '/pages/settings/featured_images' },
+      {
+        name: 'featured images',
+        icon: 'crop_original',
+        link: '/pages/settings/featured_images',
+      },
       { name: 'Ofers', icon: 'bookmark', link: '/pages/settings/ofers' },
     ],
   },

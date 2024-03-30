@@ -7,8 +7,8 @@ import { environment } from '../../../environments/environment';
 import { IAuthService } from '../../domain/services/iauth.service';
 import { SignInModel } from '../../domain/models/sign-in.model';
 import { SignInEntity } from '../entities/sign-in.entity';
-import { SignUpModel } from '../../domain/models/sign-up.model';
-import { SignUpEntity } from '../entities/sign-up.entity';
+import { UserModel } from '../../domain/models/user.model';
+import { UserEntity } from '../entities/user.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +26,9 @@ export class AuthService implements IAuthService {
       .pipe(map(SignInEntity.toDomain));
   }
 
-  signUp(register: SignUpModel): Observable<unknown> {
+  signUp(register: UserModel): Observable<unknown> {
     console.log('Url: ' + this.API_BASE + PATH.auth.signup);
 
-    return this.http.post(this.API_BASE + PATH.auth.signup, SignUpEntity.fromDomain(register));
+    return this.http.post(this.API_BASE + PATH.auth.signup, UserEntity.fromDomain(register));
   }
 }

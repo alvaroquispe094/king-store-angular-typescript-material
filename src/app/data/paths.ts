@@ -9,4 +9,5 @@ export const PATH = {
     products: '/catalog/products',
     categories: '/catalog/categories',
   },
+  users: '/users',
 };

@@ -18,6 +18,12 @@ import { UpdateProductUseCase } from '../domain/usecases/update-product.usecase'
 import { GetCategoryByIdUseCase } from '../domain/usecases/get-category-by-id.usecase';
 import { CreateCategoryUseCase } from '../domain/usecases/create-category.usecase';
 import { UpdateCategoryUseCase } from '../domain/usecases/update-category.usecase';
+import { IUserService } from '../domain/services/iuser.service';
+import { CreateUserUseCase } from '../domain/usecases/create-user.usecase';
+import { GetUserByIdUseCase } from '../domain/usecases/get-user-by-id.usecase';
+import { GetUsersUseCase } from '../domain/usecases/get-users-by-role.usecase';
+import { UpdateUserUseCase } from '../domain/usecases/update-user.usecase';
+import { UserService } from './services/user.service';
 
 // get all products
 const getProductUseCaseFactory = (userRepo: IProductService) => new GetProductsUseCase(userRepo);
@@ -106,6 +112,38 @@ export const updateCategoryUseCaseProvider = {
   deps: [ICategoryService],
 };
 
+// get all users
+const getUsersUseCaseFactory = (userRepo: IUserService) => new GetUsersUseCase(userRepo);
+export const getUsersUseCaseProvider = {
+  provide: GetUsersUseCase,
+  useFactory: getUsersUseCaseFactory,
+  deps: [IUserService],
+};
+
+// get user by id
+const getUserByIdUseCaseFactory = (userRepo: IUserService) => new GetUserByIdUseCase(userRepo);
+export const getUserByIdUseCaseProvider = {
+  provide: GetUserByIdUseCase,
+  useFactory: getUserByIdUseCaseFactory,
+  deps: [IUserService],
+};
+
+// create user
+const createUserUseCaseFactory = (userRepo: IUserService) => new CreateUserUseCase(userRepo);
+export const createUserUseCaseProvider = {
+  provide: CreateUserUseCase,
+  useFactory: createUserUseCaseFactory,
+  deps: [IUserService],
+};
+
+// update user
+const updateUserUseCaseFactory = (userRepo: IUserService) => new UpdateUserUseCase(userRepo);
+export const updateUserUseCaseProvider = {
+  provide: UpdateUserUseCase,
+  useFactory: updateUserUseCaseFactory,
+  deps: [IUserService],
+};
+
 @NgModule({
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -119,9 +157,14 @@ export const updateCategoryUseCaseProvider = {
     getCategoryByIdUseCaseProvider,
     createCategoryUseCaseProvider,
     updateCategoryUseCaseProvider,
+    getUsersUseCaseProvider,
+    getUserByIdUseCaseProvider,
+    createUserUseCaseProvider,
+    updateUserUseCaseProvider,
     { provide: IProductService, useClass: ProductService },
     { provide: IAuthService, useClass: AuthService },
     { provide: ICategoryService, useClass: CategoryService },
+    { provide: IUserService, useClass: UserService },
   ],
   imports: [CommonModule, HttpClientModule],
 })

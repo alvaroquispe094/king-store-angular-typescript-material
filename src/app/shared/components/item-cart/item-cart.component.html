@@ -5,7 +5,9 @@
       <div class="flex flex-wrap align-items-center justify-content-center h-full">
         <div class="surface-overlay border-round p-2 m-1">
           <span class="vertical-align-middle"
-            ><img [src]="item.product.image" alt="Smartphone"
+            ><img
+              [src]="item.product.image ? item.product.image : '/assets/noimage.png'"
+              alt="Item cart"
           /></span>
         </div>
       </div>

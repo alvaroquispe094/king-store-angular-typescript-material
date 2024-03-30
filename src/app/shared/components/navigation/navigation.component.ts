@@ -2,14 +2,14 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 import { NavigationModel } from '../../../domain/models/navigation.model';
 import { StorageService } from '../../common';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule, RouterLinkActive],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })

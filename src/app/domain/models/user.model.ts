@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-export interface SignUpModel {
+export interface UserModel {
   firstname: string;
   lastname: string;
   email: string;
@@ -8,11 +8,11 @@ export interface SignUpModel {
   gender: string;
   birthDate: string;
   phone: string;
-  role: string[];
+  role: string;
 }
 
 // reactive form validation & initialization values
-export const FORM_SIGN_UP = {
+export const FORM_USER = {
   firstname: ['', [Validators.required]],
   lastname: ['', [Validators.required]],
   email: ['', [Validators.required, Validators.email]],

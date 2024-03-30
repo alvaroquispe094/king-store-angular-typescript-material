@@ -1,7 +1,7 @@
 import * as moment from 'moment';
-import { SignUpModel } from '../../domain/models/sign-up.model';
+import { UserModel } from '../../domain/models/user.model';
 
-export class SignUpEntity {
+export class UserEntity {
   readonly firstname: string;
   readonly lastname: string;
   readonly email: string;
@@ -9,7 +9,7 @@ export class SignUpEntity {
   readonly gender: string;
   readonly birthDate: string;
   readonly phone: string;
-  readonly role: string[];
+  readonly roles: string[];
 
   constructor(
     firstname: string,
@@ -19,7 +19,7 @@ export class SignUpEntity {
     gender: string,
     birthDate: string,
     phone: string,
-    role: string[]
+    roles: string[]
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
@@ -28,10 +28,10 @@ export class SignUpEntity {
     this.gender = gender;
     this.birthDate = birthDate;
     this.phone = phone;
-    this.role = role;
+    this.roles = roles;
   }
 
-  static toDomain(response: SignUpEntity): SignUpModel {
+  static toDomain(response: UserEntity): UserModel {
     return {
       firstname: response.firstname,
       lastname: response.lastname,
@@ -40,12 +40,12 @@ export class SignUpEntity {
       gender: response.gender,
       birthDate: response.birthDate,
       phone: response.phone,
-      role: response.role,
+      role: response.roles?.at(0) || '',
     };
   }
 
-  static fromDomain(loginModel: SignUpModel): SignUpEntity {
-    return new SignUpEntity(
+  static fromDomain(loginModel: UserModel): UserEntity {
+    return new UserEntity(
       loginModel.firstname,
       loginModel.lastname,
       loginModel.email,
@@ -53,7 +53,7 @@ export class SignUpEntity {
       loginModel.gender,
       moment(loginModel.birthDate).format('DD/MM/YYYY').toString(), // To do: create util class to format dates
       loginModel.phone,
-      loginModel.role
+      [loginModel.role]
     );
   }
 }

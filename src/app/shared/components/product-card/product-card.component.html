@@ -1,5 +1,5 @@
 <mat-card class="justify-content-center w-full example-card">
-  <img [src]="product.image" alt="Photo of a Shiba Inu" />
+  <img [src]="product.image ? product.image : '/assets/noimage.png'" alt="Photo of a Shiba Inu" />
   <mat-card-content class="p-0 pt-2">
     <mat-list>
       <mat-list-item style="height: auto">

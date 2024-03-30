@@ -4,7 +4,7 @@ import { SignUpUseCase } from '../../../domain/usecases/sign-up.usecase';
 import { SnackBarService, VALIDATIONS } from '../../../shared/common';
 import { Subject, takeUntil } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FORM_SIGN_UP } from '../../../domain/models/sign-up.model';
+import { FORM_USER } from '../../../domain/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.signupForm = this.fb.group(FORM_SIGN_UP);
+    this.signupForm = this.fb.group(FORM_USER);
   }
 
   signup() {

@@ -14,6 +14,7 @@ export interface FileNode {
   name: string;
   icon: string;
   link: string;
+  //link_param: string;
   children?: FileNode[];
 }
 
