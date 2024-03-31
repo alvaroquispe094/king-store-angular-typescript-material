@@ -52,7 +52,6 @@ export class NewProductComponent implements OnInit {
   }
 
   findDataEdit() {
-    console.info('inside method fin data edit');
     const params = this.activatedRoute.snapshot['params'];
     if (params['id']) {
       this.edit = true;

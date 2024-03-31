@@ -32,10 +32,11 @@ export class ProductService implements IProductService {
       .pipe(map(this.productMapper.mapFrom));
   }
 
-  createProduct(product: ProductModel): Observable<ProductModel> {
-    return this.http
-      .post<ProductEntity>(this.API_BASE + PATH.calalog.products, this.productMapper.mapTo(product))
-      .pipe(map(this.productMapper.mapFrom));
+  createProduct(product: ProductModel): Observable<void> {
+    return this.http.post<void>(
+      this.API_BASE + PATH.calalog.products,
+      this.productMapper.mapTo(product)
+    );
   }
 
   updateProduct(product: ProductModel, id: number): Observable<ProductModel> {
