@@ -3,11 +3,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-smart-table',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './smart-table.component.html',
-  styleUrls: ['./smart-table.component.scss'],
+    selector: 'app-smart-table',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './smart-table.component.html',
+    styleUrls: ['./smart-table.component.scss']
 })
 export class SmartTableComponent implements OnChanges {
   displayedColumns!: string[];

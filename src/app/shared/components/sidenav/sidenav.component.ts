@@ -24,11 +24,10 @@ export interface FlatTreeNode {
 }
 
 @Component({
-  selector: 'app-sidenav',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+    selector: 'app-sidenav',
+    imports: [CommonModule, RouterLink],
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
   @Input() menu!: FileNode[];

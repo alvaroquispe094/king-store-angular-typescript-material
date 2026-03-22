@@ -3,13 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { AdminLayoutComponent } from '../../shared/layouts';
 
 @Component({
-  selector: 'app-pages',
-  standalone: true,
-  imports: [AdminLayoutComponent, RouterOutlet],
-  template: `
+    selector: 'app-pages',
+    imports: [AdminLayoutComponent, RouterOutlet],
+    template: `
     <app-admin-layout>
       <router-outlet></router-outlet>
     </app-admin-layout>
-  `,
+  `
 })
 export class PagesComponent {}

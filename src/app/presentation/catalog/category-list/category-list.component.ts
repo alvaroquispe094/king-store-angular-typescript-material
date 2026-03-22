@@ -7,11 +7,10 @@ import { GetCategoriesUseCase } from '../../../domain/usecases/get-categories.us
 import { SmartTableComponent } from '../../../shared/components/smart-table/smart-table.component';
 
 @Component({
-  selector: 'app-category-list',
-  standalone: true,
-  imports: [CommonModule, RouterLink, SmartTableComponent],
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss'],
+    selector: 'app-category-list',
+    imports: [CommonModule, RouterLink, SmartTableComponent],
+    templateUrl: './category-list.component.html',
+    styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

@@ -10,11 +10,10 @@ import { CreateCategoryUseCase } from '../../../domain/usecases/create-category.
 import { UpdateCategoryUseCase } from '../../../domain/usecases/update-category.usecase';
 
 @Component({
-  selector: 'app-new-category',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './new-category.component.html',
-  styleUrls: ['./new-category.component.scss'],
+    selector: 'app-new-category',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './new-category.component.html',
+    styleUrls: ['./new-category.component.scss']
 })
 export class NewCategoryComponent implements OnInit {
   public categoryForm!: UntypedFormGroup;

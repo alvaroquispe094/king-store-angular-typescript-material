@@ -8,11 +8,10 @@ import { FORM_USER } from '../../../domain/models/user.model';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+    selector: 'app-signup',
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   readonly isLoading = signal(false);

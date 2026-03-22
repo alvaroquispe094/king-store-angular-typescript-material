@@ -7,11 +7,10 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { SmartTableComponent } from '../../../shared/components/smart-table/smart-table.component';
 
 @Component({
-  selector: 'app-product-list',
-  standalone: true,
-  imports: [CommonModule, RouterLink, SmartTableComponent],
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+    selector: 'app-product-list',
+    imports: [CommonModule, RouterLink, SmartTableComponent],
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

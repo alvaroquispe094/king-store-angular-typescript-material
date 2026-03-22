@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-catalog',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: ` <router-outlet></router-outlet> `,
+    selector: 'app-catalog',
+    imports: [RouterOutlet],
+    template: ` <router-outlet></router-outlet> `
 })
 export class CatalogComponent {}

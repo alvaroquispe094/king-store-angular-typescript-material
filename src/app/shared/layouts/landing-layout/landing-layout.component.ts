@@ -5,11 +5,10 @@ import { MENU_CUSTOMER, MENU_GUEST, StorageService } from '../../common';
 import { NavigationModel } from '../../../domain/models/navigation.model';
 
 @Component({
-  selector: 'app-landing-layout',
-  standalone: true,
-  imports: [CommonModule, NavigationComponent, FooterComponent],
-  templateUrl: './landing-layout.component.html',
-  styleUrls: ['./landing-layout.component.scss'],
+    selector: 'app-landing-layout',
+    imports: [CommonModule, NavigationComponent, FooterComponent],
+    templateUrl: './landing-layout.component.html',
+    styleUrls: ['./landing-layout.component.scss']
 })
 export class LandingLayoutComponent implements OnInit, OnDestroy {
   items?: NavigationModel[];

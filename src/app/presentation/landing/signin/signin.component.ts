@@ -9,11 +9,10 @@ import { SnackBarService, StorageService, VALIDATIONS } from '../../../shared/co
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-signin',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
+    selector: 'app-signin',
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
   public loginForm: FormGroup = new FormGroup({

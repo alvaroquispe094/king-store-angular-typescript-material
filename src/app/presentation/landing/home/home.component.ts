@@ -6,11 +6,10 @@ import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecas
 import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../../shared/components';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, CarrouselComponent, BoxInfoComponent, CardComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    selector: 'app-home',
+    imports: [CommonModule, CarrouselComponent, BoxInfoComponent, CardComponent],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

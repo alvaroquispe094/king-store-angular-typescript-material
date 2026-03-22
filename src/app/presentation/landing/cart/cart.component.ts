@@ -8,11 +8,10 @@ import { CartService } from '../../../shared/common';
 import { BoxInfoComponent } from '../../../shared/components';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [CommonModule, RouterLink, ItemCartComponent, BoxInfoComponent],
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+    selector: 'app-cart',
+    imports: [CommonModule, RouterLink, ItemCartComponent, BoxInfoComponent],
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
   products?: Array<ProductModel>;

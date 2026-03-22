@@ -3,11 +3,10 @@ import { Component, computed, inject } from '@angular/core';
 import { SnackBarService, SnackbarItem } from '../../common';
 
 @Component({
-  selector: 'app-snackbar',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss'],
+    selector: 'app-snackbar',
+    imports: [CommonModule],
+    templateUrl: './snackbar.component.html',
+    styleUrls: ['./snackbar.component.scss']
 })
 export class SnackbarComponent {
   private readonly snackBarService = inject(SnackBarService);

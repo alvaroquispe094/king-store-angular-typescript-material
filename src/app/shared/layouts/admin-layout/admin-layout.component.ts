@@ -8,17 +8,16 @@ import { NavigationModel } from '../../../domain/models/navigation.model';
 import { StorageService } from '../../common/storage.service';
 
 @Component({
-  selector: 'app-admin-layout',
-  standalone: true,
-  templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss'],
-  imports: [
-    CommonModule,
-    NavigationComponent,
-    FooterComponent,
-    SideContainerLayoutComponent,
-    RouterModule,
-  ],
+    selector: 'app-admin-layout',
+    templateUrl: './admin-layout.component.html',
+    styleUrls: ['./admin-layout.component.scss'],
+    imports: [
+        CommonModule,
+        NavigationComponent,
+        FooterComponent,
+        SideContainerLayoutComponent,
+        RouterModule,
+    ]
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
   items?: NavigationModel[];

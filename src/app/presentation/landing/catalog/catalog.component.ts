@@ -7,11 +7,10 @@ import { CART_OPTIONS } from '../../../shared/common';
 import { ProductCardComponent, SidenavComponent } from '../../../shared/components';
 
 @Component({
-  selector: 'app-catalog',
-  standalone: true,
-  imports: [CommonModule, SidenavComponent, ProductCardComponent],
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss'],
+    selector: 'app-catalog',
+    imports: [CommonModule, SidenavComponent, ProductCardComponent],
+    templateUrl: './catalog.component.html',
+    styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

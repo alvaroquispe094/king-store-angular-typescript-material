@@ -5,11 +5,10 @@ import { CartModel } from '../../../domain/models/cart.model';
 import { CartService, SnackBarService } from '../../common';
 
 @Component({
-  selector: 'app-product-card',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss'],
+    selector: 'app-product-card',
+    imports: [CommonModule],
+    templateUrl: './product-card.component.html',
+    styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnChanges {
   @Input() product!: ProductModel;

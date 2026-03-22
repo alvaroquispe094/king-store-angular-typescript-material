@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-box-info',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './box-info.component.html',
-  styleUrls: ['./box-info.component.scss'],
+    selector: 'app-box-info',
+    imports: [CommonModule],
+    templateUrl: './box-info.component.html',
+    styleUrls: ['./box-info.component.scss']
 })
 export class BoxInfoComponent {
   @Input() image?: string;

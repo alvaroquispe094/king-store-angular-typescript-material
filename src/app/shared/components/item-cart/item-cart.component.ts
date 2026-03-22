@@ -4,11 +4,10 @@ import { CartModel } from '../../../domain/models/cart.model';
 import { CartService } from '../../common';
 
 @Component({
-  selector: 'app-item-cart',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './item-cart.component.html',
-  styleUrls: ['./item-cart.component.scss'],
+    selector: 'app-item-cart',
+    imports: [CommonModule],
+    templateUrl: './item-cart.component.html',
+    styleUrls: ['./item-cart.component.scss']
 })
 export class ItemCartComponent implements OnChanges {
   @Output() size_items: EventEmitter<number> = new EventEmitter();

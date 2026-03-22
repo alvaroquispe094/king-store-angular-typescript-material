@@ -7,11 +7,10 @@ import { GetUsersUseCase } from '../../../domain/usecases/get-users-by-role.usec
 import { SmartTableComponent } from '../../../shared/components/smart-table/smart-table.component';
 
 @Component({
-  selector: 'app-user-list',
-  standalone: true,
-  imports: [CommonModule, RouterLink, SmartTableComponent],
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+    selector: 'app-user-list',
+    imports: [CommonModule, RouterLink, SmartTableComponent],
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

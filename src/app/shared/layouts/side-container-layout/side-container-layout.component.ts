@@ -6,11 +6,10 @@ import { FileNode, SidenavComponent } from '../../components';
 import { StorageService } from '../../common/storage.service';
 
 @Component({
-  selector: 'app-side-container-layout',
-  standalone: true,
-  templateUrl: './side-container-layout.component.html',
-  styleUrls: ['./side-container-layout.component.scss'],
-  imports: [CommonModule, RouterModule, SidenavComponent],
+    selector: 'app-side-container-layout',
+    templateUrl: './side-container-layout.component.html',
+    styleUrls: ['./side-container-layout.component.scss'],
+    imports: [CommonModule, RouterModule, SidenavComponent]
 })
 export class SideContainerLayoutComponent {
   readonly asideOpen = signal(false);

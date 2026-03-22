@@ -5,11 +5,10 @@ import { NavigationModel } from '../../../domain/models/navigation.model';
 import { StorageService } from '../../common';
 
 @Component({
-  selector: 'app-navigation',
-  standalone: true,
-  imports: [CommonModule, RouterModule, RouterLinkActive],
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+    selector: 'app-navigation',
+    imports: [CommonModule, RouterModule, RouterLinkActive],
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   @Input() items?: NavigationModel[];

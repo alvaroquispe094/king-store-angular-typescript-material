@@ -12,11 +12,10 @@ import { VALIDATIONS, SnackBarService } from '../../../shared/common';
 import { CreateProductUseCase } from '../../../domain/usecases/create-product.usecase';
 
 @Component({
-  selector: 'app-new-product',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './new-product.component.html',
-  styleUrls: ['./new-product.component.scss'],
+    selector: 'app-new-product',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './new-product.component.html',
+    styleUrls: ['./new-product.component.scss']
 })
 export class NewProductComponent implements OnInit {
   public productForm!: UntypedFormGroup;
