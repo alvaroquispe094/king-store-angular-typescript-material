@@ -1,51 +1,26 @@
-<mat-toolbar class="bg-white">
-  <span class="mt-3 border-round-sm font-medium text-lg">{{ title }}</span>
-</mat-toolbar>
-<mat-divider></mat-divider>
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="p-2">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-    <a
-      [routerLink]="node.link"
-      style="display: inline !important"
-      class="w-full"
-      mat-button
-      matTreeNodeToggle
-      [attr.aria-label]="'Toggle ' + node.name">
-      <div class="flex overflow-hidden align-content-between flex-wrap w-full pt-2">
-        <div class="flex-none flex align-items-center justify-content-center">
-          <mat-icon class="type-icon" [attr.aria-label]="node.icon + 'icon'">
-            {{ node.icon }}
-          </mat-icon>
-        </div>
-        <div class="flex-none flex align-items-center justify-content-center">
-          {{ node.name }}
-        </div>
-      </div>
-    </a>
-  </mat-tree-node>
+<aside class="surface-card p-4">
+  <h3 class="mb-4 text-base font-semibold text-slate-900">{{ title }}</h3>
 
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <a
-      style="display: inline !important"
-      class="w-full"
-      mat-button
-      matTreeNodeToggle
-      [attr.aria-label]="'Toggle ' + node.name">
-      <div class="flex overflow-hidden align-content-between flex-wrap w-full pt-2">
-        <div class="flex-none flex align-items-center justify-content-center">
-          <mat-icon class="type-icon" [attr.aria-label]="node.icon + 'icon'">
-            {{ node.icon }}
-          </mat-icon>
-        </div>
-        <div class="flex-none flex align-items-center justify-content-center">
+  <div class="space-y-2">
+    @for (node of menu; track node.name) {
+      @if (hasChildren(node)) {
+        <details class="rounded-2xl border border-slate-200 px-3 py-2">
+          <summary class="cursor-pointer list-none text-sm font-medium text-slate-800">
+            {{ node.name }}
+          </summary>
+          <div class="mt-3 flex flex-col gap-2 pl-2">
+            @for (child of node.children; track child.name) {
+              <a class="rounded-xl px-3 py-2 text-sm text-slate-600 hover:bg-slate-100" [routerLink]="child.link">
+                {{ child.name }}
+              </a>
+            }
+          </div>
+        </details>
+      } @else {
+        <a class="block rounded-2xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100" [routerLink]="node.link">
           {{ node.name }}
-        </div>
-        <div class="flex-grow-1 flex align-items-center justify-content-end" *ngIf="hasChild">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-          </mat-icon>
-        </div>
-      </div>
-    </a>
-  </mat-tree-node>
-</mat-tree>
+        </a>
+      }
+    }
+  </div>
+</aside>

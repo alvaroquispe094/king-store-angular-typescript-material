@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
 import { CategoryModel, FORM_CATEGORY } from '../../../domain/models/category.model';
-import { FormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService, VALIDATIONS } from '../../../shared/common';
 import { GetCategoryByIdUseCase } from '../../../domain/usecases/get-category-by-id.usecase';
-import { Subject, takeUntil } from 'rxjs';
+import { finalize } from 'rxjs';
 import { CreateCategoryUseCase } from '../../../domain/usecases/create-category.usecase';
 import { UpdateCategoryUseCase } from '../../../domain/usecases/update-category.usecase';
 
 @Component({
   selector: 'app-new-category',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './new-category.component.html',
   styleUrls: ['./new-category.component.scss'],
 })
 export class NewCategoryComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
   public categoryForm!: UntypedFormGroup;
 
-  isLoading: boolean;
+  readonly isLoading = signal(false);
   category?: CategoryModel;
   edit: boolean;
 
@@ -31,7 +33,6 @@ export class NewCategoryComponent implements OnInit {
     private createCategoryUseCase: CreateCategoryUseCase
   ) {
     this.edit = false;
-    this.isLoading = false;
   }
 
   ngOnInit() {
@@ -43,10 +44,7 @@ export class NewCategoryComponent implements OnInit {
     const params = this.activatedRoute.snapshot['params'];
     if (params['id']) {
       this.edit = true;
-      this.getCategoryByIdUseCase
-        .execute(params['id'])
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
+      this.getCategoryByIdUseCase.execute(params['id']).subscribe({
           next: res => {
             this.category = res;
             console.info('data: ' + res.name);
@@ -59,51 +57,43 @@ export class NewCategoryComponent implements OnInit {
   }
 
   updateCategory() {
-    this.setLoading(true);
+    this.isLoading.set(true);
 
     this.updateCategoryUseCase
       .execute({ category: this.categoryForm.value, id: this.categoryForm.value.id })
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: () => {
           this.snackBarService.info('Updated cotegory!');
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
         },
         complete: () => {
           console.info('complete update category');
-          this.setLoading(false);
           this.router.navigate(['/pages/catalog/categories'], { relativeTo: this.activatedRoute });
         },
       });
   }
 
   createCategory() {
-    this.setLoading(true);
+    this.isLoading.set(true);
 
     this.createCategoryUseCase
       .execute(this.categoryForm.value)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: () => {
           this.snackBarService.success('Created category!');
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
         },
         complete: () => {
           console.info('complete create category');
-          this.setLoading(false);
           this.router.navigate(['/pages/catalog/categories'], { relativeTo: this.activatedRoute });
         },
       });
-  }
-
-  setLoading(value: boolean) {
-    this.isLoading = value;
   }
 
   // Custom messages for inputs

@@ -1,132 +1,70 @@
-<!-- New product -->
-<br />
-<div class="container-full">
-  <div class="grid grid-nogutter mt-2">
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2 md:col-offset-4 xl:col-offset-4">
-      <mat-card class="justify-content-center w-full example-card">
-        <div class="grid grid-nogutter mt-2 text-center">
-          <div class="flex flex-column align-items-center justify-content-center w-full">
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-middle"
-                ><img src="/assets/customer-support.svg" alt="Photo of a Shiba Inu"
-              /></span>
-            </div>
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-middle font-medium text-lg">{{
-                edit ? 'Update product' : 'Create product'
-              }}</span>
-            </div>
-          </div>
-        </div>
-        <mat-card-content>
-          <form
-            (ngSubmit)="edit ? updateProduct() : createProduct()"
-            [formGroup]="productForm"
-            aria-labelledby="title">
-            <div class="grid grid-nogutter mt-2 text-center pl-2 pr-2">
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter name</mat-label>
-                  <input matInput formControlName="name" class="form-control" required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['name']?.touched || fg['name']?.dirty) && fg['name']?.invalid">
-                  {{ getErrorMessage('name') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter description</mat-label>
-                  <input matInput formControlName="description" class="form-control" required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['description']?.touched || fg['description']?.dirty) &&
-                    fg['description']?.invalid
-                  ">
-                  {{ getErrorMessage('description') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter price</mat-label>
-                  <input
-                    type="number"
-                    matInput
-                    formControlName="price"
-                    class="form-control"
-                    required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['price']?.touched || fg['price']?.dirty) && fg['price']?.invalid">
-                  {{ getErrorMessage('price') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter stock</mat-label>
-                  <input
-                    type="number"
-                    matInput
-                    formControlName="stock"
-                    class="form-control"
-                    required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['stock']?.touched || fg['stock']?.dirty) && fg['stock']?.invalid">
-                  {{ getErrorMessage('stock') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter url image</mat-label>
-                  <input matInput />
-                </mat-form-field>
-              </div>
+<section class="mx-auto max-w-3xl surface-section p-8">
+  <header class="mb-8 text-center">
+    <img class="mx-auto h-20 w-20" src="/assets/customer-support.svg" alt="Product form" />
+    <h1 class="mt-6 text-3xl font-semibold text-slate-950">
+      {{ edit ? 'Update product' : 'Create product' }}
+    </h1>
+  </header>
 
-              <div class="col-12 mt-3">
-                <mat-form-field appearance="outline" class="w-full h-5rem">
-                  <mat-label>Select a category</mat-label>
-                  <mat-select formControlName="categoryId" class="form-control" required>
-                    <mat-option *ngFor="let category of categories" [value]="category.id">
-                      {{ category.name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['categoryId']?.touched || fg['categoryId']?.dirty) &&
-                    fg['categoryId']?.invalid
-                  ">
-                  {{ getErrorMessage('categoryId') }}</mat-error
-                >
-              </div>
-
-              <div class="col-12 mt-3">
-                <p><mat-checkbox formControlName="active">Active?</mat-checkbox></p>
-              </div>
-
-              <div class="col-12 mt-3 mb-3">
-                <button
-                  class="w-full h-3rem"
-                  mat-raised-button
-                  color="primary"
-                  [disabled]="productForm.invalid || isLoading">
-                  <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
-                  <span *ngIf="!isLoading">Save</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
+  <form class="grid gap-5 md:grid-cols-2" (ngSubmit)="edit ? updateProduct() : createProduct()" [formGroup]="productForm">
+    <div class="md:col-span-2">
+      <label class="field-label" for="name">Name</label>
+      <input id="name" class="field-input" formControlName="name" />
+      @if ((fg['name']?.touched || fg['name']?.dirty) && fg['name']?.invalid) {
+        <p class="field-error">{{ getErrorMessage('name') }}</p>
+      }
     </div>
-  </div>
-</div>
-<br />
-<br />
+
+    <div class="md:col-span-2">
+      <label class="field-label" for="description">Description</label>
+      <input id="description" class="field-input" formControlName="description" />
+      @if ((fg['description']?.touched || fg['description']?.dirty) && fg['description']?.invalid) {
+        <p class="field-error">{{ getErrorMessage('description') }}</p>
+      }
+    </div>
+
+    <div>
+      <label class="field-label" for="price">Price</label>
+      <input id="price" class="field-input" type="number" formControlName="price" />
+      @if ((fg['price']?.touched || fg['price']?.dirty) && fg['price']?.invalid) {
+        <p class="field-error">{{ getErrorMessage('price') }}</p>
+      }
+    </div>
+
+    <div>
+      <label class="field-label" for="stock">Stock</label>
+      <input id="stock" class="field-input" type="number" formControlName="stock" />
+      @if ((fg['stock']?.touched || fg['stock']?.dirty) && fg['stock']?.invalid) {
+        <p class="field-error">{{ getErrorMessage('stock') }}</p>
+      }
+    </div>
+
+    <div class="md:col-span-2">
+      <label class="field-label" for="categoryId">Category</label>
+      <select id="categoryId" class="field-select" formControlName="categoryId">
+        <option value="">Select a category</option>
+        @for (category of categories; track category.id) {
+          <option [value]="category.id">{{ category.name }}</option>
+        }
+      </select>
+      @if ((fg['categoryId']?.touched || fg['categoryId']?.dirty) && fg['categoryId']?.invalid) {
+        <p class="field-error">{{ getErrorMessage('categoryId') }}</p>
+      }
+    </div>
+
+    <label class="inline-flex items-center gap-3 text-sm font-medium text-slate-700 md:col-span-2">
+      <input class="h-4 w-4 rounded border-slate-300" type="checkbox" formControlName="active" />
+      Active product
+    </label>
+
+    <div class="md:col-span-2">
+      <button class="btn-primary w-full" type="submit" [disabled]="productForm.invalid || isLoading()">
+        @if (isLoading()) {
+          <span class="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></span>
+        } @else {
+          <span>Save</span>
+        }
+      </button>
+    </div>
+  </form>
+</section>

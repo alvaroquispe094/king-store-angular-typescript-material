@@ -1,7 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { RouterLinkActive, RouterModule } from '@angular/router';
 import { NavigationModel } from '../../../domain/models/navigation.model';
 import { StorageService } from '../../common';
@@ -9,13 +7,13 @@ import { StorageService } from '../../common';
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule, RouterLinkActive],
+  imports: [CommonModule, RouterModule, RouterLinkActive],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   @Input() items?: NavigationModel[];
-  visible?: boolean = false;
+  readonly menuOpen = signal(false);
   role = '';
 
   constructor(private storageService: StorageService) {}
@@ -28,7 +26,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   setVisibleState(param: boolean) {
-    this.visible = param;
+    this.menuOpen.set(param);
   }
 
   signOut() {
@@ -41,5 +39,18 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   getRole(): void {
     this.role = this.storageService.getUser().roles[0];
+  }
+
+  resolveIcon(icon: string) {
+    switch (icon) {
+      case 'shopping_basket':
+        return 'fa-shopping-basket';
+      case 'person':
+        return 'fa-user';
+      case 'subdirectory_arrow_left':
+        return 'fa-sign-out';
+      default:
+        return 'fa-circle';
+    }
   }
 }

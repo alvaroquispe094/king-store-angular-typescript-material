@@ -1,159 +1,86 @@
-<!-- Sign in -->
-<br />
-<br />
-<div class="container-full">
-  <div class="grid grid-nogutter mt-2">
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2 md:col-offset-4 xl:col-offset-4">
-      <mat-card class="justify-content-center w-full example-card">
-        <div class="grid grid-nogutter mt-2 text-center">
-          <div class="flex flex-column align-items-center justify-content-center w-full">
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-middle"
-                ><img src="/assets/customer-support.svg" alt="Photo of a Shiba Inu"
-              /></span>
-            </div>
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-middle font-medium text-lg">Sign Up</span>
-            </div>
-            <div class="surface-overlay border-round p-5 py-0 m-3">
-              <span class="vertical-align-base font-light text-base"
-                >Please sign up to continue shopping</span
-              >
-            </div>
-          </div>
-        </div>
-        <mat-card-content>
-          <form (ngSubmit)="signup()" [formGroup]="signupForm" aria-labelledby="title">
-            <div class="grid grid-nogutter mt-2 text-center plr-2">
-              <div class="col-12">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your firstname</mat-label>
-                  <input matInput formControlName="firstname" class="form-control" required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['firstname']?.touched || fg['firstname']?.dirty) && fg['firstname']?.invalid
-                  ">
-                  {{ getErrorMessage('firstname') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your lastname</mat-label>
-                  <input matInput formControlName="lastname" class="form-control" required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['lastname']?.touched || fg['lastname']?.dirty) && fg['lastname']?.invalid
-                  ">
-                  {{ getErrorMessage('lastname') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your email</mat-label>
-                  <input
-                    matInput
-                    placeholder="user@example.com"
-                    formControlName="email"
-                    class="form-control"
-                    required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['email']?.touched || fg['email']?.dirty) && fg['email']?.invalid">
-                  {{ getErrorMessage('email') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your password</mat-label>
-                  <input
-                    matInput
-                    type="password"
-                    formControlName="password"
-                    class="form-control"
-                    required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['password']?.touched || fg['password']?.dirty) && fg['password']?.invalid
-                  ">
-                  {{ getErrorMessage('password') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-5rem">
-                  <mat-label>Select your gender</mat-label>
-                  <mat-select formControlName="gender" class="form-control" required>
-                    <mat-option value="one">Male</mat-option>
-                    <mat-option value="two">Female</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['gender']?.touched || fg['gender']?.dirty) && fg['gender']?.invalid">
-                  {{ getErrorMessage('gender') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-2">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Choose your birth date</mat-label>
-                  <!-- #docregion toggle -->
-                  <input
-                    matInput
-                    [matDatepicker]="picker"
-                    formControlName="birthDate"
-                    class="form-control"
-                    required />
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <!-- #enddocregion toggle -->
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="
-                    (fg['birthDate']?.touched || fg['birthDate']?.dirty) && fg['birthDate']?.invalid
-                  ">
-                  {{ getErrorMessage('birthDate') }}</mat-error
-                >
-              </div>
-              <div class="col-12 mt-4">
-                <mat-form-field appearance="outline" class="w-full h-4rem">
-                  <mat-label>Enter your phone</mat-label>
-                  <input matInput formControlName="phone" class="form-control" required />
-                </mat-form-field>
-                <mat-error
-                  class="text-left"
-                  *ngIf="(fg['phone']?.touched || fg['phone']?.dirty) && fg['phone']?.invalid">
-                  {{ getErrorMessage('phone') }}</mat-error
-                >
-              </div>
-
-              <div class="col-12 mt-3 mb-3">
-                <button
-                  class="w-full h-3rem"
-                  mat-raised-button
-                  color="primary"
-                  [disabled]="signupForm.invalid || isLoading">
-                  <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
-                  <span *ngIf="!isLoading">Sign up</span>
-                </button>
-              </div>
-            </div>
-            <mat-divider></mat-divider>
-            <div class="col-12 mt-3 text-center">
-              <span class="font-light text-base">Already have an account?</span
-              ><a class="blue-link" mat-button routerLink="/sign_in"> Sign in</a>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
+<section class="container py-8">
+  <div class="mx-auto max-w-2xl surface-section p-8">
+    <div class="text-center">
+      <img class="mx-auto h-20 w-20" src="/assets/customer-support.svg" alt="Sign up" />
+      <h1 class="mt-6 text-3xl font-semibold text-slate-950">Sign up</h1>
+      <p class="mt-3 text-sm text-slate-600">Create your account to continue shopping.</p>
     </div>
+
+    <form class="mt-8 grid gap-5 md:grid-cols-2" (ngSubmit)="signup()" [formGroup]="signupForm">
+      <div>
+        <label class="field-label" for="firstname">Firstname</label>
+        <input id="firstname" class="field-input" formControlName="firstname" />
+        @if ((fg['firstname']?.touched || fg['firstname']?.dirty) && fg['firstname']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('firstname') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="field-label" for="lastname">Lastname</label>
+        <input id="lastname" class="field-input" formControlName="lastname" />
+        @if ((fg['lastname']?.touched || fg['lastname']?.dirty) && fg['lastname']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('lastname') }}</p>
+        }
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="field-label" for="email-signup">Email</label>
+        <input id="email-signup" class="field-input" type="email" formControlName="email" />
+        @if ((fg['email']?.touched || fg['email']?.dirty) && fg['email']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('email') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="field-label" for="password-signup">Password</label>
+        <input id="password-signup" class="field-input" type="password" formControlName="password" />
+        @if ((fg['password']?.touched || fg['password']?.dirty) && fg['password']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('password') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="field-label" for="gender">Gender</label>
+        <select id="gender" class="field-select" formControlName="gender">
+          <option value="">Select one</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        @if ((fg['gender']?.touched || fg['gender']?.dirty) && fg['gender']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('gender') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="field-label" for="birthDate">Birth date</label>
+        <input id="birthDate" class="field-input" type="date" formControlName="birthDate" />
+        @if ((fg['birthDate']?.touched || fg['birthDate']?.dirty) && fg['birthDate']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('birthDate') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="field-label" for="phone">Phone</label>
+        <input id="phone" class="field-input" type="tel" formControlName="phone" />
+        @if ((fg['phone']?.touched || fg['phone']?.dirty) && fg['phone']?.invalid) {
+          <p class="field-error">{{ getErrorMessage('phone') }}</p>
+        }
+      </div>
+
+      <div class="md:col-span-2">
+        <button class="btn-primary w-full" type="submit" [disabled]="signupForm.invalid || isLoading()">
+          @if (isLoading()) {
+            <span class="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></span>
+          } @else {
+            <span>Sign up</span>
+          }
+        </button>
+      </div>
+
+      <div class="md:col-span-2 border-t border-slate-200 pt-5 text-center text-sm text-slate-600">
+        Already have an account?
+        <a class="font-semibold text-slate-900" routerLink="/sign_in">Sign in</a>
+      </div>
+    </form>
   </div>
-</div>
-<br />
-<br />
+</section>

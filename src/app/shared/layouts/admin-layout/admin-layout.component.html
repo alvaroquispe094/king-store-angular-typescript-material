@@ -1,12 +1,6 @@
-<div class="grid grid-nogutter">
-  <div class="col-12" style="z-index: 2">
-    <app-navigation [items]="items"></app-navigation>
-  </div>
-
-  <div class="col-12">
-    <div class="h-70"></div>
-    <app-side-container-layout>
-      <router-outlet></router-outlet>
-    </app-side-container-layout>
-  </div>
+<div class="min-h-screen bg-slate-50">
+  <app-navigation [items]="items"></app-navigation>
+  <app-side-container-layout>
+    <router-outlet></router-outlet>
+  </app-side-container-layout>
 </div>

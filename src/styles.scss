@@ -1,58 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
 
 html,
 body {
   height: 100%;
-  background-color: #edf1f7;
+  background-color: #f8fafc;
 }
+
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Inter, 'Segoe UI', sans-serif;
+  color: #0f172a;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 .container {
-  max-width: 1200px;
-  //height: auto;
   margin-inline: auto;
+  max-width: 1200px;
+  padding-inline: 1rem;
 }
 
 .container-full {
-  box-sizing: border-box;
   width: 100%;
 }
 
-.custom-css-class-snack-bar {
-  background-color: aqua;
+.surface-card {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
 }
 
-.mat-mdc-snack-bar-container {
-  &.blue-snackbar {
-    --mdc-snackbar-container-color: #2196f3;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
-  &.success-snackbar {
-    --mdc-snackbar-container-color: #baffc9;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
-  &.error-snackbar {
-    --mdc-snackbar-container-color: #ffb3ba;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
-  &.info-snackbar {
-    --mdc-snackbar-container-color: #bae1ff;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
-  &.warning-snackbar {
-    --mdc-snackbar-container-color: #ffffba;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
-  &.default-snackbar {
-    --mdc-snackbar-container-color: #ffffff;
-    --mat-mdc-snack-bar-button-color: #fff;
-    --mdc-snackbar-supporting-text-color: #fff;
-  }
+.surface-section {
+  @apply rounded-3xl bg-white shadow-sm ring-1 ring-slate-200/70;
+}
+
+.field-label {
+  @apply mb-2 block text-sm font-medium text-slate-700;
+}
+
+.field-input,
+.field-select {
+  @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10;
+}
+
+.field-error {
+  @apply mt-2 text-sm text-rose-600;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 font-medium text-slate-800 transition hover:bg-slate-50;
 }

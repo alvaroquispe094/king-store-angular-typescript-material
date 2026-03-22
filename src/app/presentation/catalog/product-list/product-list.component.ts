@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecase';
 import { ProductModel } from '../../../domain/models/product.model';
-import { Subject, takeUntil } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { SmartTableComponent } from '../../../shared/components/smart-table/smart-table.component';
 
 @Component({
   selector: 'app-product-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink, SmartTableComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
-  products!: ProductModel[];
+  private readonly destroyRef = inject(DestroyRef);
+  readonly products = signal<ProductModel[]>([]);
   displayedColumns: string[] = [
     'id',
     'name',
@@ -37,18 +41,20 @@ export class ProductListComponent implements OnInit {
   getProductos() {
     this.getProductsUseCase
       .execute()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: res => (this.products = res),
+        next: res => this.products.set(res),
         error: error => console.error(error),
         complete: () => console.info('complete'),
       });
   }
 
-  myCallbackFunction = (id: number): void => {
-    //callback code here
-    this.router.navigate;
-    console.log('Id product: ' + id);
+  myCallbackFunction = (row: Record<string, unknown>): void => {
+    const id = Number(row['id']);
+    if (Number.isNaN(id)) {
+      return;
+    }
+
     this.router.navigate(['/pages/catalog/edit_product', id], { relativeTo: this.activatedRoute });
   };
 }

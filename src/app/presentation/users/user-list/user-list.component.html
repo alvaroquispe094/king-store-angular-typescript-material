@@ -1,13 +1,11 @@
-<div class="container-full p-4">
-  <div class="grid grid-nogutter bg-white p-5">
-    <div class="col-12 mt-2">
-      <a mat-raised-button color="primary" [routerLink]="['/pages/user/new_user']"> Add new </a>
+<section class="surface-section p-6">
+  <div class="mb-6 flex items-center justify-between gap-4">
+    <div>
+      <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Users</p>
+      <h2 class="mt-2 text-2xl font-semibold text-slate-950">User list</h2>
     </div>
-    <div class="col-12 mt-3">
-      <app-smart-table
-        [columns]="displayedColumns"
-        [data]="users"
-        [callbackFunction]="navigateToEditUser"></app-smart-table>
-    </div>
+    <a class="btn-primary" [routerLink]="['/pages/user/new_user']">Add new</a>
   </div>
-</div>
+
+  <app-smart-table [columns]="displayedColumns" [data]="users()" [callbackFunction]="navigateToEditUser"></app-smart-table>
+</section>

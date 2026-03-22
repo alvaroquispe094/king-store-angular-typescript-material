@@ -7,14 +7,11 @@ export const authGuard: CanActivateFn = () => {
   const tokenStorage: StorageService = inject(StorageService);
 
   if (!tokenStorage.isLoggedIn()) {
-    return router.navigate(['/sign_in']);
-  } else {
-    const roles = ['ROLE_CUSTOMER', 'ROLE_ADMIN'] as Array<string>;
-    const userRole = tokenStorage.getUser().roles[0];
-    if (roles && !roles.includes(userRole)) {
-      return router.navigate(['/sign_in']);
-    } else {
-      return true;
-    }
+    return router.createUrlTree(['/sign_in']);
   }
+
+  const roles = ['ROLE_CUSTOMER', 'ROLE_ADMIN'] as Array<string>;
+  const userRole = tokenStorage.getUser().roles[0];
+
+  return roles.includes(userRole) ? true : router.createUrlTree(['/sign_in']);
 };

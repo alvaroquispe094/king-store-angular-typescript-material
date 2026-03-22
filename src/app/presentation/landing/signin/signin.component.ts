@@ -1,24 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SignInModel } from '../../../domain/models/sign-in.model';
 import { SignInUseCase } from '../../../domain/usecases/sign-in.usecase';
 import { SnackBarService, StorageService, VALIDATIONS } from '../../../shared/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
   login?: SignInModel;
-  isLoading = false;
+  readonly isLoading = signal(false);
 
   constructor(
     public fb: FormBuilder,
@@ -37,11 +40,10 @@ export class SigninComponent implements OnInit {
   }
 
   signIn() {
-    console.log('login..');
-    this.setLoading(true);
+    this.isLoading.set(true);
     this.signInUseCase
       .execute(this.loginForm.value)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: res => {
           this.storageService.saveUser(res);
@@ -50,18 +52,10 @@ export class SigninComponent implements OnInit {
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
           this.snackBarService.error('Bad credentials!');
         },
-        complete: () => {
-          this.setLoading(false);
-          console.info('complete login');
-        },
+        complete: () => console.info('complete login'),
       });
-  }
-
-  setLoading(value: boolean) {
-    this.isLoading = value;
   }
 
   getErrorMessage(controlName: string) {

@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-box-info',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule],
   templateUrl: './box-info.component.html',
   styleUrls: ['./box-info.component.scss'],
 })

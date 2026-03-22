@@ -1,12 +1,7 @@
-<div class="grid grid-nogutter">
-  <div class="col-12">
-    <app-navigation [items]="items"></app-navigation>
-  </div>
-  <div class="col-12">
-    <div class="h-70"></div>
+<div class="min-h-screen bg-slate-50">
+  <app-navigation [items]="items"></app-navigation>
+  <main class="pt-6">
     <ng-content select="router-outlet"></ng-content>
-  </div>
-  <div class="col-12">
-    <app-footer></app-footer>
-  </div>
+  </main>
+  <app-footer></app-footer>
 </div>

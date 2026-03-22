@@ -1,47 +1,33 @@
-<div class="container">
-  <div class="grid grid-nogutter mt-7 mb-5" *ngIf="size_items > 0">
-    <div class="col-12">
-      <span class="mt-3 pl-2 border-round-sm font-medium text-xl">My Cart</span>
-    </div>
-    <div class="col-12 mt-2 pl-2 pr-2 border-round-md bg-shadow">
-      <app-item-cart
-        (size_items)="ngOnInit()"
-        *ngFor="let item of items"
-        [item]="item"></app-item-cart>
-    </div>
-    <div class="col-12 mt-2 pl-2 pr-2 border-round-md bg-shadow">
-      <div class="grid grid-nogutter bg-white mt-4">
-        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
-          <app-box-info [image]="" [title]="'Discount'" [text]="'$0'"></app-box-info>
-        </div>
-        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
-          <app-box-info [image]="" [title]="'Shipping'" [text]="'$0'"></app-box-info>
-        </div>
-        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
-          <app-box-info [image]="" [title]="'Subtotal'" [text]="'$0'"></app-box-info>
-        </div>
-        <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3 p-4">
-          <app-box-info [image]="" [title]="'Total'" [text]="'$' + total"></app-box-info>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 mt-6 pl-2 pr-2 text-center border-round-md bg-shadow">
-      <a mat-raised-button [routerLink]="" color="primary">Checkout</a>
-    </div>
-  </div>
+<div class="container py-8">
+  @if (totalAmount() > 0) {
+    <section class="space-y-6">
+      <header>
+        <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Cart</p>
+        <h1 class="mt-2 text-3xl font-semibold text-slate-950">My Cart</h1>
+      </header>
 
-  <!-- No items in cart -->
-  <div class="grid grid-nogutter mt-5 mb-5" *ngIf="size_items <= 0">
-    <div class="col-12 p-5 mb-5">
-      <div class="grid mt-5 mb-5 bg-white">
-        <div class="col-12 p-3 mt-8 mb-5">
-          <h1 class="font-medium text-lg text-center">Your Cart</h1>
-          <p class="font-light text-base text-center"><small>Your cart is empty.</small></p>
-        </div>
-        <div class="col-12 p-5 mb-5 text-center">
-          <a mat-raised-button routerLink="/catalog" color="primary">Continue shopping </a>
-        </div>
+      <div class="space-y-4">
+        @for (item of items(); track item.product.id) {
+          <app-item-cart (size_items)="refreshCart()" [item]="item"></app-item-cart>
+        }
       </div>
-    </div>
-  </div>
+
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <app-box-info title="Discount" text="$0"></app-box-info>
+        <app-box-info title="Shipping" text="$0"></app-box-info>
+        <app-box-info title="Items" [text]="totalAmount()"></app-box-info>
+        <app-box-info title="Total" [text]="'$' + total()"></app-box-info>
+      </div>
+
+      <div>
+        <a class="btn-primary" routerLink="/">Checkout</a>
+      </div>
+    </section>
+  } @else {
+    <section class="surface-section mx-auto max-w-2xl p-10 text-center">
+      <h1 class="text-2xl font-semibold text-slate-950">Your cart is empty</h1>
+      <p class="mt-3 text-sm text-slate-600">Add some products to continue shopping.</p>
+      <a class="btn-primary mt-6" routerLink="/catalog">Continue shopping</a>
+    </section>
+  }
 </div>

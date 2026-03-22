@@ -1,12 +1,18 @@
-<span class="text-color" matSnackBarLabel
-  ><i [class]="icon" aria-hidden="true"></i>&nbsp;&nbsp; {{ message }}
-</span>
-<span class="text-color" matSnackBarActions>
-  <button
-    mat-button
-    matSnackBarAction
-    class="text-color"
-    (click)="snackBarRef1.dismissWithAction()">
-    Dissmis
-  </button>
-</span>
+<div class="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex flex-col items-center gap-3 px-4">
+  @for (notification of notifications(); track notification.id) {
+    <div
+      class="pointer-events-auto flex w-full max-w-md items-center justify-between gap-4 rounded-2xl border px-4 py-3 shadow-lg"
+      [class]="styles()[notification.type]">
+      <div class="flex items-center gap-3">
+        <span class="rounded-full bg-white/70 px-2 py-1 text-xs font-semibold uppercase">
+          {{ iconFor(notification.type) }}
+        </span>
+        <span class="text-sm font-medium">{{ notification.message }}</span>
+      </div>
+
+      <button type="button" class="text-xs font-semibold uppercase tracking-wide" (click)="dismiss(notification.id)">
+        Cerrar
+      </button>
+    </div>
+  }
+</div>

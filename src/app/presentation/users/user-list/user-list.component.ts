@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserModel } from '../../../domain/models/user.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { GetUsersUseCase } from '../../../domain/usecases/get-users-by-role.usecase';
+import { SmartTableComponent } from '../../../shared/components/smart-table/smart-table.component';
 
 @Component({
   selector: 'app-user-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink, SmartTableComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
-  users!: UserModel[];
+  private readonly destroyRef = inject(DestroyRef);
+  readonly users = signal<UserModel[]>([]);
 
   displayedColumns: string[] = [
     'firstname',
@@ -40,9 +44,9 @@ export class UserListComponent implements OnInit {
       if (type) {
         this.getUsersByRolesUseCase
           .execute(type)
-          .pipe(takeUntil(this.destroy$))
+          .pipe(takeUntilDestroyed(this.destroyRef))
           .subscribe({
-            next: res => (this.users = res),
+            next: res => this.users.set(res),
             error: error => console.error(error),
             complete: () => console.info('complete'),
           });
@@ -50,10 +54,12 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  navigateToEditUser = (id: number): void => {
-    //callback code here
-    this.router.navigate;
-    console.log('Id user: ' + id);
-    this.router.navigate(['/pages/users/edit_user', id], { relativeTo: this.activatedRoute });
+  navigateToEditUser = (row: Record<string, unknown>): void => {
+    const id = Number(row['id']);
+    if (Number.isNaN(id)) {
+      return;
+    }
+
+    this.router.navigate(['/pages/user/edit_user', id], { relativeTo: this.activatedRoute });
   };
 }

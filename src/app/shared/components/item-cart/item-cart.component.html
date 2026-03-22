@@ -1,81 +1,22 @@
-<div class="container-full">
-  <!-- information boxes -->
-  <div class="grid grid-nogutter bg-white bg-shadow">
-    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
-      <div class="flex flex-wrap align-items-center justify-content-center h-full">
-        <div class="surface-overlay border-round p-2 m-1">
-          <span class="vertical-align-middle"
-            ><img
-              [src]="item.product.image ? item.product.image : '/assets/noimage.png'"
-              alt="Item cart"
-          /></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 ms:col-3 md:col-3 lg:col-3 xl:col-3 p-2 text-center">
-      <div class="flex flex-wrap align-items-center justify-content-center h-full">
-        <div class="surface-overlay border-round p-3 m-3">
-          <span class="vertical-align-middle">
-            <div class="grid grid-nogutter">
-              <div class="col-12">
-                <div class="mt-3 border-round-sm font-medium text-lg">{{ item.product.name }}</div>
-              </div>
-              <div class="col-12">
-                <div class="mt-2 border-round-sm font-light text-base">
-                  {{ item.product.description.substring(0, 80) }}..
-                </div>
-              </div>
-            </div>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
-      <div class="flex flex-wrap align-items-center justify-content-center h-full">
-        <div class="surface-overlay border-round p-3 py-0 m-3">
-          <span class="vertical-align-middle font-normal text-lg">$ {{ item.product.price }}</span>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 ms:col-3 md:col-3 lg:col-3 xl:col-3 p-2 text-center">
-      <div class="flex flex-wrap align-items-center justify-content-center h-full">
-        <div class="surface-overlay border-round p-3 py-0 m-3">
-          <span class="vertical-align-middle">
-            <div class="grid grid-nogutter">
-              <div class="col-4">
-                <a
-                  mat-mini-fab
-                  matTooltip="Link"
-                  (click)="substract()"
-                  color="primary"
-                  routerLink=".">
-                  <mat-icon>remove</mat-icon>
-                </a>
-              </div>
-              <div class="col-4">
-                <div class="m-2 border-round-sm font-medium text-lg">&nbsp;{{ item.amount }}</div>
-              </div>
-              <div class="col-4">
-                <a mat-mini-fab matTooltip="Link" (click)="add()" color="primary" routerLink=".">
-                  <mat-icon>add</mat-icon>
-                </a>
-              </div>
-            </div>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 ms:col-2 md:col-2 lg:col-2 xl:col-2 p-2 text-center">
-      <div class="flex flex-wrap align-items-center justify-content-center h-full">
-        <div class="surface-overlay border-round p-3 py-0 m-3">
-          <span class="vertical-align-middle">
-            <a mat-fab matTooltip="Link" (click)="removeItem()" color="warn" routerLink=".">
-              <mat-icon>delete</mat-icon>
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
+<article class="surface-card grid gap-4 p-4 md:grid-cols-[112px_1fr_auto_auto] md:items-center">
+  <img
+    class="h-24 w-24 rounded-2xl object-cover"
+    [src]="item.product.image ? item.product.image : '/assets/noimage.png'"
+    [alt]="item.product.name" />
+
+  <div>
+    <h3 class="text-lg font-semibold text-slate-900">{{ item.product.name }}</h3>
+    <p class="mt-2 text-sm text-slate-600">
+      {{ item.product.description.substring(0, 80) }}...
+    </p>
   </div>
-  <mat-divider></mat-divider>
-</div>
+
+  <div class="text-lg font-semibold text-slate-900">$ {{ item.product.price }}</div>
+
+  <div class="flex items-center gap-3">
+    <button type="button" class="btn-secondary h-10 w-10 rounded-full p-0" (click)="substract()">-</button>
+    <span class="min-w-8 text-center text-base font-semibold text-slate-900">{{ item.amount }}</span>
+    <button type="button" class="btn-secondary h-10 w-10 rounded-full p-0" (click)="add()">+</button>
+    <button type="button" class="btn-secondary ml-2 text-rose-600" (click)="removeItem()">Remove</button>
+  </div>
+</article>

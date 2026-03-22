@@ -1,63 +1,44 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Component, Input, OnChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-smart-table',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './smart-table.component.html',
   styleUrls: ['./smart-table.component.scss'],
 })
 export class SmartTableComponent implements OnChanges {
   displayedColumns!: string[];
-  dataSource!: MatTableDataSource<unknown>;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  filteredRows: Record<string, unknown>[] = [];
+  filterValue = '';
 
   @Input() columns!: string[];
   @Input() data!: unknown[];
-  @Input() callbackFunction!: (id: number) => void;
-
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  @Input() callbackFunction!: (row: Record<string, unknown>) => void;
 
   ngOnChanges(): void {
     this.displayedColumns = this.columns;
-    const products = this.data;
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(products);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.filteredRows = (this.data ?? []) as Record<string, unknown>[];
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    const normalized = this.filterValue.trim().toLowerCase();
+    const rows = (this.data ?? []) as Record<string, unknown>[];
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.filteredRows = !normalized
+      ? rows
+      : rows.filter(row =>
+          this.displayedColumns.some(column =>
+            String(row[column] ?? '')
+              .toLowerCase()
+              .includes(normalized)
+          )
+        );
   }
 
-  updateItem(id: number) {
-    this.callbackFunction(id);
+  updateItem(row: Record<string, unknown>) {
+    this.callbackFunction(row);
   }
 }

@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductModel } from '../../../domain/models/product.model';
 import { GetProductsUseCase } from '../../../domain/usecases/get-products.usecase';
+import { BoxInfoComponent, CardComponent, CarrouselComponent } from '../../../shared/components';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, CarrouselComponent, BoxInfoComponent, CardComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
-  products?: ProductModel[];
+  private readonly destroyRef = inject(DestroyRef);
+  readonly products = signal<ProductModel[]>([]);
 
   companies = [
     {
@@ -48,9 +52,9 @@ export class HomeComponent implements OnInit {
   getProductos() {
     this.getProductsUseCase
       .execute()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: res => (this.products = res),
+        next: res => this.products.set(res),
         error: error => console.error(error),
         complete: () => console.info('complete'),
       });

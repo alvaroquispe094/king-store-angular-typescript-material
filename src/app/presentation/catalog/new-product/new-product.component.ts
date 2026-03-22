@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormGroup } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetProductByIdUseCase } from '../../../domain/usecases/get-product-by-id.usecase';
-import { Subject, forkJoin, takeUntil } from 'rxjs';
+import { finalize, forkJoin } from 'rxjs';
 import { FORM_PRODUCT, ProductModel } from '../../../domain/models/product.model';
 import { GetCategoriesUseCase } from '../../../domain/usecases/get-categories.usecase';
 import { CategoryModel } from '../../../domain/models/category.model';
@@ -12,14 +13,15 @@ import { CreateProductUseCase } from '../../../domain/usecases/create-product.us
 
 @Component({
   selector: 'app-new-product',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.scss'],
 })
 export class NewProductComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
   public productForm!: UntypedFormGroup;
 
-  isLoading;
+  readonly isLoading = signal(false);
   product?: ProductModel;
   categoryIdSelected = 0;
   edit: boolean;
@@ -36,7 +38,6 @@ export class NewProductComponent implements OnInit {
     private createProductUseCase: CreateProductUseCase
   ) {
     this.edit = false;
-    this.isLoading = false;
   }
 
   ngOnInit() {
@@ -55,68 +56,57 @@ export class NewProductComponent implements OnInit {
     const params = this.activatedRoute.snapshot['params'];
     if (params['id']) {
       this.edit = true;
-      this.getProductByIdUseCase
-        .execute(params['id'])
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: res => {
-            this.product = res;
-            console.info('data: ' + res.name);
-            this.product.categoryId = this.categories.filter(x => x.name === res.category)[0]['id'];
-            this.productForm.patchValue(this.product); // update form using domain data fetch
-          },
-          error: error => console.error(error),
-          complete: () => console.info('get product complete'),
-        });
+      this.getProductByIdUseCase.execute(params['id']).subscribe({
+        next: res => {
+          this.product = res;
+          console.info('data: ' + res.name);
+          this.product.categoryId = this.categories.filter(x => x.name === res.category)[0]['id'];
+          this.productForm.patchValue(this.product);
+        },
+        error: error => console.error(error),
+        complete: () => console.info('get product complete'),
+      });
     }
   }
 
   updateProduct() {
-    this.setLoading(true);
+    this.isLoading.set(true);
 
     this.updateProductUseCase
       .execute({ product: this.productForm.value, id: this.productForm.value.id })
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: () => {
           this.snackBarService.info('Updated product!');
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
         },
         complete: () => {
           console.info('complete update product');
-          this.setLoading(false);
           this.router.navigate(['/pages/catalog/products'], { relativeTo: this.activatedRoute });
         },
       });
   }
 
   createProduct() {
-    this.setLoading(true);
+    this.isLoading.set(true);
 
     this.createProductUseCase
       .execute(this.productForm.value)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: () => {
           this.snackBarService.success('Created product!');
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
         },
         complete: () => {
           console.info('complete create product');
-          this.setLoading(false);
           this.router.navigate(['/pages/catalog/products'], { relativeTo: this.activatedRoute });
         },
       });
-  }
-
-  setLoading(value: boolean) {
-    this.isLoading = value;
   }
 
   // Custom messages for inputs

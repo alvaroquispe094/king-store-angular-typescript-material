@@ -1,49 +1,59 @@
-<div class="content">
-  <nav class="navbar">
-    <!-- LOGO -->
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+  <nav class="container flex min-h-[72px] items-center justify-between gap-4 py-3">
+    <a class="flex items-center gap-3" routerLink="/">
+      <img class="h-10 w-auto" src="/assets/logo_light.png" alt="Logo" />
+      <span class="text-lg font-semibold text-slate-900">King Store</span>
+    </a>
 
-    <span class="pl-2 pt-2"><img src="/assets/logo_light.png" alt="Logo" /></span>
+    <button
+      type="button"
+      class="btn-secondary px-3 py-2 md:hidden"
+      (click)="setVisibleState(!menuOpen())">
+      Menu
+    </button>
 
-    <!--<div class="logo">King Store</div>-->
-
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <!-- USING CHECKBOX HACK -->
-      <input
-        type="checkbox"
-        id="checkbox_toggle"
-        [checked]="visible"
-        (change)="setVisibleState(true)" />
-      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-
-      <!-- NAVIGATION MENUS -->
-      <div class="menu">
-        <li *ngFor="let item of items">
+    <ul class="hidden items-center gap-2 md:flex">
+      @for (item of items; track item.link) {
+        <li>
           <a
-            (click)="this.setVisibleState(false)"
-            (click)="(item.function)"
-            type="link"
-            class="pr-4"
-            mat-button
-            [routerLink]="[item.link]">
-            <mat-icon class="m-0 p-0">{{ item.icon }}</mat-icon>
-            <span *ngIf="item.text" class="ml-2">
-              {{ item.text }}
-            </span>
+            class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+            routerLinkActive="bg-slate-900 text-white"
+            [routerLink]="[item.link]"
+            (click)="setVisibleState(false)">
+            @if (item.icon) {
+              <i class="fa" [class]="resolveIcon(item.icon)"></i>
+            }
+            <span>{{ item.text || item.title }}</span>
           </a>
         </li>
-        <li *ngIf="role">
-          <a
-            (click)="this.setVisibleState(false)"
-            (click)="signOut()"
-            type="link"
-            class="pr-4"
-            mat-button
-            routerLink="">
-            <mat-icon class="m-0 p-0">subdirectory_arrow_left</mat-icon>
-          </a>
+      }
+
+      @if (role) {
+        <li>
+          <button type="button" class="btn-secondary px-3 py-2 text-sm" (click)="signOut()">
+            Sign out
+          </button>
         </li>
-      </div>
+      }
     </ul>
   </nav>
-</div>
+
+  @if (menuOpen()) {
+    <div class="border-t border-slate-200 bg-white md:hidden">
+      <div class="container flex flex-col gap-2 py-4">
+        @for (item of items; track item.link) {
+          <a
+            class="rounded-xl px-3 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100"
+            [routerLink]="[item.link]"
+            (click)="setVisibleState(false)">
+            {{ item.text || item.title }}
+          </a>
+        }
+
+        @if (role) {
+          <button type="button" class="btn-secondary justify-center" (click)="signOut()">Sign out</button>
+        }
+      </div>
+    </div>
+  }
+</header>

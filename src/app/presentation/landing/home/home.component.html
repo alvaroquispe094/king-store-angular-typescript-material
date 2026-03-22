@@ -1,63 +1,51 @@
-<div class="container-full">
-  <app-carrousel></app-carrousel>
-</div>
-<div class="container">
-  <!-- information boxes -->
-  <div class="grid grid-nogutter mt-7">
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
-      <app-box-info
-        [image]="'trophy.svg'"
-        [title]="'High Quality'"
-        [text]="'high durability materials'"></app-box-info>
-    </div>
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
-      <app-box-info
-        [image]="'guarantee.svg'"
-        [title]="'Warrany Protection'"
-        [text]="'Over 2 years'"></app-box-info>
-    </div>
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
-      <app-box-info
-        [image]="'shipping.svg'"
-        [title]="'Free Shipping'"
-        [text]="'Order over 150 $'"></app-box-info>
-    </div>
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-3">
-      <app-box-info
-        [image]="'customer-support.svg'"
-        [title]="'Support 24/7'"
-        [text]="'Dedicated support'"></app-box-info>
-    </div>
+<section class="space-y-10">
+  <div class="container-full">
+    <app-carrousel></app-carrousel>
   </div>
 
-  <br />
+  <div class="container">
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <app-box-info image="trophy.svg" title="High Quality" text="High durability materials"></app-box-info>
+      <app-box-info image="guarantee.svg" title="Warranty Protection" text="Over 2 years"></app-box-info>
+      <app-box-info image="shipping.svg" title="Free Shipping" text="Order over $150"></app-box-info>
+      <app-box-info image="customer-support.svg" title="Support 24/7" text="Dedicated support"></app-box-info>
+    </div>
 
-  <!-- New products -->
-  <div class="grid grid-nogutter mt-2">
-    <div class="col-12">
-      <div class="mt-4 font-normal text-xl p-2">Novedades</div>
-    </div>
-    <div class="col-12 ms:col-12 md:col-6 lg:col-4 xl:col-4 p-2" *ngFor="let company of companies">
-      <app-card
-        [image]="company.image"
-        [companyName]="company.companyName"
-        [position]="company.position"
-        [date]="company.date"></app-card>
-    </div>
-  </div>
+    <section class="mt-10">
+      <header class="mb-4">
+        <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Highlights</p>
+        <h2 class="mt-2 text-2xl font-semibold text-slate-900">Novedades</h2>
+      </header>
 
-  <div class="grid grid-nogutter mt-2">
-    <div class="col-12">
-      <div class="mt-4 font-normal text-xl p-2">Detalle de productos</div>
-    </div>
-    <div class="col-12">
-      <p class="mb-6 p-2" *ngFor="let p of products">
-        {{ p.id }}, {{ p.name }}, {{ p.description }}, {{ p.price }}
-      </p>
-    </div>
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        @for (company of companies; track company.companyName) {
+          <app-card
+            [image]="company.image"
+            [companyName]="company.companyName"
+            [position]="company.position"
+            [date]="company.date"></app-card>
+        }
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <header class="mb-4">
+        <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Catalog preview</p>
+        <h2 class="mt-2 text-2xl font-semibold text-slate-900">Detalle de productos</h2>
+      </header>
+
+      <div class="surface-section p-6">
+        @for (product of products(); track product.id) {
+          <div class="border-b border-slate-100 py-3 last:border-b-0">
+            <p class="text-sm text-slate-700">
+              <span class="font-semibold text-slate-900">{{ product.name }}</span>
+              · {{ product.description }} · ${{ product.price }}
+            </p>
+          </div>
+        } @empty {
+          <p class="text-sm text-slate-500">No products found.</p>
+        }
+      </div>
+    </section>
   </div>
-  <!--<p class="mb-6" *ngFor="let p of products">
-    {{ p.id }}, {{ p.name }}, {{ p.description }}, {{ p.price }}
-  </p>-->
-  <br />
-</div>
+</section>

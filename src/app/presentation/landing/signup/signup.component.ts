@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormGroup } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { SignUpUseCase } from '../../../domain/usecases/sign-up.usecase';
 import { SnackBarService, VALIDATIONS } from '../../../shared/common';
-import { Subject, takeUntil } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { FORM_USER } from '../../../domain/models/user.model';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  private destroy$: Subject<void> = new Subject<void>();
-  isLoading = false;
+  readonly isLoading = signal(false);
 
   public signupForm!: UntypedFormGroup;
 
@@ -30,11 +32,10 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    console.log('Signup..');
-    this.setLoading(true);
+    this.isLoading.set(true);
     this.signUpUseCase
       .execute(this.signupForm.value)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: () => {
           this.snackBarService.success('Sign up Done!');
@@ -42,18 +43,10 @@ export class SignupComponent implements OnInit {
         },
         error: err => {
           console.error(err);
-          this.setLoading(false);
           this.snackBarService.error('Error sign up');
         },
-        complete: () => {
-          this.setLoading(false);
-          console.info('complete register');
-        },
+        complete: () => console.info('complete register'),
       });
-  }
-
-  setLoading(value: boolean) {
-    this.isLoading = value;
   }
 
   // Custom messages for inputs

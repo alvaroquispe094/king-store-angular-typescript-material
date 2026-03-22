@@ -1,49 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MAT_SNACK_BAR_DATA, MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
+import { Component, computed, inject } from '@angular/core';
+import { SnackBarService, SnackbarItem } from '../../common';
 
 @Component({
   selector: 'app-snackbar',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatSnackBarModule, MatIconModule],
+  imports: [CommonModule],
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.scss'],
 })
 export class SnackbarComponent {
-  message? = '';
-  icon? = '';
-  snackBarRef1 = inject(MatSnackBarRef);
-  data = inject(MAT_SNACK_BAR_DATA);
+  private readonly snackBarService = inject(SnackBarService);
+  readonly notifications = this.snackBarService.notifications.asReadonly();
+  readonly styles = computed<Record<string, string>>(() => ({
+    success: 'border-emerald-200 bg-emerald-50 text-emerald-900',
+    error: 'border-rose-200 bg-rose-50 text-rose-900',
+    info: 'border-sky-200 bg-sky-50 text-sky-900',
+    warning: 'border-amber-200 bg-amber-50 text-amber-900',
+    default: 'border-slate-200 bg-white text-slate-900',
+  }));
 
-  constructor() {
-    this.message = this.data.message;
-    this.icon = this.findIcon(this.data.type);
+  dismiss(id: number) {
+    this.snackBarService.dismiss(id);
   }
 
-  findIcon(type: string) {
+  iconFor(type: SnackbarItem['type']) {
     switch (type) {
-      case 'success': {
-        return 'fa fa-check-circle-o fa-lg';
-        break;
-      }
-      case 'error': {
-        return 'fa fa-exclamation-triangle fa-lg';
-        break;
-      }
-      case 'info': {
-        return 'fa fa-info-circle fa-lg';
-        break;
-      }
-      case 'warning': {
-        return 'fa fa-exclamation-circle fa-lg';
-        break;
-      }
-      default: {
-        return 'fa fa-question-circle fa-lg';
-        break;
-      }
+      case 'success':
+        return 'check';
+      case 'error':
+        return 'error';
+      case 'info':
+        return 'info';
+      case 'warning':
+        return 'warning';
+      default:
+        return 'note';
     }
   }
 }

@@ -1,37 +1,21 @@
-<mat-sidenav-container class="sidenav-container bg-none">
-  <mat-sidenav
-    #drawer
-    fixedInViewport
-    class="sidenav"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'push' : 'side'"
-    [opened]="(isHandset$ | async) === false">
-    <br />
-    <br />
-    <br />
-    <br />
+<div class="container grid gap-6 py-6 lg:grid-cols-[280px_1fr]">
+  <div class="lg:hidden">
+    <button type="button" class="btn-secondary w-full justify-center" (click)="asideOpen.set(!asideOpen())">
+      {{ asideOpen() ? 'Hide menu' : 'Show menu' }}
+    </button>
+  </div>
+
+  @if (asideOpen()) {
+    <div class="lg:hidden">
+      <app-sidenav [menu]="_options" [title]="'Menu'"></app-sidenav>
+    </div>
+  }
+
+  <aside class="hidden lg:block">
     <app-sidenav [menu]="_options" [title]="'Menu'"></app-sidenav>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="grid grid-nogutter" *ngIf="isHandset$ | async">
-      <div class="col-12">
-        <mat-toolbar class="bg-main bg-white h-2rem mt-0 p-0" style="position: fixed; z-index: 2">
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async">
-            <mat-icon aria-label="Side nav toggle icon">chevron_right</mat-icon>
-          </button>
-        </mat-toolbar>
-      </div>
-    </div>
-    <!-- Add Content Here -->
-    <div class="grid grid-nogutter">
-      <div class="col-12 mt-5">
-        <ng-content select="router-outlet"></ng-content>
-      </div>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </aside>
+
+  <section class="min-w-0">
+    <ng-content select="router-outlet"></ng-content>
+  </section>
+</div>
