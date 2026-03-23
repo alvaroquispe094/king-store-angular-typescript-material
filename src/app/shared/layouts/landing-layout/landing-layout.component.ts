@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent, NavigationComponent } from '../../components';
 import { MENU_CUSTOMER, MENU_GUEST, StorageService } from '../../common';
@@ -12,8 +12,7 @@ import { NavigationModel } from '../../../domain/models/navigation.model';
 })
 export class LandingLayoutComponent implements OnInit, OnDestroy {
   items?: NavigationModel[];
-
-  constructor(private storageService: StorageService) {}
+  private readonly storageService = inject(StorageService);
 
   ngOnInit(): void {
     this.storageService.isLoggedIn() ? (this.items = MENU_CUSTOMER) : (this.items = MENU_GUEST);

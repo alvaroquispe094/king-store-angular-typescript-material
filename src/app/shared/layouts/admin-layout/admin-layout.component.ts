@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent, FooterComponent } from '../../components';
 import { SideContainerLayoutComponent } from '../side-container-layout/side-container-layout.component';
@@ -8,21 +8,20 @@ import { NavigationModel } from '../../../domain/models/navigation.model';
 import { StorageService } from '../../common/storage.service';
 
 @Component({
-    selector: 'app-admin-layout',
-    templateUrl: './admin-layout.component.html',
-    styleUrls: ['./admin-layout.component.scss'],
-    imports: [
-        CommonModule,
-        NavigationComponent,
-        FooterComponent,
-        SideContainerLayoutComponent,
-        RouterModule,
-    ]
+  selector: 'app-admin-layout',
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.scss'],
+  imports: [
+    CommonModule,
+    NavigationComponent,
+    FooterComponent,
+    SideContainerLayoutComponent,
+    RouterModule,
+  ],
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
   items?: NavigationModel[];
-
-  constructor(private storageService: StorageService) {}
+  private readonly storageService = inject(StorageService);
 
   ngOnInit(): void {
     this.storageService.isLoggedIn()

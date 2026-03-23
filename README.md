@@ -1,10 +1,10 @@
 # KingStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+This project runs on [Angular CLI](https://github.com/angular/angular-cli) 20 and uses a standalone bootstrap setup.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` to launch the local configuration, or `npm run start:dev` / `npm run start:prod` for the other environments. The dev server runs on `http://localhost:4200/` and reloads automatically when source files change.
 
 ## Code scaffolding
 
@@ -12,16 +12,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build` to create a production build in `dist/king-store`. Run `npm run watch` to keep a local build watching for changes.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Linting
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `npm run lint` to execute the Angular ESLint checks.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To get more help on the Angular CLI use `npx ng help` or check the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli).

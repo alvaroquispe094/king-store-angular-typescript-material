@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLinkActive, RouterModule } from '@angular/router';
 import { NavigationModel } from '../../../domain/models/navigation.model';
@@ -13,9 +13,8 @@ import { StorageService } from '../../common';
 export class NavigationComponent implements OnInit, OnDestroy {
   @Input() items?: NavigationModel[];
   readonly menuOpen = signal(false);
+  private readonly storageService = inject(StorageService);
   role = '';
-
-  constructor(private storageService: StorageService) {}
   ngOnInit(): void {
     this.getRole();
   }
