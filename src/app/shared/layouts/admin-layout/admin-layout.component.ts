@@ -24,11 +24,13 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   private readonly storageService = inject(StorageService);
 
   ngOnInit(): void {
-    this.storageService.isLoggedIn()
-      ? this.storageService.getUser().roles[0] == 'ROLE_CUSTOMER'
-        ? (this.items = MENU_CUSTOMER)
-        : (this.items = MENU_ADMIN)
-      : (this.items = MENU_GUEST);
+    if (!this.storageService.isLoggedIn()) {
+      this.items = MENU_GUEST;
+      return;
+    }
+
+    const userRole = this.storageService.getUser().roles[0] ?? '';
+    this.items = userRole === 'ROLE_CUSTOMER' ? MENU_CUSTOMER : MENU_ADMIN;
   }
 
   ngOnDestroy(): void {

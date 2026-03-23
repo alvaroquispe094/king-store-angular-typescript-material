@@ -1,28 +1,54 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, Injectable, PLATFORM_ID, REQUEST, inject } from '@angular/core';
 import { SignInModel } from '../../domain/models/sign-in.model';
 
 const USER_KEY = 'auth-user';
+const COOKIE_PATH = 'Path=/';
+const COOKIE_SAME_SITE = 'SameSite=Lax';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
+  private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly request = inject(REQUEST, { optional: true });
+
   clean(): void {
-    window.sessionStorage.clear();
-    window.location.reload();
+    this.deleteCookie(USER_KEY);
   }
 
   public saveUser(user: SignInModel): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    this.setCookie(USER_KEY, JSON.stringify(user));
   }
 
   public getUser(): SignInModel {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = this.getCookie(USER_KEY);
     if (user) {
-      return JSON.parse(user);
+      try {
+        return JSON.parse(user) as SignInModel;
+      } catch (error) {
+        console.error('Invalid auth cookie payload.', error);
+        this.deleteCookie(USER_KEY);
+      }
     }
 
+    return this.createEmptyUser();
+  }
+
+  public isLoggedIn(): boolean {
+    return Boolean(this.getUser().accessToken);
+  }
+
+  public isAdminUser(): boolean {
+    return this.getUser().roles.includes('ROLE_ADMIN');
+  }
+
+  public isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  private createEmptyUser(): SignInModel {
     return {
       id: 0,
       accessToken: '',
@@ -33,22 +59,42 @@ export class StorageService {
     };
   }
 
-  public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return true;
-    }
+  private getCookie(name: string): string | null {
+    const cookies = this.readCookieSource();
+    const encodedName = `${encodeURIComponent(name)}=`;
+    const value = cookies
+      .split(';')
+      .map(cookie => cookie.trim())
+      .find(cookie => cookie.startsWith(encodedName));
 
-    return false;
+    return value ? decodeURIComponent(value.slice(encodedName.length)) : null;
   }
 
-  public isAdminUser(): boolean {
-    const isAdmin = this.getUser().roles.every(r => {
-      if (r !== 'ROLE_ADMIN') {
-        return false;
-      }
-      return true;
-    });
-    return isAdmin;
+  private readCookieSource(): string {
+    if (this.isBrowser()) {
+      return this.document.cookie ?? '';
+    }
+
+    return this.request?.headers.get('cookie') ?? '';
+  }
+
+  private setCookie(name: string, value: string): void {
+    if (!this.isBrowser()) {
+      return;
+    }
+
+    this.document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(
+      value
+    )}; ${COOKIE_PATH}; ${COOKIE_SAME_SITE}`;
+  }
+
+  private deleteCookie(name: string): void {
+    if (!this.isBrowser()) {
+      return;
+    }
+
+    this.document.cookie = `${encodeURIComponent(
+      name
+    )}=; ${COOKIE_PATH}; Max-Age=0; ${COOKIE_SAME_SITE}`;
   }
 }

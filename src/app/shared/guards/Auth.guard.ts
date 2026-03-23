@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = () => {
   }
 
   const roles = ['ROLE_CUSTOMER', 'ROLE_ADMIN'] as Array<string>;
-  const userRole = tokenStorage.getUser().roles[0];
+  const userRole = tokenStorage.getUser().roles[0] ?? '';
 
   return roles.includes(userRole) ? true : router.createUrlTree(['/sign_in']);
 };
